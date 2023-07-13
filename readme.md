@@ -9,7 +9,7 @@
 - 질문 내용에 대한 추가 조사 + 정리는 발표자가 다음 시간까지 해오기
 <br></br>
 ## 주제목록
-https://acidic-umbra-7cf.notion.site/c7504df1e30a49a49c9da41782906265?v=1680467e9a92414ba705d88e3c399424&pvs=4
+https://www.notion.so/c7504df1e30a49a49c9da41782906265?v=1680467e9a92414ba705d88e3c399424
 - 네트워크
 - 데이터베이스
 - 알고리즘&자료구조

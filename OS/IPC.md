@@ -15,10 +15,16 @@
 
 - 파이프는 두 개의 프로세스를 연결함 (한 프로세스는 데이터를 쓰기만, 나머지 프로세스는 읽기만 함)
 - FIFO 구조로 동작함 
-- 부모(write)-자식(read) 간의 단방향(반이중) 통신으로 자주 사용함 
+- 부모(write)-자식(read) 간의 단방향 통신으로 자주 사용함 
 - 만약 양방향(전이중) 통신을 하고 싶으면 두 개의 파이프를 만들어야 함 
 - 한 프로세스에서 read/write 작업이 끝나기 전에는 다른 프로세스에서 작업을 할 수 없음 
 - pipe 함수로 파이프를 생성할 수 있음
+```java
+단방향 - 데이터를 전송하는 방향이 단방향인 것
+양방향 - 전이중방식 또는 반이중방식 
+반이중 - 전송의 방향은 양방향이지만, 전송이 이루어지는 한 순간에는 양쪽 중 한 방향만 전송이 가능한 것
+전이중 - 동시에 양방향 전송이 가능한 것, 데이터를 수신하고 있는 동안에도 보내고 싶은 데이터를 송신할 수 있어 전송 능률이 높음 
+```
 
 
 - 간단하지만, 전이중 통신을 하려는 경우 구현이 복잡해지고 버퍼가 상대적으로 작기 때문에 overflow 될 확률이 높음 
@@ -27,13 +33,13 @@
 ![](./image/ipc_3.png)
 
 - PIPE와 달리 부모-자식 관계가 아닌 서로 다른 프로세스들끼리 통신이 가능함 (단, 통신할 PIPE의 이름이 존재하고, **두 프로세스가 PIPE의 이름을 알아야 함**)
-- PIPE와 마찬가지로 FIFO 구조로 동작하며, 반이중 통신임 
+- PIPE와 마찬가지로 FIFO 구조로 동작하며, 단방향 통신임 
 - mkfifo or mknod 함수로 이름이 있는 파이프를 생성할 수 있음 
 <br></br>
 ### Message Queue (메시지 큐)
 ![](./image/ipc_4.png)
 - 큐에 있는 데이터에 번호를 붙여 **여러 개의 프로세스가 데이터를 읽고 쓸 수 있게 함** (메시지큐는 파이프처럼 데이터의 흐름이 아니라 메모리 공간!)
-- 입출력 방식은 PIPE와 동일함 (반이중 통신, FIFO 구조)
+- 입출력 방식은 PIPE와 동일함 (단방향 통신, FIFO 구조)
 - 각각의 데이터를 구조체 모양으로 큐 안에 저장함 
 <br></br>
 ### Shared Memory (공유 메모리)
@@ -85,3 +91,5 @@ https://heeonii.tistory.com/13
 https://mangkyu.tistory.com/9    
 https://computer-serendipity.com/message-queues/    
 https://dar0m.tistory.com/233    
+https://terms.tta.or.kr/dictionary/dictionaryView.do?subject=%ED%86%B5%EC%8B%A0+%EB%B0%A9%EC%8B%9D   
+https://zetawiki.com/wiki/%EC%96%91%EB%B0%A9%ED%96%A5%ED%86%B5%EC%8B%A0,_%EC%A0%84%EC%9D%B4%EC%A4%91%EB%B0%A9%EC%8B%9D,_%EB%B0%98%EC%9D%B4%EC%A4%91%EB%B0%A9%EC%8B%9D,_%EB%8B%A8%EB%B0%A9%ED%96%A5%ED%86%B5%EC%8B%A0  

@@ -41,6 +41,11 @@ DROP TABLE 테이블명
 
 <br></br>
 
+### 면접질문
+1. DELETE, TRUNCATE, DROP의 차이를 설명해주세요
+
+<br></br>
+
 ### 출처
 [https://wikidocs.net/4021](https://wikidocs.net/4021)     
 [https://yurimac.tistory.com/34](https://yurimac.tistory.com/34)

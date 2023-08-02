@@ -16,7 +16,7 @@
 ex) 아래 뷰는 insert 작업이 불가능함 (삽입 연산 시 기본 키에 null 값이 들어가기 때문에)
 
 ```sql
-// 기본테이블은 student { sno, sname, dept }
+// 기본테이블은 student { sno(pk), sname, dept }
 CREATE VIEW student_view
 		AS sno, dept
 		FROM student;

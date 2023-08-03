@@ -27,7 +27,11 @@ Complex Instruction Set Computer = 복잡한 명령 집합 컴퓨터
 Reduced Instruction Set Computer = 축소된 명령 집합 컴퓨터
 
 - CISC의 많은 명령어 중 주로 쓰이는 몇가지만 추려서 하드웨어로 구현한 것 (IBM에서 명령어의 20% 정도가 80%의 일을 처리한다는 것을 증명함)
-- 컴퓨터의 실행 속도를 높이기 위해 **복잡한 처리를 소프트웨어에 맡기는 방식**을 채택함 
+- 컴퓨터의 실행 속도를 높이기 위해 **복잡한 처리를 소프트웨어에 맡기는 방식**을 채택함
+> RISC는 스택 관련 명령어를 내장하고 있지 않기 때문에, return address 나 기타 스택 자료 구조는 SW적으로 처리해주어야 함     
+단순한 CPU 명령어를 사용하기 때문에 컴파일러의 최적화가 요구됨     
+-> 이런 식으로 SW가 처리해야 하는 양이 많음!      
+
 **→ 하드웨어가 간단한 대신 소프트웨어가 복잡하고 크기가 커짐**
 
 ![](./image/risc_1.jpg)
@@ -76,16 +80,11 @@ ADD, SUB, SLT, SLTU, XOR, OR, AND, SLL, SRL, SRA
 <br></br>
 
 ### 출처
-[https://namu.wiki/w/RISC-V/명령어 목록](https://namu.wiki/w/RISC-V/%EB%AA%85%EB%A0%B9%EC%96%B4%20%EB%AA%A9%EB%A1%9D)
-
-[https://blog.skby.net/마이크로프로세서-microprocessor/](https://blog.skby.net/%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%ED%94%84%EB%A1%9C%EC%84%B8%EC%84%9C-microprocessor/)
-
-[https://ko.wikipedia.org/wiki/명령어_파이프라인](https://ko.wikipedia.org/wiki/%EB%AA%85%EB%A0%B9%EC%96%B4_%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8)
-
-[https://m.cafe.daum.net/coders/KfIi/221](https://m.cafe.daum.net/coders/KfIi/221)
-
-[https://kkhipp.tistory.com/166](https://kkhipp.tistory.com/166)
-
-[https://kwon-jjing.tistory.com/48](https://kwon-jjing.tistory.com/48)
-
-[https://itwiki.kr/w/RISC](https://itwiki.kr/w/RISC)
+[https://namu.wiki/w/RISC-V/명령어 목록](https://namu.wiki/w/RISC-V/%EB%AA%85%EB%A0%B9%EC%96%B4%20%EB%AA%A9%EB%A1%9D)      
+[https://blog.skby.net/마이크로프로세서-microprocessor/](https://blog.skby.net/%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%ED%94%84%EB%A1%9C%EC%84%B8%EC%84%9C-microprocessor/)      
+[https://ko.wikipedia.org/wiki/명령어_파이프라인](https://ko.wikipedia.org/wiki/%EB%AA%85%EB%A0%B9%EC%96%B4_%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8)      
+[https://m.cafe.daum.net/coders/KfIi/221](https://m.cafe.daum.net/coders/KfIi/221)   
+[https://kkhipp.tistory.com/166](https://kkhipp.tistory.com/166)    
+[https://kwon-jjing.tistory.com/48](https://kwon-jjing.tistory.com/48)     
+[https://itwiki.kr/w/RISC](https://itwiki.kr/w/RISC)      
+https://chlalgud8505.tistory.com/8

@@ -3,12 +3,10 @@
 **파티셔닝과 샤딩은 데이터베이스를 분할하는 방법!**
 
 ## 파티셔닝이란?
-
 - 큰 테이블이나 인덱스를 관리하기 쉬운 파티션이라는 작은 단위로 물리적으로 분할하는 것
 - 데이터는 물리적으로 여러 테이블로 분산되어 저장되지만, 사용자는 하나의 테이블에 접근하는 것처럼 사용할 수 있음
 
 ### 장점
-
 - 관리적 측면에서, 파티션 단위로 데이터를 백업/추가/삭제/변경하기 때문에
     - 전체 데이터를 소실할 가능성이 줄어들어 데이터 가용성이 향상됨
     - 파티션 별로 백업 및 복구가 가능함
@@ -18,90 +16,80 @@
     - 필요한 데이터만 빠르게 조회할 수 있기 때문에 쿼리가 가벼워짐
 
 ### 단점
-
 - 테이블 간 조인에 대한 비용이 증가함
 - 테이블과 인덱스를 별도로 파티셔닝 할 수 없기 때문에, 테이블과 인덱스를 같이 파티셔닝해야 함
 
-## 파티셔닝의 종류
+<br></br>
 
-![partitioning_1.png](%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%84%82%E1%85%B5%E1%86%BC(Partitioning)_%E1%84%89%E1%85%A3%E1%84%83%E1%85%B5%E1%86%BC(Sharding)%20d335a95025a2424386a631dfc19fd1ea/partitioning_1.png)
+## 파티셔닝의 종류
+![partitioning_1.png](./image/partitioning_1.png)
 
 ### Range 파티셔닝
-
 특정 기준에 의해서 범위(연속적인 범위)를 나눌 때 사용함  ex) 연도별로 판매 테이블 파티셔닝
 
 - 장점 - 사용/관리가 쉬움
 - 단점 - 데이터가 균일하게 분포되지 못해서 성능 저하가 있을 수 있음 (판매가 많이 된 년도에는 데이터가 많아서 작업 속도가 느리지만, 판매량이 적은 년도에는 데이터가 적어서 빨리 조회되는 경우)
-
+<br></br>
 ### Hash 파티셔닝
-
 키 값을 해시함수에 넣어 나오는 값으로 파티셔닝함
 
 - 장점 - 해시 함수가 데이터를 각 테이블스페이스 별로 균등하게 분포시켜서 성능을 향상시킴
 - 단점 - 사용자가 데이터를 분산하지 않고 해시 함수가 분산시키기 때문에 데이터 관리가 어려움
-
+<br></br>
 ### List 파티셔닝
-
-파티셔닝할 항목을 사용자가 직접 지정하는 방식 → 불연속적인 값의 목록을 각 파티션에 지정함
-
+파티셔닝할 항목을 사용자가 직접 지정하는 방식 → 불연속적인 값의 목록을 각 파티션에 지정함     
 순서에 상관없이, 사용자가 미리 정한 그룹핑 기준에 따라 데이터를 분할해 저장함  ex) 판매 데이터를 지역별로 분할
 
 - 장점 - 항목을 잘 설정할 경우 빠른 성능이 보장됨
 - 단점 - 항목을 잘못 설정할 경우 성능이 저하됨 (A지역용 파티션을 별도로 생성했으나 판매 부진으로 판매량이 없을 경우)
-
+<br></br>
 ### Composite 파티셔닝
-
 여러 파티셔닝 종류를 복합적으로 사용하는 것 
 
 1. **Range-Hash 파티션** 
 - 특정 기준에 의해(일자별로) 먼저 파티셔닝을 하고, 그 안에 또 해시 파티셔닝을 하는 방법
 - 장점 - Range 파티션만 쓰는 것보다 데이터가 균일하게 분포됨
 - 단점 - 데이터가 어느 파티션에 속할지 제어할 수 없음
-
-1. **Range-List 파티션**
+<br></br>
+2. **Range-List 파티션**
 - 특정 기준에 의해(일자별로) 먼저 파티셔닝을 하고, 그 안에 또 리스트 파티셔닝을 하는 방법
 - 장점 - 각 데이터가 어느 파티션에 속할지 파악이 가능함
 
+<br></br>
+
 ## 파티셔닝 vs 샤딩
-
-![partitioning_2.png](%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%84%82%E1%85%B5%E1%86%BC(Partitioning)_%E1%84%89%E1%85%A3%E1%84%83%E1%85%B5%E1%86%BC(Sharding)%20d335a95025a2424386a631dfc19fd1ea/partitioning_2.png)
-
+![partitioning_2.png](./image/partitioning_2.png)
 파티셔닝은 모든 데이터를 동일한 서버에 저장하지만, 샤딩은 데이터를 서로 다른 서버로 분산해 저장함
 
+<br></br>
+
 ## 샤딩이란?
-
-하나의 거대한 데이터베이스나 네트워크 시스템을 여러 개의 작은 조각으로 나누어 분산 저장하여 관리하는 것
-
-샤딩을 통해 나누어진 블록들의 구간을 샤드(shard)라고 부름
-
-샤딩의 종류는 파티셔닝과 거의 유사해서 따로 적진 않았음!
+하나의 거대한 데이터베이스나 네트워크 시스템을 여러 개의 작은 조각으로 나누어 분산 저장하여 관리하는 것     
+샤딩을 통해 나누어진 블록들의 구간을 샤드(shard)라고 부름     
+샤딩의 종류는 파티셔닝과 거의 유사해서 따로 적진 않았음!     
 
 ### 장점
-
 - 수평적 확장이 가능함
 - 필요한 데이터만 빠르게 조회할 수 있기 때문에 쿼리 자체가 가벼움
 - 오래돼서 조회가 드문 데이터를 별도의 서버에 저장해서 운영상의 스토리지 이득을 볼 수 있음
 
 ### 단점
-
 - 데이터를 물리적으로 독립된 데이터베이스에 각각 분할하여 저장하므로, 여러 샤드에 걸친 데이터를 조인하는 것이 어려움
 - 한 데이터베이스에 집중적으로 데이터가 몰리면 성능이 느려짐
 
-### 면접질문
 
+<br></br>
+<br></br>
+
+### 면접질문
 1. DB의 파티셔닝에 대해서 설명해보세요
 2. DB의 샤딩에 대해서 설명해보세요
 
+<br></br>
 ### 출처
-
-[https://gmlwjd9405.github.io/2018/09/24/db-partitioning.html](https://gmlwjd9405.github.io/2018/09/24/db-partitioning.html)
-
-[https://dataonair.or.kr/db-tech-reference/d-guide/sql/?mod=document&uid=373](https://dataonair.or.kr/db-tech-reference/d-guide/sql/?mod=document&uid=373)
-
-[https://lee-mandu.tistory.com/475](https://lee-mandu.tistory.com/475)
-
-[https://hudi.blog/db-partitioning-and-sharding/](https://hudi.blog/db-partitioning-and-sharding/)
-
-[http://wiki.hash.kr/index.php/샤딩](http://wiki.hash.kr/index.php/%EC%83%A4%EB%94%A9)
-
+[https://gmlwjd9405.github.io/2018/09/24/db-partitioning.html](https://gmlwjd9405.github.io/2018/09/24/db-partitioning.html)     
+[https://dataonair.or.kr/db-tech-reference/d-guide/sql/?mod=document&uid=373](https://dataonair.or.kr/db-tech-reference/d-guide/sql/?mod=document&uid=373)    
+[https://lee-mandu.tistory.com/475](https://lee-mandu.tistory.com/475)     
+[https://hudi.blog/db-partitioning-and-sharding/](https://hudi.blog/db-partitioning-and-sharding/)     
+[http://wiki.hash.kr/index.php/샤딩](http://wiki.hash.kr/index.php/%EC%83%A4%EB%94%A9)    
 [https://offetuoso.github.io/blog/develop/database/tech/sharding/](https://offetuoso.github.io/blog/develop/database/tech/sharding/)

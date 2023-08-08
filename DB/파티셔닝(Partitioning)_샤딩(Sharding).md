@@ -58,7 +58,7 @@
 <br></br>
 
 ## 파티셔닝 vs 샤딩
-![partitioning_2.png](./image/partitioning_2.png)
+![partitioning_2.png](./image/partitioning_2.png)      
 파티셔닝은 모든 데이터를 동일한 서버에 저장하지만, 샤딩은 데이터를 서로 다른 서버로 분산해 저장함
 
 <br></br>

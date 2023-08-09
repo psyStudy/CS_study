@@ -97,6 +97,20 @@ SELECT * FROM `User` WHERE UserName = 'Hady' AND Password = 'root';
 //SQL Injection 공격 - 테이블 삭제
 SELECT * FROM `User` WHERE UserName = '' AND Password = '';drop table User;--'
 ```
+- 만약 조회되는 테이블 명이 User라면 ‘U’가 아스키 값으로 조회되고, 뒤의 100이라는 숫자와 비교하여 거짓이면 로그인 실패, 참이 될때까지 100숫자를 변경해가며 비교한다.
+- 
+## 2.4 Blind SQL Injection(2) - Time based SQL
+서버로부터 특정한 응답 대신 참 혹은 거짓 응답을 통해 DB정보를 유출시키는 기법
+![SQL_INJECTION_4_blindTIMEbased.png](./image/SQL_INJECTION_4_blindTIMEbased.png)
+- 해당 예시는 현재 사용하는 DB의 길이를 알아내는 Time based SQL injection
+- LENGTH함수는 문자열 길이를 반환하고, DATABASE함수는 DB이름을 반환함
+- LENGTH(DATABASE()) = 1 이 참이면 SLEEP(2)가 동작하므로 1부분을 조작해 DB의 길이를 알아낼 수 있다. (SLEEP 대신 BENCHMARK나 WAIT 등을 이용할 수 있음)
+  
+## 2.5 Stored Procedure SQL Injection - 저장된 프로시저
+- 저장 프로시저 : 일련의 쿼리들을 모아 하나의 함수처럼 사용하기 위한 것
+    - 사용하고자하는 쿼리에 미리 형식을 지정한 것
+    - 운영상 편의를 위해 만들어둔 SQL집합의 형태
+- SQL인젝션의 취약점으로 인해 웹상에서 저장된 프로시저에 대한 접근권한을 가져서 실행이 가능 
 
 ## 2.6 Mass SQL Injection - 대량
 

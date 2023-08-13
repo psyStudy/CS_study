@@ -102,7 +102,8 @@
     - 소프트웨어 개발에 정형화되지 않은 많은 양의 데이터가 필요한 경우, NoSQL을 사용하는 게 효율적임
 - ****빠르게 서비스를 구축하는 과정에서 데이터 구조를 자주 업데이트 하는 경우****
     - NoSQL 데이터베이스의 경우 스키마를 미리 준비할 필요가 없기 때문에 빠르게 개발하는 과정에 매우 유리함
-- **읽기를 자주 하지만, 데이터 변경은 자주 없는 경우**
+- **DB에 데이터를 쓰는 양이 읽는 양보다 많은 경우, RDBMS는 성능이 저하됨**
+    - 초당 데이터가 수십만개씩 써지는 SNS의 경우 NoSQL이 더 적합함
 
 <br></br>
 <br></br>
@@ -122,3 +123,4 @@
 [https://gyoogle.dev/blog/computer-science/data-base/SQL & NOSQL.html](https://gyoogle.dev/blog/computer-science/data-base/SQL%20&%20NOSQL.html)    
 [https://velog.io/@eunhye_/DB-Scale-up과-Scale-out](https://velog.io/@eunhye_/DB-Scale-up%EA%B3%BC-Scale-out)     
 [https://datacookbook.kr/90](https://datacookbook.kr/90)     
+https://www.fun-coding.org/post/mongodb_basic1.html#gsc.tab=0

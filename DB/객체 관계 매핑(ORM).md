@@ -1,8 +1,7 @@
 # 객체 관계 매핑(ORM)
-
 ## ORM이란
 
-![orm_1.png](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8%20%E1%84%86%E1%85%A2%E1%84%91%E1%85%B5%E1%86%BC(ORM)%20c270799c368d46c5a91e7ffaea17dbe2/orm_1.png)
+![orm_1.png](./image/orm_1.png)   
 
 Object Relational Mapping(객체-관계 매핑)의 약자로, **객체와 관계형 데이터베이스의 데이터를 자동으로 매핑(연결)해주는 것**을 말함
 
@@ -22,7 +21,7 @@ class Post(models.Model):
 
 위 코드를 실행하면 자동으로 아래와 같은 테이블이 생성됨
 
-![orm_3.png](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8%20%E1%84%86%E1%85%A2%E1%84%91%E1%85%B5%E1%86%BC(ORM)%20c270799c368d46c5a91e7ffaea17dbe2/orm_3.png)
+![orm_3.png](./image/orm_3.png)
 
 장고가 ORM으로 자동으로 아래와 같은 쿼리를 생성해서 실행했기 때문!
 
@@ -34,6 +33,7 @@ CREATE TABLE "blog1_post" (
 )
 ```
 
+<br></br>
 ### 객체와 테이블 사이의 불일치?
 
 1. **세분성** 
@@ -60,17 +60,18 @@ CREATE TABLE "blog1_post" (
     // 자바에서 양방향 관계가 필요한 경우, 연관을 두 번 정의해야 함 
     ```
     
-    ![orm_2.png](%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8%20%E1%84%86%E1%85%A2%E1%84%91%E1%85%B5%E1%86%BC(ORM)%20c270799c368d46c5a91e7ffaea17dbe2/orm_2.png)
+    ![orm_2.png](./image/orm_2.png)
     
 
-1. **탐색/순회**
+5. **탐색/순회**
     - 객체지향 언어와 RDBMS에서 객체에 액세스하는 방법은 근본적으로 다름
     - Java에서는 하나의 연결에서 다른 연결로 이동하면서 탐색/순회함 (그래프 형태)
         - 예를 들어, aUser.getBillingDetails().getAccountNumber()
     - RDBMS에서는 일반적으로 SQL 쿼리 수를 최소화하고 JOIN을 통해 여러 엔티티를 로드하고 원하는 대상 엔티티를 선택함
 
-## ORM 프레임워크 종류
+<br></br>
 
+## ORM 프레임워크 종류
 ORM을 구현하기 위한 구조와, 구현을 위해 필요한 여러 기능들을 제공하는 소프트웨어
 
 - JAVA(JPA) - Hibernate, EclipseLink, DataNucleus, Ebean 등
@@ -81,10 +82,10 @@ ORM을 구현하기 위한 구조와, 구현을 위해 필요한 여러 기능�
 - .NET - NHibernate, DatabaseObject, Dapper 등
 - PHP - Doctrine, Propel, RedBean 등
 
+<br></br>
+
 ## ORM의 장단점
-
-### 장점
-
+### 장점    
 - **객체지향적인 코드로 인해 더 직관적이고 비즈니스 로직에 더 집중할 수 있게 도와줌**
     - ORM을 이용하면 SQL Query가 아닌 직관적인 코드(메소드)로 데이터를 조작할 수 있어, 개발자가 객체 모델로 프로그래밍하는 데 집중할 수 있도록 도와줌
     - 각종 객체에 대한 코드를 별도로 작성하기 때문에 코드의 가독성을 올려줌
@@ -98,9 +99,8 @@ ORM을 구현하기 위한 구조와, 구현을 위해 필요한 여러 기능�
 - **DBMS에 대한 종속성이 줄어듦**
     - 대부분 ORM 솔루션은 DB에 종속적이지 않음 → DBMS를 교체해야 하더라도 비교적 적은 리스크와 시간이 소요됨
     - 자바에서 가공할 경우(JPA를 사용할 경우), equals, hashCode의 오버라이드 같은 자바의 기능을 이용할 수 있고, 간결하고 빠른 가공이 가능함
-
+<br></br>
 ### 단점
-
 - **ORM은 프레임워크가 자동으로 SQL을 작성하기 때문에, 의도대로 SQL이 작성되었는지 확인할 필요가 있음** (즉, SQL을 알고 있어야 함)
 
 - **완벽히 ORM으로만 서비스를 구현하기 어려움**
@@ -111,17 +111,16 @@ ORM을 구현하기 위한 구조와, 구현을 위해 필요한 여러 기능�
 - **프로시저가 많은 시스템에서는 ORM의 객체 지향적인 장점을 활용하기 어려움**
     - 이미 프로시저가 많은 시스템에선 다시 객체로 바꿔야하며, 그 과정에서 생산성 저하나 리스크가 많이 발생할 수 있음
 
-### 면접질문
+<br></br>
+<br></br>
 
+### 면접질문   
 1. ORM 프로그래밍은 무엇인가요?
 2. ORM 프로그래밍이 RDBMS와 비교했을 때 어떤 장단점을 가지고 있나요?
 
+<br></br>
 ### 출처
-
-[https://gmlwjd9405.github.io/2019/02/01/orm.html](https://gmlwjd9405.github.io/2019/02/01/orm.html)
-
-[https://lipcoder.tistory.com/366](https://lipcoder.tistory.com/366)
-
-[https://tibetsandfox.tistory.com/17](https://tibetsandfox.tistory.com/17)
-
+[https://gmlwjd9405.github.io/2019/02/01/orm.html](https://gmlwjd9405.github.io/2019/02/01/orm.html)     
+[https://lipcoder.tistory.com/366](https://lipcoder.tistory.com/366)      
+[https://tibetsandfox.tistory.com/17](https://tibetsandfox.tistory.com/17)      
 [https://thisisprogrammingworld.tistory.com/132](https://thisisprogrammingworld.tistory.com/132)

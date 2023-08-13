@@ -22,6 +22,19 @@
 <br></br>
 
 ## 파티셔닝의 종류
+### 수평 파티셔닝
+![partitioning_4.png](./image/partitioning_4.png)     
+- 테이블의 Row를 분할하여 여러 개의 서로 다른 테이블로 나누는 방법
+- 주로 데이터베이스의 용량이 커지는 경우, 성능 저하를 막기 위해 사용됨
+<br></br>
+### 수직 파티셔닝
+![partitioning_4.png](./image/partitioning_4.png)     
+- 테이블의 Column을 분할하여 여러 개의 서로 다른 테이블로 나누는 방법
+- 성능 개선, 민감한 정보에 대한 접근 제한, 자주 사용되지 않는 Column을 모으기 위해 사용될 수 있음
+
+<br></br>
+
+## 파티셔닝의 분할 기준
 ![partitioning_1.png](./image/partitioning_1.png)
 
 ### Range 파티셔닝
@@ -59,14 +72,18 @@
 
 ## 파티셔닝 vs 샤딩
 ![partitioning_2.png](./image/partitioning_2.png)      
-파티셔닝은 모든 데이터를 동일한 서버에 저장하지만, 샤딩은 데이터를 서로 다른 서버로 분산해 저장함
+파티셔닝은 모든 데이터를 동일한 서버에 저장하지만, 샤딩은 데이터를 서로 다른 서버로 분산해 저장함     
+- 파티셔닝은 DML의 성능이 개선되고 유지보수성, 가용성이 향상된다는 장점, 서로 다른 DB 서버에 저장함으로써 DB 서버의 부하를 분산시킬 수 있다는 장점이 있음
+- **규모가 큰 서비스, 트래픽이 많이 몰리는 경우에는 샤딩을 사용하는 등, 데이터베이스의 특성에 따라 선택함!**
 
 <br></br>
 
 ## 샤딩이란?
+![partitioning_5.png](./image/partitioning_5.png)  
 하나의 거대한 데이터베이스나 네트워크 시스템을 여러 개의 작은 조각으로 나누어 분산 저장하여 관리하는 것     
 샤딩을 통해 나누어진 블록들의 구간을 샤드(shard)라고 부름     
-샤딩의 종류는 파티셔닝과 거의 유사해서 따로 적진 않았음!     
+- 수평 파티셔닝과 유사하지만, 서로 다른 서버에 분산하여 저장한다는 점이 차이점    
+- 샤딩의 분할기준은 파티셔닝과 거의 유사해서 따로 적진 않았음!     
 
 ### 장점
 - 수평적 확장이 가능함
@@ -92,4 +109,5 @@
 [https://lee-mandu.tistory.com/475](https://lee-mandu.tistory.com/475)     
 [https://hudi.blog/db-partitioning-and-sharding/](https://hudi.blog/db-partitioning-and-sharding/)     
 [http://wiki.hash.kr/index.php/샤딩](http://wiki.hash.kr/index.php/%EC%83%A4%EB%94%A9)    
-[https://offetuoso.github.io/blog/develop/database/tech/sharding/](https://offetuoso.github.io/blog/develop/database/tech/sharding/)
+[https://offetuoso.github.io/blog/develop/database/tech/sharding/](https://offetuoso.github.io/blog/develop/database/tech/sharding/)      
+https://aiday.tistory.com/123#google_vignette

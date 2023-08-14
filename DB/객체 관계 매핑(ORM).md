@@ -51,10 +51,10 @@ CREATE TABLE "blog1_post" (
     ```java
     // Java에서의 객체 참조 -> 방향성이 존재
     public class Employee {
-    		private int id;
-    		private String first_name;
-    		private Department department;   // Department 객체를 참조함
-    		...
+        private int id;
+        private String first_name;
+        private Department department;   // Department 객체를 참조함
+        ...
     }
     // Employee -> Department
     // 자바에서 양방향 관계가 필요한 경우, 연관을 두 번 정의해야 함 

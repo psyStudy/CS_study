@@ -23,7 +23,7 @@
 
 ## 파티셔닝의 종류
 ### 수평 파티셔닝
-![partitioning_4.png](./image/partitioning_4.png)     
+![partitioning_5.png](./image/partitioning_5.png)     
 - 테이블의 Row를 분할하여 여러 개의 서로 다른 테이블로 나누는 방법
 - 주로 데이터베이스의 용량이 커지는 경우, 성능 저하를 막기 위해 사용됨
 <br></br>

@@ -15,8 +15,8 @@ ex)
 from django.db import models
 
 class Post(models.Model):
-		title = models.CharField(max_length=50)
-		body = models.CharField(max_length=1200)
+    title = models.CharField(max_length=50)
+    body = models.CharField(max_length=1200)
 ```
 
 위 코드를 실행하면 자동으로 아래와 같은 테이블이 생성됨
@@ -27,9 +27,9 @@ class Post(models.Model):
 
 ```sql
 CREATE TABLE "blog1_post" (
-	"id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, 
-	"title" varchar(50) NOT NULL, 
-	"body" varchar(1200) NOT NULL
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, 
+    "title" varchar(50) NOT NULL,
+    "body" varchar(1200) NOT NULL
 )
 ```
 
@@ -44,7 +44,7 @@ CREATE TABLE "blog1_post" (
 2. **상속** 
     - RDBMS에는 객체지향 프로그래밍 언어의 ‘상속’ 개념이 존재하지 않음
 3. **일치** 
-    - RDBMS에서는 PK가 같으면 서로 동일한 record로 정의하지만, Java에서는 주소값이 같거나 내용이 같은 경우를 구분하여 정의함
+    - RDBMS에서는 PK가 같으면 서로 동일한 record로 정의하지만, Java에서는 주소값이 같거나(==) 내용이 같은 경우(equals())를 구분하여 정의함
 4. **연관성**
     - 객체지향 언어는 객체 참조로 연관성을 나타내는 반면, RDBMS는 연관성을 ‘외래키’로 나타냄
     

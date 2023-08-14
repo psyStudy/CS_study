@@ -192,8 +192,7 @@ SELECT C1, C2 FROM IDX_MULTI WHERE C1 = 'value1' and C2 = 'value2';
 SQL Server의 인덱스로, 인덱스 키에 본사 의존이 포함되어 있는지 확인하고 보장하며 이러한 행을 따라 클라이언트가 테이블의 각 행이 어느쪽이든 예외적인지 검사할 수 있도록함.
 
 # cf)인덱스 생성 방법
-
-- 필요한(? DB 역량에 따라 알고 있으면 좋을 것 같음(면접질문)
+- [페이지 분리 click!](https://github.com/psyStudy/CS_study/blob/main/DB/%EC%9D%B8%EB%8D%B1%EC%8A%A4_%EC%83%9D%EC%84%B1%EB%B0%A9%EB%B2%95.md)
 - [https://land-turtler.tistory.com/120](https://land-turtler.tistory.com/120)
 - [https://azderica.github.io/00-db-index/](https://azderica.github.io/00-db-index/)
 

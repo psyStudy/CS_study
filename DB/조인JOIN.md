@@ -151,6 +151,7 @@ FROM employees AS A, employees AS B
 WHERE A.emp_no <> B.emp_no
 AND A.dept_no = B.dept_no;
 ```
+- <> 연산자는 != 을 의미함.
 
 ![join_selfjoin.png](./image/join_selfjoin.png)
 
@@ -158,6 +159,9 @@ AND A.dept_no = B.dept_no;
 
 - 서브쿼리 내에 존재하지 않는 데이터만 추출하여 메인 쿼리에서 추출하는 조인
 - NOT EXISTS 또는 NOT IN 사용하여 작성가능
+  - issue : 안티조인에 서브쿼리가 없으면?
+    - 안티조인의 개념 자체가 서브쿼리를 사용하는 조인! 이기는 하지만, 구하고자 하는 그 내용 자체(?)는 lejt-join / is_null을 사용해서 구할 수 도 있다. not in, not exists 다음에는 당연히 쿼리문이 와야한다.
+    - 참고 : [https://juneyr.dev/anti-join](https://juneyr.dev/anti-join)
 - (예시 EMPLOYEE 테이블은 위에 나온 것 과 동일)
     
     ![join_departments.png](./image/join_departments.png)

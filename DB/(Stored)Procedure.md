@@ -4,16 +4,16 @@
 
 - 절차형 SQL을 활용하여 특정 기능을 수행할 수 있는 트랜잭션 언어
     - 절차형 SQL : C, JAVA 처럼 연속적인 실행이나 분기, 반복 등의 제어가 가능한 SQL
-    <details>
-    <summary>'절차형'?SQL</summary>
-    <div markdown="1">
-    <ul>
-        <li>SQL : Structured Query Language 데이터베이스에서 데이터를 추출하고 조작하는데 사용하는 데이터 처리언어</li>
-        <li>절차형 SQL : SQL중 절차 지향적 프로그래밍 가능하도록 하는 트랜잭션 언어</li>
-        <li>oracle : PL/SQL, SQL Server : T-SQL.. 등 절차형 SQL에 해당하지 않는 SQL = 비절차형 SQL이자만, 딱히 이런 용어를 사용하지는 않는 것 같음.</li>
-    </ul>
-    </div>
-    </details>
+	    <details>
+	    <summary>'절차형'?SQL</summary>
+	    <div markdown="1">
+	    <ul>
+	        <li>SQL : Structured Query Language 데이터베이스에서 데이터를 추출하고 조작하는데 사용하는 데이터 처리언어</li>
+	        <li>절차형 SQL : SQL중 절차 지향적 프로그래밍 가능하도록 하는 트랜잭션 언어</li>
+	        <li>oracle : PL/SQL, SQL Server : T-SQL.. 등 절차형 SQL에 해당하지 않는 SQL = 비절차형 SQL이자만, 딱히 이런 용어를 사용하지는 않는 것 같음.</li>
+	    </ul>
+	    </div>
+	    </details>
 
     - 트랜잭션 언어 : DB를 조작하고 트랜잭션을 처리하는 언어. SQL과 TCL이 속한다.
 

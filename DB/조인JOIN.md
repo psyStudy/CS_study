@@ -240,3 +240,4 @@ for each row in t1 matching reference key{
 - [https://velog.io/@newdana01/Database-테이블-조인-이해하기](https://velog.io/@newdana01/Database-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%A1%B0%EC%9D%B8-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0)
 - [https://hongcoding.tistory.com/146](https://hongcoding.tistory.com/146)
 - [책] 면접을 위한 cs 전공지식노트
+- [https://m.blog.naver.com/isaac7263/222117156620](https://m.blog.naver.com/isaac7263/222117156620)

@@ -52,6 +52,12 @@
     UNION
     SELECT null, id, passwd FROM Users -- %'And contents ~~(주석처리됨)
     ```
+
+**select >null< 을 사용하는 이유**
+- DB에 정의된 데이터 타입에 상관없이 사용가능 하기 때문. 빈칸을 채우는 용도라고 생각하면된다.
+- 데이터타입이 숫자라면 1,2,3,.. 무의미한 숫자를 사용하거나
+- 문자타입이면 ''등을 대신 사용할 수도 있다.
+![sql_injection_selectnull.jpg](./image/sql_injection_selectnull.jpg)
     
 
 ## 2.3 Blind SQL Injection(1) - Boolean based SQL
@@ -105,19 +111,32 @@ SELECT * FROM `User` WHERE UserName = '' AND Password = '';drop table User;--'
 - 해당 예시는 현재 사용하는 DB의 길이를 알아내는 Time based SQL injection
 - LENGTH함수는 문자열 길이를 반환하고, DATABASE함수는 DB이름을 반환함
 - LENGTH(DATABASE()) = 1 이 참이면 SLEEP(2)가 동작하므로 1부분을 조작해 DB의 길이를 알아낼 수 있다. (SLEEP 대신 BENCHMARK나 WAIT 등을 이용할 수 있음)
+
+**sleep을 사용하는 이유**
+- 시간기반 인젝션은 쿼리값이 true/false 상관없이 결과값 자체를 화면에 출력하지 않는다.
+- 따라서 true / false 값을 우리가 알아보기 위해 경과 시간을 보고 참,거짓을 판단한다.
+![sql_injection_timeblind_sleep.jpg](./image/sql_injection_timeblind_sleep.jpg)
   
 ## 2.5 Stored Procedure SQL Injection - 저장된 프로시저
 - 저장 프로시저 : 일련의 쿼리들을 모아 하나의 함수처럼 사용하기 위한 것
     - 사용하고자하는 쿼리에 미리 형식을 지정한 것
     - 운영상 편의를 위해 만들어둔 SQL집합의 형태
-- SQL인젝션의 취약점으로 인해 웹상에서 저장된 프로시저에 대한 접근권한을 가져서 실행이 가능 
+- SQL인젝션의 취약점으로 인해 웹상에서 저장된 프로시저에 대한 접근권한을 가져서 실행이 가능
+
+- 자세한 예시 : [https://peemangit.tistory.com/153](https://peemangit.tistory.com/153)
 
 ## 2.6 Mass SQL Injection - 대량
 
 - 2008년에 처음 발견된 공격기법으로, 기존의 SQL Injection방식과 달리 한 번의 공격으로 다량의 DB가 조작되어 피해를 입는 것.
 - MS-SQL을 사용하는 ASP 기반 웹 애플리케이션에서 많이 사용됨
-- 쿼리문을 HEX 인코딩방식으로 인코딩 하여 공격함
+- 쿼리문을 HEX방식으로 인코딩 하여 공격함
+    - HEX인코딩 : ascii, base64 처럼 인코딩 방식 중 하나.
+        - 색상코드에서 특히 많이 사용 (헥사 코드)
+        - 공간 효율성이 안좋아 주로 하드웨어적으로만 사용된다.
+        - (base 계열이 63~75%임에 반해 hex는 50% 정도 밖에 안된다.)
 - DB값을 변조하여 DB에 악성코드를 삽입하고, 사용자들이 변조된 사이트에 접속 시 좀비 PC로 감염됨. → DDos 공격에 사용
+- [참고] mass sql injection 예시 : [https://using.tistory.com/11](https://using.tistory.com/11)
+- [참고] mass sql injection 분석하기 : [https://tisiphone.tistory.com/67](https://tisiphone.tistory.com/67)
 
 # 3. 대응방안
 
@@ -140,7 +159,6 @@ SELECT * FROM `User` WHERE UserName = '' AND Password = '';drop table User;--'
 - 사용자 입력 값이 DB의 파라미터로 들어가기전 DBMS가 미리 컴파일 하여 실행하지 않고 대기함.
 - 그 후 사용자 입력값을 문자열로 인식하게 하여 공격 쿼리가 들어가도 이미 의미없는 단순 문자열이기때문에 저체 쿼리문도 공격자의 의도로 작동하지 않음
 - Prepared Statement 또는 매개변수화된 구문을 사용해서 동일한 구문을 실행함에 있어 SQL 인젝션 공격을 방지하고 높은 효율성으로 쿼리문을 실행할 수 있다.
-- 
 
 ## 3.3 Error Message 노출 금지
 
@@ -176,3 +194,6 @@ DDL, DML 등 사용하는 구문 별 계정을 구분하여 운영
 - [https://gomguk.tistory.com/118](https://gomguk.tistory.com/118)
 - [https://haker.tistory.com/98](https://haker.tistory.com/98)
 - [https://velog.io/@yu-jin-song/DB-SQL-인젝션SQL-Injection](https://velog.io/@yu-jin-song/DB-SQL-%EC%9D%B8%EC%A0%9D%EC%85%98SQL-Injection)
+- [https://webstone.tistory.com/25](https://webstone.tistory.com/25)
+- [https://qkqhxla1.tistory.com/30](https://qkqhxla1.tistory.com/30)
+- [https://tkdrms568.tistory.com/148](https://tkdrms568.tistory.com/148)

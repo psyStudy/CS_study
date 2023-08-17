@@ -29,6 +29,7 @@
 - ON의 조건에 맞는 공통된 부분이 있는 경우만 출력
 - ※ 이하 예시 코드는  MySQL
 
+
 ### 교차 조인
 
 두 테이블을 카디션 프로덕트(곱집합)한 결과. 특별한 조건 없이 테이블 A의 각 행과 B의 각 행을 다 조합한 결과
@@ -38,6 +39,7 @@ SELECT * FROM employees CROSS JOIN dept_emp;
 
 SELECT * FROM employees, dept_emp;
 ```
+![join_crossjoin.jpg](./image/join_crossjoin.jpg)
 
 ### 동등 조인
 
@@ -51,6 +53,7 @@ SELECT * FROM employees
 SELECT * FROM employees, dept_emp
 WHERE employees.emp_no = dept_emp.emp_no;
 ```
+![join_equaljoin.jpg](./image/join_equaljoin.jpg)
 
 ### 비등가 조인
 
@@ -60,6 +63,7 @@ WHERE employees.emp_no = dept_emp.emp_no;
 SELECT * FROM employees, departments
 WHERE emplyees.emp_no between 10003 and 10004;
 ```
+![join_nonequaljoin.png](./image/join_nonequaljoin.png)
 
 ### 자연조인
 
@@ -70,6 +74,7 @@ WHERE emplyees.emp_no between 10003 and 10004;
 ```sql
 SELECT * FROM employees NATURAL JOIN dept_emp;
 ```
+![join_naturaljoin.png](./image/join_naturaljoin.png)
 
 ## 2) 외부조인
 

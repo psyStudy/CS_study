@@ -1,19 +1,18 @@
 # IP
-
 ## IP(Internet Protocol)란
-
 지정된 IP 주소에 데이터를 전달하며, 패킷이라는 통신 단위로 데이터를 전달한다
 
 - **IP 주소** - 인터넷에 연결되어 있는 모든 장치들(컴퓨터, 서버 장비, 스마트폰 등)을 식별할 수 있도록 각각의 장비에 부여되는 고유 주소
 - **IP 패킷** - 데이터에 출발지 IP주소, 목적지 IP주소가 포함된 헤더를 붙여서 IP 패킷으로 만듦
 
-![ip_1.png](IP%20c270799c368d46c5a91e7ffaea17dbe2/ip_1.png)
+![ip_1.png](./image/ip_1.png)
 
-![ip_2.png](IP%20c270799c368d46c5a91e7ffaea17dbe2/ip_2.png)
+![ip_2.png](./image/ip_2.png)
+
+<br></br>
 
 ## IP주소의 클래스
-
-![ip_6.png](IP%20c270799c368d46c5a91e7ffaea17dbe2/ip_6.png)
+![ip_6.png](./image/ip_6.png)
 
 하나의 IP는 네트워크 부분 + 호스트 부분으로 구성되어 있음
 
@@ -30,10 +29,10 @@
 목적지가 같은 서울시 중랑구 면목동 A아파트라고 하더라도, B동이 아니라 바로 옆 건물 C동만 되어도 
 일단 B동 건물 출입구를 통해 먼저 밖으로 나가야 한다. 이때 이 건물 출입구가 바로 '게이트웨이'인 것이다
 ```
-
+<br></br>
 **클래스는 하나의 IP 주소에서 네트워크 영역과 호스트 영역을 나누는 방법이자 약속**
 
-![ip_7.jpeg](IP%20c270799c368d46c5a91e7ffaea17dbe2/ip_7.jpeg)
+![ip_7.jpeg](./image/ip_7.jpeg)
 
 IP주소 클래스의 종류는 네트워크 크기에 따라 5가지로 분리됨
 
@@ -46,15 +45,16 @@ IP주소 클래스의 종류는 네트워크 크기에 따라 5가지로 분리�
 - **클래스 D** - 멀티캐스트 시에만 특수 사용하는 클래스
 - **클래스 E** - 연구용, 테스트용으로 존재하는 클래스이고 사용되지 않음
 
-![ip_8.png](IP%20c270799c368d46c5a91e7ffaea17dbe2/ip_8.png)
+![ip_8.png](./image/ip_8.png)
+
+<br></br>
 
 ## IP주소의 종류
-
 ### IPv4, IPv6
 
 전 세계적으로 인터넷 사용자 수가 급증하면서 IPv4 주소가 고갈될 위기 → IPv6 등장
 
-![ip_3.png](IP%20c270799c368d46c5a91e7ffaea17dbe2/ip_3.png)
+![ip_3.png](./image/ip_3.png)
 
 ```sql
 - 브로드캐스트: 네트워크에 연결되어 있는 모든 시스템에게 데이터 전송(1대 다수, 불특정 다수)
@@ -68,18 +68,18 @@ IP주소 클래스의 종류는 네트워크 크기에 따라 5가지로 분리�
 						DNCP서버(IP주소 분배해주는 서버)가 없어도 네트워크에 연결하기만 하면 자동으로 주소 생성
 ```
 
-![ip_4.png](IP%20c270799c368d46c5a91e7ffaea17dbe2/ip_4.png)
+![ip_4.png](./image/ip_4.png)
 
+<br></br>
 ### 고정 IP, 유동 IP
-
 - **고정 IP**
     - 변하지 않고 컴퓨터에게 고정적으로 부여된 IP주소
     - 한번 부여되면 IP주소를 반납하기 전까지는 다른 장비에 부여할 수 없는 고유의 IP로 보안성이 우수함
 - **유동 IP**
     - 인터넷 사용자 모두에게 고정 IP 주소를 부여해주기 힘들기 때문에, 일정한 주기 또는 사용자들이 인터넷에 접속하는 매 순간마다 사용하고 있지 않은 IP 주소를 임시로 발급해줌
 
+<br></br>
 ### 공인 IP, 사설 IP
-
 - **공인 IP**
     - 인터넷 사용자의 로컬 네트워크를 식별하기 위해 ISP(인터넷 서비스 공급자)가 제공하는 IP 주소
     - 외부에 공개되어 있기 때문에, 인터넷에 연결된 다른 PC가 접근할 수 있음
@@ -89,27 +89,27 @@ IP주소 클래스의 종류는 네트워크 크기에 따라 5가지로 분리�
     - IPv4의 주소 부족으로 인해 서브넷팅된 IP 주소
     - 공인 주소 영역에서 일부 주소 블록을 사설 주소를 위해 할당 → 사설 네트워크에서 내부적으로만 사용 가능, 인터넷 상에서 무시됨
 
-![ip_5.png](IP%20c270799c368d46c5a91e7ffaea17dbe2/ip_5.png)
+![ip_5.png](./image/ip_5.png)
 
 💻→🌏 : 사설 IP를 할당받은 스마트폰 혹은 개인 PC가 데이터 패킷을 인터넷으로 전송하면, 라우터(공유기)가 해당 사설 IP를 공인 IP로 바꿔서 전송함
 
 🌏→💻 : 인터넷에서 오는 데이터 패킷의 목적지도 해당하는 사설 IP로 변경한 후 개인 스마트폰 혹은 PC에 전송함
-
+<br></br>
 - **사설 IP 주소 범위**
     - 전체 IP 공간 중 사설 IP 주소로 사용되는 대역은 미리 정해져 있음
     - **클래스 A** - 10.0.0.0 ~ 10.255.255.255
     - **클래스 B** - 172.16.0.0 ~ 172.31.255.255
     - **클래스 C** - 192.168.0.0 ~ 192.168.255.255
 
+<br></br>
+
 ## 서브넷마스크
-
 ### 서브넷팅
-
 네트워크 관리자가 네트워크 성능을 향상시키기 위해 자원을 효율적으로 분배하는 것
 즉, 네트워크 영역과 호스트 영역을 분할하는 것 
 
+<br></br>
 ### 서브넷 마스크
-
 32비트의 숫자로 0의 비트는 호스트 부분을 나타내고 1의 비트는 네트워크 부분을 나타냄
 
 - 이런 방식으로 서브넷 마스크는 IP 주소를 네트워크 및 호스트 주소와 분리함
@@ -125,42 +125,34 @@ IP주소 192.168.123.132/24 혹은 서브넷 마스크 255.255.255.0일 때,
 1로 채우는 필드가 네트워크 부분이고, 0으로 채우는 필드가 호스트 부분이다
 ```
 
-![ip_9.png](IP%20c270799c368d46c5a91e7ffaea17dbe2/ip_9.png)
+![ip_9.png](./image/ip_9.png)
+
+<br></br>
 
 ## IP 프로토콜의 한계
-
 - **비연결성** - 패킷을 받을 대상이 없거나 서비스 불능 상태여도(목적지 PC가 꺼져 있어도) 패킷을 전송함
 - **비신뢰성** - 중간에 패킷이 사라지거나, 패킷이 순서대로 안 갈수도 있음
 - **프로그램 구분** - 같은 IP를 사용하는 서버에서 통신하는 애플리케이션이 둘 이상이라면?
-
 → 이 문제점을 해결하기 위해 TCP/UDP 프로토콜을 함께 사용함
 
-### 면접질문
+<br></br>
+<br></br>
 
+### 면접질문
 1. IP란?
 2. 공인 IP와 사설 IP의 차이?
 - IP는 면접에서 잘 안 물어보는 것 같음
 
+<br></br>
 ### 출처
-
-모든 개발자를 위한 HTTP 웹 기본 지식_김영한
-
-[https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=hai0416&logNo=221566797342](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=hai0416&logNo=221566797342)
-
-[https://m.blog.naver.com/wnrjsxo/221250742423](https://m.blog.naver.com/wnrjsxo/221250742423)
-
-[https://namu.wiki/w/QoS](https://namu.wiki/w/QoS)
-
-[https://www.datanet.co.kr/news/articleView.html?idxno=25169](https://www.datanet.co.kr/news/articleView.html?idxno=25169)
-
-[https://study-recording.tistory.com/7](https://study-recording.tistory.com/7)
-
-[https://velog.io/@hidaehyunlee/공인Public-사설Private-IP의-차이점](https://velog.io/@hidaehyunlee/%EA%B3%B5%EC%9D%B8Public-%EC%82%AC%EC%84%A4Private-IP%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90)
-
-[https://blog.naver.com/PostView.nhn?blogId=sbd38&logNo=50194584566](https://blog.naver.com/PostView.nhn?blogId=sbd38&logNo=50194584566)
-
-[https://limkydev.tistory.com/166](https://limkydev.tistory.com/166)
-
-[https://namu.wiki/w/서브넷 마스크](https://namu.wiki/w/%EC%84%9C%EB%B8%8C%EB%84%B7%20%EB%A7%88%EC%8A%A4%ED%81%AC)
-
+모든 개발자를 위한 HTTP 웹 기본 지식_김영한      
+[https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=hai0416&logNo=221566797342](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=hai0416&logNo=221566797342)   
+[https://m.blog.naver.com/wnrjsxo/221250742423](https://m.blog.naver.com/wnrjsxo/221250742423)    
+[https://namu.wiki/w/QoS](https://namu.wiki/w/QoS)     
+[https://www.datanet.co.kr/news/articleView.html?idxno=25169](https://www.datanet.co.kr/news/articleView.html?idxno=25169)    
+[https://study-recording.tistory.com/7](https://study-recording.tistory.com/7)    
+[https://velog.io/@hidaehyunlee/공인Public-사설Private-IP의-차이점](https://velog.io/@hidaehyunlee/%EA%B3%B5%EC%9D%B8Public-%EC%82%AC%EC%84%A4Private-IP%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90)    
+[https://blog.naver.com/PostView.nhn?blogId=sbd38&logNo=50194584566](https://blog.naver.com/PostView.nhn?blogId=sbd38&logNo=50194584566)     
+[https://limkydev.tistory.com/166](https://limkydev.tistory.com/166)       
+[https://namu.wiki/w/서브넷 마스크](https://namu.wiki/w/%EC%84%9C%EB%B8%8C%EB%84%B7%20%EB%A7%88%EC%8A%A4%ED%81%AC)    
 [https://nordvpn.com/ko/blog/what-is-subnet-mask/](https://nordvpn.com/ko/blog/what-is-subnet-mask/)

@@ -57,6 +57,7 @@
 - DB에 정의된 데이터 타입에 상관없이 사용가능 하기 때문. 빈칸을 채우는 용도라고 생각하면된다.
 - 데이터타입이 숫자라면 1,2,3,.. 무의미한 숫자를 사용하거나
 - 문자타입이면 ''등을 대신 사용할 수도 있다.
+  
 ![sql_injection_selectnull.jpg](./image/sql_injection_selectnull.jpg)
     
 

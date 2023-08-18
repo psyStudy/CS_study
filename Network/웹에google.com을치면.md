@@ -52,14 +52,14 @@
   
         - DNS recursor가 Root domain에 연락
   
-        - → Top-level domain 인 >.com< DNS에 연락
+        - → Top-level domain 인 .com DNS에 연락
   
-        - → Second-level domain >google.com< name server 로 이동
+        - → Second-level domain google.com name server 로 이동
   
         - → 이곳에서 기본이 되는 www의 ip주소를 DNS recursor에 보냄
   
         - → google.com = 142.250.189.238 ip주소라는 것을 알아낸다.
-- 이 모든 과정은 패킷으로 전달.
+- 이 모든 과정은 패킷으로 전달. (TCP)
   
 - 패킷 안에 DNS 쿼리, DNS recursor가 받은 IP주소가 포함된다.
   
@@ -85,14 +85,6 @@
     - 클라이언트가 서버에게 잘 받았다고 다시 ACK 보냄
       
     - 서로 안전하게 정보를 교환할 수 있는 길 연결 완료!
-
-## (참고)컴퓨터간 신뢰성 있는 연결
-![google_tcp_connection2.jpg](./image/google_tcp_connection2.jpg)
-- SYN, ACK 등의 데이터들은 OSI계층 순서대로 헤더 혹은 트레일러가 데이터에 붙여져지며 캡슐화와 역캡슐화가 일어난다.
-- 이러한 TCP헤더에 들어가는 데이터이다. ( 데이터와 TCP헤더가 붙은 것을 세그먼트라고 부름.)
-- 이 TCP 헤더 중 코드 비트라는 곳에 6개 비트중에 하나이다.
-- 데이터를 주고 받을 때는 하늘색 과정, 연결을 끊을 때는 빨간색과정이 일어납니다.
-- 연결을 요청할때는 SYN, ACK가 1로 활성화, 종료할때는 FIN, ACK가 1로 활성화 됩니다.
 
 ## (참고) Firewall & Https/SSL
 
@@ -123,7 +115,7 @@
 # 7. 브라우저가 html content를 보여준다.
 
 - 브라우저는 html content를 단계적으로 랜더링(Critical Path과정)하여 노출
-- 정적인 파일들은 들은 브라우저에 캐싱되어 나중에 해당 페이지 재방문시 서버에 재요청하지 않게 한다.
+- 정적인 파일들은 브라우저에 캐싱되어 나중에 해당 페이지 재방문시 서버에 재요청하지 않게 한다.
 - 마지막으로 ‘www.google.com’웹 페이지가 나타남.
 
 ---

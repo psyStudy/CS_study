@@ -169,13 +169,15 @@ GET과 동일하지만 메시지 부분을 제외하고, 상태 줄과 헤더만
 ## HTTPS
 - HTTPS는 HTTP와 별개의 프로토콜이 아닌 HTTP의 확장임
 - HTTPS는 인터넷에서 보안 통신을 위해 사용됨 <- HTTP에는 데이터를 암호화하는 과정이 없기 때문에, 서버와 브라우저의 통신 과정에서 데이터가 그대로 노출될 위험이 큼
-- TLS 또는 SSL을 사용해 암호화함 [SSL Handshake](https://github.com/psyStudy/CS_study/blob/main/Network/대칭키_공개키_TSL_SSL.md)       
+- TLS 또는 SSL을 사용해 암호화함 [SSL Handshake](https://github.com/psyStudy/CS_study/blob/main/Network/대칭키_공개키_TSL_SSL.md)
+  
 ![http_13.png](./image/http_8.png)
 - 네이버, 다음, 구글은 검색 엔진 최적화(SEO) 관련 내용을 HTTPS 웹사이트에 대해서 적용하고 있음. 즉, HTTPS화를 하고 있다면 키워드 검색 시 상위에 노출됨
 
 <br></br>
 ![http_13.png](./image/http_9.png)       
-모든 사이트에서 텍스트를 암호화해서 주고 받으면 과부하가 걸려 속도가 느려질 수 있음 -> 중요한 사이트는 HTTPS로 관리하고, 그렇지 않은 사이트는 HTTP를 사용함
+모든 사이트에서 텍스트를 암호화해서 주고 받으면 과부하가 걸려 속도가 느려질 수 있음      
+-> 중요한 사이트는 HTTPS로 관리하고, 그렇지 않은 사이트는 HTTP를 사용함
 
 <br></br>
 <br></br>

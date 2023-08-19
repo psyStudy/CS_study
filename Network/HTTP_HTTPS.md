@@ -43,7 +43,7 @@ HTML 문서와 같은 리소스들을 가져올 수 있도록 해주는 프로�
 <br></br>
 - **HTTP 메시지**
   
-![http_2.png](./image/http_2.png)
+![http_2.png](./image/http_2.jpg)
 
 1. **시작 라인**
     - 요청) HTTP 메소드(GET) + 요청 대상(/search?q=hello&hl=ko) + HTTP 버전
@@ -58,8 +58,7 @@ HTML 문서와 같은 리소스들을 가져올 수 있도록 해주는 프로�
 ### 1. GET
 리소스 조회    
 
-![http_4.png](./image/http_4.png)    
-![http_5.png](./image/http_5.png)
+![http_4.png](./image/http_3.jpg)    
 
 - 서버에 전달하고 싶은 데이터는 query(쿼리 파라미터, 쿼리 스트링)을 통해서 전달
 - 메시지 바디를 사용해서 데이터를 전달할 수 있지만, 지원하지 않는 곳이 많아서 권장하지 않음
@@ -67,9 +66,7 @@ HTML 문서와 같은 리소스들을 가져올 수 있도록 해주는 프로�
 ### 2. POST
 요청 데이터 처리, 주로 등록에 사용   
 
-![http_6.png](./image/http_6.png)     
-![http_7.png](./image/http_7.png)     
-![http_8.png](./image/http_8.png)     
+![http_6.png](./image/http_4.jpg)        
 
 - 메시지 바디를 통해 서버로 요청 데이터 전달
 - 서버는 요청 데이터를 처리
@@ -78,14 +75,12 @@ HTML 문서와 같은 리소스들을 가져올 수 있도록 해주는 프로�
 ### 3. PUT
 리소스를 대체, 해당 리소스가 없으면 생성 → 즉 덮어버림
 
-![http_9.png](./image/http_9.png)     
-![http_10.png](./image/http_10.png)
+![http_9.png](./image/http_5.jpg)     
 <br></br>
 ### 4. PATCH
 리소스 부분 변경 → PATCH가 지원 안되는 서버의 경우 POST를 쓰면 됨
 
-![http_11.png](./image/http_11.png)      
-![http_12.png](./image/http_12.png)
+![http_11.png](./image/http_6.jpg)      
 <br></br>
 ### 5. DELETE
 리소스 삭제

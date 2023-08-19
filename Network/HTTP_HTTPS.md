@@ -13,7 +13,7 @@ HTML 문서와 같은 리소스들을 가져올 수 있도록 해주는 프로�
 - HTTP/1.0 (1996년) - 메소드, 헤더 추가
 - HTTP/1.1 (1997년) - 가장 많이 사용, HTTP 대부분의 기능이 담겨 있음
 - HTTP/2 (2015년) - 성능 개선
-- HTTP/3 (진행중) - TCP 대신에 UDP 사용, 성능 개선
+- HTTP/3 (진행중) - TCP 대신에 UDP 사용(QUIC=Quick UDP 사용), 성능 개선
 
 <br></br>
 ### HTTP의 특징
@@ -102,7 +102,7 @@ GET과 동일하지만 메시지 부분을 제외하고, 상태 줄과 헤더만
 ---
 
 ### HTTP 메소드의 속성
-![http_13.png](./image/http_13.png)
+![http_13.png](./image/http_7.png)
 
 - **안전**
     - 호출해도 리소스를 변경하지 않음
@@ -167,23 +167,15 @@ GET과 동일하지만 메시지 부분을 제외하고, 상태 줄과 헤더만
 <br></br>
 
 ## HTTPS
-HTTP는 암호화되지 않은 데이터를 전송하기 때문에, 브라우저에서 전송된 정보를 제3자가 가로채서 읽을 수 있음 → 통신에 보안 계층을 추가하기 위해 HTTPS로 확장
+- HTTPS는 HTTP와 별개의 프로토콜이 아닌 HTTP의 확장임
+- HTTPS는 인터넷에서 보안 통신을 위해 사용됨 <- HTTP에는 데이터를 암호화하는 과정이 없기 때문에, 서버와 브라우저의 통신 과정에서 데이터가 그대로 노출될 위험이 큼
+- TLS 또는 SSL을 사용해 암호화함 [SSL Handshake](https://github.com/psyStudy/CS_study/blob/main/Network/대칭키_공개키_TSL_SSL.md)       
+![http_13.png](./image/http_8.png)
+- 네이버, 다음, 구글은 검색 엔진 최적화(SEO) 관련 내용을 HTTPS 웹사이트에 대해서 적용하고 있음. 즉, HTTPS화를 하고 있다면 키워드 검색 시 상위에 노출됨
 
-- HTTPS 웹사이트는 독립된 인증 기관에서 SSL/TLS 인증서를 획득해야 함
-- 데이터를 교환하기 전에 브라우저와 인증서를 공유함
-
----
-
-1. 사용자 브라우저의 주소 표시줄에 [https://URL](https://URL) 형식을 입력하여 HTTPS 웹 사이트 방문
-2. 브라우저는 서버의 SSL 인증서를 요청하여 사이트의 신뢰성을 검증하려고 시도함
-3. 서버는 퍼블릭 키가 포함된 SSL 인증서를 회신으로 전송함
-4. 웹 사이트의 SSL 인증서는 서버 아이덴티티를 증명함
-5. 브라우저에서 인증되면, 브라우저가 퍼블릭 키를 사용하여 비밀 세션 키가 포함된 메시지를 암호화하고 전송함
-6. 웹 서버는 프라이빗 키를 사용하여 메시지를 해독하고 세션 키를 검색함
-7. 세션 키를 암호화하고 브라우저에게 승인 메시지를 전송함
-8. 이제 브라우저와 웹 서버 모두 동일한 세션 키를 이용하여 메시지를 안전하게 교환하도록 전환함
-
-### 대칭키, SSL 공부한 이후에 내용 추가하겠음
+<br></br>
+![http_13.png](./image/http_9.png)       
+모든 사이트에서 텍스트를 암호화해서 주고 받으면 과부하가 걸려 속도가 느려질 수 있음 -> 중요한 사이트는 HTTPS로 관리하고, 그렇지 않은 사이트는 HTTP를 사용함
 
 <br></br>
 <br></br>
@@ -198,3 +190,4 @@ HTTP는 암호화되지 않은 데이터를 전송하기 때문에, 브라우저
 ### 출처
 모든 개발자를 위한 HTTP 웹 기본 지식_김영한       
 [https://aws.amazon.com/ko/compare/the-difference-between-https-and-http/](https://aws.amazon.com/ko/compare/the-difference-between-https-and-http/)
+https://rachel-kwak.github.io/2021/03/08/HTTPS.html

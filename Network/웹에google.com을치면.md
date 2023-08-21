@@ -114,9 +114,23 @@
 
 # 7. 브라우저가 html content를 보여준다.
 
-- 브라우저는 html content를 단계적으로 랜더링(Critical Path과정)하여 노출
+- 브라우저는 html content를 단계적으로 랜더링(Critical Rendering Path)하여 노출
 - 정적인 파일들은 브라우저에 캐싱되어 나중에 해당 페이지 재방문시 서버에 재요청하지 않게 한다.
-- 마지막으로 ‘www.google.com’웹 페이지가 나타남.
+- 마지막으로 ‘www.google.com’웹 페이지가 나타남.'
+
+  ### Critical Rendering Path
+  HTML, css, javascripts 등이 데이터를 실제 우리가 보는 화면(픽셀)로 그리기까지critical rendering path를 거져 진행된다.
+  - 웹을 랜더링한다 = critical rendering path를 거친다.
+  - ![images_dum6894_post_e1abfd3f-dd8f-4da1-9b5e-c1ea762b6bd4_image](https://github.com/psyStudy/CS_study/assets/60220571/4158419d-b470-459a-beb9-afab5eff5e6d)
+ 
+1. [ HTML ] 서버에서 응답으로 받은 HTML 데이터를 파싱한다.
+2. [ DOM Tree ] HTML을 파싱한 결과로 DOM Tree를 만든다. 👉 DOM(Document Object Model) 완성!!
+3. [ CSS ] 파싱하는 중 CSS 파일 링크를 만나면 CSS 파일을 요청해서 받아온다.
+4. [ CSSOM ] CSS 파일을 읽어서 CSSOM(CSS Object Model)을 만든다.
+5. [ Render Tree ] DOM Tree와 CSSOM이 모두 만들어지면 이 둘을 사용해 Render Tree를 만든다.
+6. [ Layout(reflow) ] Render Tree에 있는 각각의 노드들이 화면의 어디에 어떻게 위치할 지를 계산하는 Layout과정을 거친다
+7. [ Paint ] 화면에 실제 픽셀을 Paint한다.
+
 
 ---
 
@@ -127,7 +141,8 @@
 # 출처
 
 - [https://leeph.tistory.com/39](https://leeph.tistory.com/39)
-- [https://velog.io/@doodream/google.com을-치면-일어나는-일](https://velog.io/@doodream/google.com%EC%9D%84-%EC%B9%98%EB%A9%B4-%EC%9D%BC%EC%96%B4%EB%82%98%EB%8A%94-%EC%9D%BC)
+- [https://velog.io/@doodream/google.com을-치면-일어나는-일](https://velog.io/@doodream/google.com%EC%9D%84-%EC%B9%98%EB%A9%B4%EC%9D%BC%EC%96%B4%EB%82%98%EB%8A%94-%EC%9D%BC)
+- [https://velog.io/@dum6894/CS-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%ACCritical-Rendering-Path](https://velog.io/@dum6894/CS-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%ACCritical-Rendering-Path)
 - [https://brunch.co.kr/@seungjoonlernnx/100](https://brunch.co.kr/@seungjoonlernnx/100)
 - [https://yoondii.tistory.com/m/59](https://yoondii.tistory.com/m/59)
 - [https://mangkyu.tistory.com/91](https://mangkyu.tistory.com/91)

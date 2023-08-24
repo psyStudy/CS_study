@@ -102,15 +102,16 @@
 
 - **TCP 세그먼트 = 세그먼트 헤더(TCP 헤더) + 데이터**
 - (데이터 섹션의 길이) = (전체 IP 데이터그램의 길이) - (TCP 헤더) - (캡슐화된 IP 헤더의 길이)
-- TCP 헤더 구조
+- TCP 패킷(세그먼트) 구조
 
 ![osi_6.png](./image/osi_6.png)
 
 <br></br>
 ### 데이터그램(Datagram)
-- TCP/IP 인터넷에서 기본 전송 단위(데이터그램은 ‘패킷’ 대신 쓸 수 있는 용어라고 함)
-- 패킷교환에서 각각 독립적으로 취급되는 각각의 패킷
-- **데이터그램 방식** - 패킷 교환에서 비연결형 서비스를 이용해 패킷을 독립적으로 전송하는 방식(UDP)
+- UDP(User Datagram Protocol) 패킷은 사용자 데이터그램이라고 부르기도 함
+- **데이터그램 방식** - 패킷 교환에서 비연결형 서비스를 이용해 패킷을 독립적으로 전송하는 방식(UDP)   
+  
+![osi_9.png](./image/osi_9.png)  
 
 <br></br>
 
@@ -158,4 +159,5 @@ TCP/IP 프로토콜 통신 과정에 초점을 맞추어, OSI 7계층을 좀 더
 [http://wiki.hash.kr/index.php/패킷](http://wiki.hash.kr/index.php/%ED%8C%A8%ED%82%B7)      
 [http://www.ktword.co.kr/test/view/view.php?m_temp1=634](http://www.ktword.co.kr/test/view/view.php?m_temp1=634)      
 [https://www.cloudflare.com/ko-kr/learning/network-layer/what-is-a-packet/](https://www.cloudflare.com/ko-kr/learning/network-layer/what-is-a-packet/)      
-[https://wooono.tistory.com/507](https://wooono.tistory.com/507)
+[https://wooono.tistory.com/507](https://wooono.tistory.com/507)   
+http://contents.kocw.or.kr/document/lec/2012/AnDong/ChungJoongSoo/5-1.pdf

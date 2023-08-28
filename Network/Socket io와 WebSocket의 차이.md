@@ -146,4 +146,4 @@ HTTP 는 단방향 통신이다.
 
 # 같이 보면 좋을 내용
 
-- websocket이전 HTTP기반 통신 방식 Polling, Long Polling, Streaming
+- [websocket이전 HTTP기반 통신 방식 Polling, Long Polling, Streaming](https://github.com/psyStudy/CS_study/blob/main/Network/http%EC%9D%98%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%ED%86%B5%EC%8B%A0%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EB%B0%A9%EB%B2%95.md)

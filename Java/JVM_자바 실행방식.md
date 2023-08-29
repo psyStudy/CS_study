@@ -3,7 +3,7 @@
 
 자바 가상머신은 운영체제 위에서 실행되는 하나의 프로그램이며, **자바 프로그램을 실행시킴**
 
-![jvm_4.png](./image/jvm_4.png)
+![jvm_4.png](./image/jvm_4.jpg)
 
 ### Class Loader(클래스 로더)
 ![jvm_7.png](./image/jvm_5.png)

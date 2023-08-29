@@ -3,7 +3,7 @@
 
 자바 가상머신은 운영체제 위에서 실행되는 하나의 프로그램이며, **자바 프로그램을 실행시킴**
 
-![jvm_4.png](./image/jvm_4.png)
+![jvm_4.png](./image/jvm_4.jpg)
 
 ### Class Loader(클래스 로더)
 ![jvm_7.png](./image/jvm_5.png)
@@ -113,4 +113,5 @@
 [https://inpa.tistory.com/entry/JAVA-☕-JVM-내부-구조-메모리-영역-심화편](https://inpa.tistory.com/entry/JAVA-%E2%98%95-JVM-%EB%82%B4%EB%B6%80-%EA%B5%AC%EC%A1%B0-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD-%EC%8B%AC%ED%99%94%ED%8E%B8)       
 [https://sgcomputer.tistory.com/64](https://sgcomputer.tistory.com/64)       
 [https://godjiblog.co.kr/1-jvm의-구조와-java의-실행-방식/](https://godjiblog.co.kr/1-jvm%EC%9D%98-%EA%B5%AC%EC%A1%B0%EC%99%80-java%EC%9D%98-%EC%8B%A4%ED%96%89-%EB%B0%A9%EC%8B%9D/)       
-[https://velog.io/@livenow/Live-Study-JVM은-무엇이며-자바-코드는-어떻게-실행하는-것인가](https://velog.io/@livenow/Live-Study-JVM%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%B4%EB%A9%B0-%EC%9E%90%EB%B0%94-%EC%BD%94%EB%93%9C%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%8B%A4%ED%96%89%ED%95%98%EB%8A%94-%EA%B2%83%EC%9D%B8%EA%B0%80)     
+[https://velog.io/@livenow/Live-Study-JVM은-무엇이며-자바-코드는-어떻게-실행하는-것인가](https://velog.io/@livenow/Live-Study-JVM%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%B4%EB%A9%B0-%EC%9E%90%EB%B0%94-%EC%BD%94%EB%93%9C%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%8B%A4%ED%96%89%ED%95%98%EB%8A%94-%EA%B2%83%EC%9D%B8%EA%B0%80)      
+https://thisisprogrammingworld.tistory.com/179

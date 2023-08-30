@@ -177,4 +177,6 @@ XSS와 같이 웹 페이지 내에 악성 스크립트를 삽입하는 공격 �
 [https://ko.wikipedia.org/wiki/동일-출처_정책](https://ko.wikipedia.org/wiki/%EB%8F%99%EC%9D%BC-%EC%B6%9C%EC%B2%98_%EC%A0%95%EC%B1%85)     
 [https://escapefromcoding.tistory.com/724](https://escapefromcoding.tistory.com/724)     
 [https://inpa.tistory.com/entry/WEB-📚-CORS-💯-정리-해결-방법-👏#📜_동일_출처_정책이_필요한_이유](https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-CORS-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95-%F0%9F%91%8F#%F0%9F%93%9C_%EB%8F%99%EC%9D%BC_%EC%B6%9C%EC%B2%98_%EC%A0%95%EC%B1%85%EC%9D%B4_%ED%95%84%EC%9A%94%ED%95%9C_%EC%9D%B4%EC%9C%A0)     
-[https://yoo11052.tistory.com/139](https://yoo11052.tistory.com/139)
+[https://yoo11052.tistory.com/139](https://yoo11052.tistory.com/139)     
+https://w01fgang.tistory.com/147     
+https://chanto11.tistory.com/67

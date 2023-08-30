@@ -3,10 +3,6 @@
 동일 출처 간의 요청과 응답만 허용하는 정책
 
 - 다른 출처로부터 조회된 자원들의 읽기 접근을 막아 다른 출처 공격을 예방함
-- 단, HTML 태그를 경유하는 글꼴, 이미지, CSS, 스크립트 등 출처를 경유하여 리소스를 임베드하는 것은 제한하지 않음
-
-![cors_3.png](./image/cors_3.png)
-
 <br></br>
 ### 출처란
 
@@ -45,6 +41,13 @@ https://example.com/app2
 - 서로 다른 출처 간 요청과 응답이 가능하게 함
 - 웹 애플리케이션은 리소스가 자신의 출처(도메인, 프로토콜, 포트)와 다를 때 CORS HTTP 요청을 실행함
 - CORS 요청 방식 종류로는 Simple Request, Preflighted Request, Credential Request이 있음
+<br></br>
+
+**💡 즉 CORS를 허용해줄 때는 요청을 보낸 클라이언트의 출처가 자신(서버)의 출처와 다르면서, 아래 2가지 경우에 해당하는 요청이 왔을 때!**
+- Simple Request: **GET, HEAD, POST 같은 Method**와 Content-Type 헤더의 값이 text/plain, application/x-www-form-urlencoded 또는 multipart/form-data 일 때
+- Non Simple Request(->Preflighted Request): **GET, HEAD, POST Method가 아닌 요청**과 Simple Request에서 언급하지 않는 Content-Type으로 요청이 들어 왔을 때    
+
+-> 자신과 같은 출처이거나 허용되는 다른 출처의 요청만 처리함으로써 제3자가 서버에 액세스하는 것을 방지함!
 
 <br></br>
 ### Simple Request (단순 요청)
@@ -146,6 +149,21 @@ $.ajax({
 	}
 });
 ```
+
+<br></br>
+
+## CSP(Content Security Policy, 콘텐츠 보안 정책)란
+XSS와 같이 웹 페이지 내에 악성 스크립트를 삽입하는 공격 기법을 막기 위해 사용하는 것으로, 스트립트, 이미지, 글꼴, 미디어 등 모든 동적 콘텐츠에 대해 허용된 도메인에서 로드된 콘텐츠만 실행함
+- 제3자가 웹 페이지 내에 악성 스크립트를 사용하는 것을 방지함
+- Content-Security-Policy 헤더를 사용해서 특정 리소스가 어디서 왔는지 검사하고, 허용된 범위에 포함됐는지 검토함
+### 사용 예시
+- Content-Security-Policy: default-src ‘self’
+    - 모든 컨텐츠의 소스는 자기 도메인에서 갖고 오게 됨
+- Content-Security-Policy: default-src ‘self’; img-src *; media-src media1.com media2.com; script-src script.example.com;
+    - 모든 컨텐츠는 자기 도메인에서 갖고 오지만 몇가지 예외 사항이 있음
+    - img-src *; -> 이미지 관련 컨텐츠는 모든 사이트들을 허용함
+    - media-src media1.com media2.com; -> 미디어 관련 컨텐츠는 media1과 media2라는 사이트에서만 갖고 옴
+    - script-src script.example.com; -> 실행 가능한 스크립트 관련 컨텐츠는 script.example.com에서만 갖고 옴
 
 <br></br>
 <br></br>

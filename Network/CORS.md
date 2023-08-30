@@ -27,7 +27,14 @@ https://example.com/app2
 <br></br>
 ### 다른 출처 요청의 위험성
 출처가 다른 애플리케이션에 자유롭게 접근할 수 있다면, 해커가 CSRF(Cross-Site Request Forgery)나 XSS(Cross-Site Scripting) 등의 방법을 이용해 악성 코드를 실행시킬 수 있음
-
+- CSRF 예시
+    - 공격자가 희생자의 권한을 도용하여 특정 웹 사이트의 기능을 실행하는 것
+ 
+![cors_2.png](./image/cors_8.jpg)
+   	 
+- XSS 예시
+    - 웹 사이트의 관리자가 아닌 악의적인 목적을 가진 제 3자가 악성 코드(대부분 자바스크립트)를 삽입하여 의도하지 않은 명령을 실행시키거나 세션 등을 탈취하는 것
+  
 ![cors_2.png](./image/cors_2.png)
 
 <br></br>

@@ -314,3 +314,4 @@ console.log('done'); // 작업 완료 메시지 출력
 
 - [https://inpa.tistory.com/entry/👩‍💻-동기비동기-블로킹논블로킹-개념-정리](https://inpa.tistory.com/entry/%F0%9F%91%A9%E2%80%8D%F0%9F%92%BB-%EB%8F%99%EA%B8%B0%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC)
 - [https://youngkyonyou.github.io/interview/2021/12/23/Interview-interview-07.html](https://youngkyonyou.github.io/interview/2021/12/23/Interview-interview-07.html)
+- [https://satisfactoryplace.tistory.com/18](https://satisfactoryplace.tistory.com/18)

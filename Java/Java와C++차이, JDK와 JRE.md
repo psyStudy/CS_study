@@ -93,8 +93,7 @@
 - C : call by value, **( 포인터 그 자체도 매개변수로 넘어갈때 value 복사됨, clone copy 됨 )**
 - Python : call by value ( python은 모두 객체이기때문에, call by object 라 불리지만, 다른 언어와 비교해 말하자면 그렇다는 , 즉 자바의 객체 레퍼런스를 넘기는것과 동일 효과)
 - Javascript : call by value ( 자바,파이썬과 동일)
-    
-    
+<br></br>
 - Call by Reference : 참조에 의한 호출, 전달받은 값을 참조한다. 전달 받은 값을 변경할 경우 원본 값도 변경된다.
 - Call by Value : 값을 호출하는 것. 전달받은 값을 복사하여 처리한다. 전달받은 값을 변경하여도 원본 값은 변경되지 않는다.
 

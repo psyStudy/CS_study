@@ -83,7 +83,7 @@ Mark 단계에서 메모리 내용이 변경되지 않아야 하기 때문에, �
     
 
 프로그램 실행 중에도 병행하여 수행할 수 있다는 장점      
-단, Marking 중간에 메모리 내 참조가 수정되면 잘못 Marking 되는 경우가 생길 수 있음 
+**⭐️ 단, Marking 중간에 메모리 내 참조가 수정되면 잘못 Marking 되는 경우가 생길 수 있음**
 
 <br></br>
 ### 1-3. Generational GC (세대별 쓰레기 수집)
@@ -142,6 +142,12 @@ Mark 단계에서 메모리 내용이 변경되지 않아야 하기 때문에, �
 5. 일정 수준의 age bit를 넘어가면, 오래도록 참조될 객체라고 판단하고 해당 객체를 Old Generation으로 넘겨줌(Promotion)
     - Java 8에서는 Parallel GC 방식 기준으로 age bit가 15가 되면 Promotion을 진행함
 
+![gc_14.gif](./image/gc_14.gif)
+
+* ‼️ 살아남은 객체를 Survivor 0으로 옮기는 도중에 Survivor 0이 가득 차버림 -> Minor GC가 실행됨
+  
+![gc_13.gif](./image/gc_13.gif)
+
 <br></br>
 ### Major GC 과정
 객체들이 계속 Promotion되어 Old 영역의 메모리가 부족해지면 발생함    
@@ -161,6 +167,28 @@ Mark 단계에서 메모리 내용이 변경되지 않아야 하기 때문에, �
 - **Java 8의 디폴트 GC**
 - Serial GC와 기본적인 알고리즘은 같지만, Young 영역의 Minor GC를 멀티 스레드로 수행함 (Old 영역은 여전히 싱글 스레드 사용)
 - Serial GC에 비해 Stop-The-World 시간이 감소함
+
+<br></br>
+### CMS (Concurrent Mark And Sweep GC)
+- STW 시간을 최소화하기 위해 고안된 GC
+- tri-color marking 알고리즘을 사용하므로 애플리케이션을 수행하는 도중에 객체 그래프가 변경될 수 있음(=참조 관계가 변경될 수 있음)
+- 따라서 Reachable한 객체를 제거하지 않기 위해 레코드를 바로 잡는 과정이 필요함 -> GC 과정이 복잡해짐!
+
+![gc_15.png](./image/gc_15.png)
+
+1. 초기 마킹(Initial Mark) - STW 발생 
+    - 출발점(Root)에서 가장 가까운 객체만 1차적으로 찾아가며 해당 객체가 GC 대상인지 판단함
+    - 탐색의 길이가 얕기 때문에 STW 시간이 짧음 
+2. 동시 마킹(Concurrent Mark) - STW 발생하지 않음
+    - 애플리케이션을 동작하며 동시에 삼색 마킹 알고리즘을 수행함 
+3. 재마킹(Remark) - STW 발생 
+    - 동시 마킹 단계에서 참조 관계가 새로 추가되거나 제거되었는지 객체를 확인함
+    - STW가 발생하며, 이를 줄이기 위해 멀티 스레드로 동작함 
+4. 동시 스위프(Concurrent Sweep)
+    - GC 대상인 객체들을 메모리에서 제거함 
+<br></br>
+- 이렇듯 GC 과정이 매우 복잡하기 때문에 다른 GC 대비 CPU 사용량이 높고, Compact 과정이 없기 때문에 메모리 단편화 문제가 발생할 수 있음
+- Java 9 버전부터 deprecated 되었고, 결국 Java 14부터는 사용이 중지됨 
 
 <br></br>
 ### G1 GC

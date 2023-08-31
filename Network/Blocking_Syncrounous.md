@@ -62,12 +62,53 @@ DB에서 응답이 올 때까지 기다림 -> 다른 요청을 처리할 수 없
 ![blocking_nonb.png](./image/blocking_nonb.png)
 
 ## ♠[참고] Callback 함수
+- called at the back
+  
+- 다른 함수의 인자로써 이용되는 함수.
+  ```
+      //hello!
+    function printHello(){
+     print('hello');
+    }
+    //bye!
+    function printBye(){
+      print('bye');
+    }
+    
+    //특정 함수를 매개변수로 받아서 3초 뒤에 실행하는 함수
+    function sleepAndExecute(sleepTimeSecond, callback){
+      //sleepTimeSecond 초 만큼 대기
+      sleep(sleepTimeSecond);
+      //전달된 callback 실행
+      callback();
+    }
+    
+    //3초 뒤에 hello 출력하기
+    sleepAndExecute(3, printHello);
+    
+    //5초 뒤에 bye 출력하기
+    sleepAndExecute(5, printBye);
+  ```
+- sleepAnd Execute는 주어진 시간 만큼 대기했다고, callback을 실행시키는 함수.
+- sleepAndExecute(3,printHello);에서는 printHello를 sleepAndExecute의 매개변수(인자)로 전달하므로, printHello는 callback 함수이다.
 
-비동기, 논블로킹에서 다른 작업의 완료여부 또는 결과에 대한 후처리를 위해 이용되는 방식
+- 어떤 이벤트에 의해 호출되어지는 함수.
+```
+function onCableConnected(){
+	print("케이블이 연결되었습니다");
+};
 
-비동기, 논블로킹을 구현하는 하나의 기술. 
+//케이블이 연결될 때 마다 전달된 onCableConnected가 호출된다고 가정
+setOnCableConnected(onCableConnected);
 
-콜백이 비동기 또는 논블로킹을 구현하는 하나의 방법이고, 직접적인 관련은 없다.
+```
+- setOnCableConnected로 설정한 함수가, 케이블을 연결할 때 마다 호출되므로, onCableConnected는 "어떤 이벤트에 의해 호출되어지는 함수", 즉 callback 함수 라고 할 수 있다.
+  
+- 비동기, 논블로킹에서 다른 작업의 완료여부 또는 결과에 대한 후처리를 위해 이용되는 방식
+
+- 비동기, 논블로킹을 구현하는 하나의 기술. 
+
+- 콜백이 비동기 또는 논블로킹을 구현하는 하나의 방법이고, 직접적인 관련은 없다.(콜백함수 자체가 비동기 함수, 논블로킹 함수가 아님)
 
 ```jsx
 /* 콜백 함수 방식으로 구현한 비동기 + 논블로킹 서버 요청 작업 */

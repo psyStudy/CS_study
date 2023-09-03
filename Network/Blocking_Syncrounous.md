@@ -64,7 +64,7 @@ DB에서 응답이 올 때까지 기다림 -> 다른 요청을 처리할 수 없
 ## ♠[참고] Callback 함수
 - called at the back
   
-- 다른 함수의 인자로써 이용되는 함수.
+- i) 다른 함수의 인수로서 넘겨주는 실행 가능한 코드.
   ```
       //hello!
     function printHello(){
@@ -89,10 +89,10 @@ DB에서 응답이 올 때까지 기다림 -> 다른 요청을 처리할 수 없
     //5초 뒤에 bye 출력하기
     sleepAndExecute(5, printBye);
   ```
-- sleepAnd Execute는 주어진 시간 만큼 대기했다고, callback을 실행시키는 함수.
-- sleepAndExecute(3,printHello);에서는 printHello를 sleepAndExecute의 매개변수(인자)로 전달하므로, printHello는 callback 함수이다.
+	- sleepAnd Execute는 주어진 시간 만큼 대기했다고, callback을 실행시키는 함수.
+	- sleepAndExecute(3,printHello);에서는 printHello를 sleepAndExecute의 매개변수(인자)로 전달하므로, printHello는 callback 함수이다.
 
-- 어떤 이벤트에 의해 호출되어지는 함수.
+- ii) 어떤 이벤트에 의해 호출되어지는 함수.
 ```
 function onCableConnected(){
 	print("케이블이 연결되었습니다");
@@ -102,13 +102,13 @@ function onCableConnected(){
 setOnCableConnected(onCableConnected);
 
 ```
-- setOnCableConnected로 설정한 함수가, 케이블을 연결할 때 마다 호출되므로, onCableConnected는 "어떤 이벤트에 의해 호출되어지는 함수", 즉 callback 함수 라고 할 수 있다.
-  
-- 비동기, 논블로킹에서 다른 작업의 완료여부 또는 결과에 대한 후처리를 위해 이용되는 방식
-
+	
+ - setOnCableConnected로 설정한 함수가, 케이블을 연결할 때 마다 호출되므로, onCableConnected는 "어떤 이벤트에 의해 호출되어지는 함수", 즉 callback 함수 라고 할 수 있다.
+<br></br>
+### 비동기, 논블로킹과 관련성
+- 콜백함수를 비동기, 논블로킹에서 다른 작업의 완료여부 또는 결과에 대한 후처리를 위해 이용한다.
 - 비동기, 논블로킹을 구현하는 하나의 기술. 
-
-- 콜백이 비동기 또는 논블로킹을 구현하는 하나의 방법이고, 직접적인 관련은 없다.(콜백함수 자체가 비동기 함수, 논블로킹 함수가 아님)
+- 콜백이 비동기 또는 논블로킹을 구현하는 하나의 방법일 뿐이고, 콜백함수 자체가 비동기 함수, 논블로킹 함수인 것은 아니다.
 
 ```jsx
 /* 콜백 함수 방식으로 구현한 비동기 + 논블로킹 서버 요청 작업 */
@@ -138,7 +138,7 @@ console.log('Hello');
 
 **결론 : 엄연히 나타내는 의미는 다르지만, 관점에 따른 이론적 개념이라 실제 코드에서 경계를 구분하기에는 애매할 수 있다.**
 
-- Async(와 sync)는 출력 순서와 관련된 개념이다.
+- Async(와 sync)는 작업 순서(순차처리)와 관련된 개념이다.
 - Non-Blocking(와 blocking)은 병렬 실행과 관련된 개념이다.
 - 자바스크립트의 setTimeout 함수는 비동기 함수이면서, 논블로킹 함수이다.
 
@@ -154,7 +154,7 @@ console.log("끝");
 
 ![non_async_first.png](./image/non_async_first.png)
 
-1. 출력 순서와 정의된 코드라인 순서가 맞지 않음 = Async
+1. 작업 순서와 정의된 코드라인 순서가 맞지 않음 = Async
     - 원인 : setTimeout 함수에 대해 타이머 작업을 완료 여부를 신경 쓰지 않고 바로 그 다음 콘솔 작업을 수행했기 때문.
 2. 메인 함수 작업에 대해 setTimeout 함수는 자신의 타이머 작업을 수행하기 위해 메인 함수를 블락하지 않고 백그라운드에서 별도 처리 = Non-Blocking
 

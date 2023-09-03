@@ -54,7 +54,7 @@ Object Oriented Programing
 
 - 같은 형태이지만 다른 기능을 하는 것
 - 서로 다른 클래스의 객체가 같은 메시지를 받았을 때 각자의 방식으로 동작하는 능력
-- ex) 오버로딩, 오버라이딩(링크달기)
+- [ex) 오버로딩, 오버라이딩(click!)](https://github.com/psyStudy/CS_study/blob/main/Java/%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9%2C%20%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9.md)
 
 ## 2️⃣ OOP 장점
 

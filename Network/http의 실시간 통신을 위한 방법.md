@@ -20,8 +20,19 @@ Http통신은 클라이언트에서 서버로의 단방향 통신을 위해 만�
 
 - 주기적으로 물어보므로 응답 간격을 일정하게 할 수 있음
 - 주기적으로 몰아서 물어보는게 가능하므로 일괄처리되어 db튜닝 효과가 있음
-    - 그래프를 그리거나 대용량 데이터를 처리해야한다면 오히려 매우 간단하고 최적화된 방식이다.
+    - DB튜닝 : DB의 성능 향상을 위해 운영체제나 DB자체의 구조를 이해하고, 필요한 요소를 변경하는 작업.
+    - 응답 간격 일정, 일괄처리 특성으로 DB최적화가 수월하다라는 맥락으로 이해하면 될 것 같음.
+- 그래프를 그리거나 대용량 데이터를 처리해야한다면 오히려 매우 간단하고 최적화된 방식이다.
 - 보낼 데이터가 없어도 계속 데이터를 줘야하므로 서버의 리소스가 낭비됨
+
+## 사용하는 경우
+
+- 응답이 완전 실시간이 아니어도 괜찮거나 3초 이상의 시간차가 발생해도 괜찮은 경우
+- 10명 이상의 상대와 채팅해야하는 경우
+- 다른 서버 애플리케이션과 함께 동작해야하는 경우
+- 반복 주기가 짧지 않은 경우.
+- ex) 페이스북 웹 채팅에서 사용자 리스트 갱신주기는 1분 폴링기법을 사용.
+- ex) 전체 채팅이 필요한 웹 게임, 랜덤 채팅 등
 
 # 2. Long Polling
 
@@ -42,6 +53,13 @@ Polling과 비슷한 기법으로, 실시간 데이터 처리가 가능하다.
 - 항상 연결이 유지되어있다.
 - 변경에 매우 민감아게 반응하며 사실상 실시간으로 통신가능하다.
 - 데이터가 주어지는 즉시 바로바로 반응하고 보내므로 요청간격이 줄어들면 polling보다 훨씬 데이터를 많이 보낸다.
+
+## 사용하는 경우
+
+- 약 3초간의 오차로 실시간 응답이 필요한 경우
+- 메신저 같이 1:1이나 약 10명 이하의 상대와 채팅하는 경우
+- 채팅 서버만 분리할 수 있는 경우
+- ex) facebook 웹 채팅, Google의 메신저, MSN의 웹 메신저 등
 
 # 3. Streaming
 
@@ -77,3 +95,5 @@ Long Polling, Streaming의 경우 서버에서 클라이언트로 메시지를 �
 
 - [https://velog.io/@hahan/Polling-Long-Polling-Streaming](https://velog.io/@hahan/Polling-Long-Polling-Streaming)
 - [https://forward-movement.tistory.com/129](https://forward-movement.tistory.com/129)
+- [https://clearpal7.blogspot.com/2016/06/vs.html](https://clearpal7.blogspot.com/2016/06/vs.html)
+- [https://jaehyeon48.github.io/network/polling-and-sse/](https://jaehyeon48.github.io/network/polling-and-sse/)

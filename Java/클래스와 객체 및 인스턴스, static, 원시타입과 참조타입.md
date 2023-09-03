@@ -11,7 +11,11 @@
 연관되어 있는 변수와 메서드의 집합.
 
 - 속성(필드,변수)와 동작(메서드)는 생략될 수도, 하나 이상 작성될 수도 있다.
-- JVM메모리의 클래스 영역에 로드
+
+- JVM메모리의 메소드 영역(=클래스 영역=static영역)에 로드
+    - 메소드 영역은 클래스 정보, static변수, 변수 정보(데이터 타입, 접근 제어자), 메소드 정보(메소드 명, 리턴타입, 파라미터, 접근제어자), final class, constant pool 등이 저장되는 영역이다.
+      
+    - jvm이 동작해서 클래스가 로딩될때 생성되고 jvm이 종료될 때까지 유지된다.
 
 ## 1.b. 객체 Object
 
@@ -81,7 +85,7 @@ java에서 static을 사용하는 것은 메모리에 한 번 할당되어 프�
 ## 2.a. 클래스 변수 = static 멤버(변수)
 
 - 클래스 내에서 static 키워드로 선언된 변수
-- 처음 JVM이 실행되어 클래스가 메모리에 올라갈 때 ~ 프로그램이 종료될 때까지 유지
+- 처음 JVM이 실행되어 클래스가 메모리에 올라갈 때 ~ 프로그램이 종료될 때까지 유지(메소드 영역=클래스 영역=static 영역에 저장된다.)
 - 클래스가 여러 번 생성되어도 static 변수는 처음 딱 한 번만 생성된다.
 - 동일한 클래스의 모든 객체들에 의해 공유됨.
 - 객체를 생성하지 않고 static 자원에 접근가능 (stack 메모리 영역에 존재하므로)
@@ -286,3 +290,4 @@ List<Integer> list; //가능
 - [https://velog.io/@ka0ka0ka/1-3d8vtbh5](https://velog.io/@ka0ka0ka/1-3d8vtbh5)
 - [https://sujinhope.github.io/2021/03/03/Java-클래스변수,-인스턴스-변수-차이(Static변수와-Non-Static변수).html](https://sujinhope.github.io/2021/03/03/Java-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B3%80%EC%88%98,-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%B3%80%EC%88%98-%EC%B0%A8%EC%9D%B4(Static%EB%B3%80%EC%88%98%EC%99%80-Non-Static%EB%B3%80%EC%88%98).html)
 - [https://mangkyu.tistory.com/47](https://mangkyu.tistory.com/47)
+- [https://velog.io/@rik963/JAVA-JVM-%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD-Class-Heap-Stack-Area](https://velog.io/@rik963/JAVA-JVM-%EA%B5%AC%EC%A1%B0-%EB%B0%8F-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD-Class-Heap-Stack-Area)

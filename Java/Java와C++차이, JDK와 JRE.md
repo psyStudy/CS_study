@@ -6,11 +6,10 @@
 
 - java : 컴파일+jar 압축 ; 링크 과정없이 컴파일러가 바로 바이트 코드를 생성
     - 자바 가상 머신 위에서 바이트 코드로 컴파일 된다.
-    - 자동으로 배열의 인덱스 검사를 진행한다.
+    
 - C/C++ : 컴파일 + 링크
     - OS에 맞는 기계어로 컴파일한다 → JAVA보다 빠르다.
     - 기계어로 직접 컴파일 되고 운영체제에 의해 실행된다.
-    - 인덱스 검사를 선택적으로 진행한다.
 
 ## 설계 목표
 
@@ -63,9 +62,61 @@
 - Java : 클래스 다중 상속을 지원하지 않는다.
     - Interface를 지원한다. Interface는 다중 상속이 가능하다.
     - 이는 Interface가 추상메소드로 구성되어 있기 때문에, 다중 상속을 받은 클래스에서 해당 메소드를 구현하므로 다이아몬드 문제가 발생하지 않는다.
+    -(JAVA 8 이후 인터페이스 다중상속이 가능하지만 디폴드 메소드가 있다면 구현체에서 오버라이딩 해야한다. java8이후 인터페이스에 대한 부분이 다를 수 있으므로 인터페이스 파트를 확인하자!)
+    - [https://kangyb.tistory.com/14](https://kangyb.tistory.com/14)
 - C++ : 클래스 다중 상속을 지원한다.
     - C++은 가상 상속을 통해 다이이아몬드 문제를 회피한다.
     - Interface를 지원하지 않는다.
+
+```cpp
+class USBDevice
+{
+private:
+	long m_id;
+
+public:
+	USBDevice(long id) : m_id(id) {} 
+
+	long getID() { return m_id; }
+
+	void plugAndPlay() {} 
+};
+
+class NetworkDevice
+{
+private:
+	long m_id;
+
+public:
+	class NetworkDevice(long id) : m_id(id) {}
+
+	long getID() { return m_id;	}
+
+	void networking() {}
+};
+
+class USBNetworkDevice : public USBDevice, public NetworkDevice
+{
+public:
+	USBNetworkDevice(long usb_id, long net_id)
+		:USBDevice(usb_id), NetworkDevice(net_id)
+	{}
+};
+
+int main()
+{
+	USBNetworkDevice my_device(3.14, 6.022);
+
+	my_device.networking(); //NetworkDevice에서 상속
+	my_device.plugAndPlay(); //USBDevice에서 상속
+
+    my_device.USBDevice::getID(); //두 부모에 중복되는 멤버가 있으면 부모 이름을 앞에 명시해 주자.
+    my_device.NetWorkDevice::getID();
+
+	return 0;
+}
+
+```
 
 클래스 다중 상속을 지원하는 언어는 ‘다이아몬드 문제’가 발생한다.
 
@@ -79,8 +130,12 @@
 
 - Java : C++에 비해 표준 라이브러리가 거대하다.
     - Java SE 표준라이브러리는 컴퓨터 네트워크, 그래픽 사용자 인터페이스, XML처리, 로깅, 데이터베이스 접근, 암호학, 기타 요소들을 모두 제공합니다.
+    - 다른 외부 라이브러리도 잘 사용할 수 있다.
+
 - C++ : C++의 표준라이브러리는 문자열, 컨테이너, 입출력 스트림 등의 비교적 범용적인 요소들만 제공한다.
     - Java와 같은 추가기능을 사용하려면 제 3자 라이브러리를 이용해야함.
+
+- (참고, 안드로이드 같은 경우 dbsplite외 다른 db를 사용하고 싶을 경우 외부 서버가 필요하는 등 외부 라이브러리 사용이 힘든 경우가 있다.)
 
 ## 매개변수 전달방식
 
@@ -103,11 +158,68 @@
 - C++ : 가상 메소드 별로 선언해야함.
 
 - JAVA : 원시 데이터형의 크기가 정의 되어 있음.
-- C++ : 구현에 따라 데이터형의 크기가 달라짐
+    - JVM에서 작동 되니까!
+- C++ : 구현(시스템)에 따라 데이터형의 크기가 달라짐 -> 
+    - OS(16비트, 64비트)나 컴파일러에서 자료형의 크기가 조금씩 다르다는점 기억해 두자.
+    - OS별(16bit/32bit/64bit) 크기 사용의 요점은 다음과 같다.
+        * int는 시스템의 기본연산 단위를 사용한다. (16bit=>2byte, 32=>4byte, 64=>4byte)
+        * 64bit에서 long형을 8byte로 확장하였다. (16bit=>4byte, 32=>4byte, 64=>8byte)
+    - int가 시스템에 따라 다른 이유는 int는 CPU에서는 word 단위로 연산하게 되는데 이때 word의 크기가 int의 크기와 동일하게 됩니다. 그러므로 CPU에서 처리하는 기준에 따라 int크기가 달라지게 됩니다.
 
 - Java : 연산자 오버로딩을 지원하지 않는다.
 - C++: 연산자 오버로딩을 지원한다.
 - * 연산자 오버로딩 : 기존 제공하고 있는 연산자를 재정의하여 사용자 정의 클래스로 사용하는 것.
+```cpp
+#include <iostream>
+using namespace std;
+ 
+class Point {
+private :
+    int x, y;
+ 
+public :
+    Point(int x_, int y_) {
+        x = x_;
+        y = y_;
+    }
+ 
+    void print() {
+        cout << "x : " << x << ", y : " << y << "\n";
+    }
+ 
+    Point operator + (Point& p) {
+        x = x + p.x;
+        y = y + p.y;
+        return Point(x, y);
+    }
+};
+ 
+ 
+int main(void) {
+    Point p1 = { 1, 1 };
+    Point p2(2, 2);
+    
+    Point p3 = p1 + p2;
+ 
+    p3.print();
+ 
+    return 0;
+}
+```
+```
+x : 3, y : 3
+```
+- 함수의 이름은 operator입니다. 함수의 이름을 operator로 사용함으로써 컴파일러에게 연산자 오버로드 함수인것을 명시합니다.
+- 0번째 줄을 보시면 Point p3 = p1 + p2; 라는 코드가 있습니다.
+여기서 p1이 오버로드 된 + 연산자 함수를 호출했으며, + 뒤에있는 p2는 Point& p로 넘겨 받아지는 것 입니다.
+반환값은 Point 객체로 x와 y가 각각 더해진 새로운 임시 Point 객체를 반환합니다.
+이 반환된 임시 객체 값이 p3 값으로 넘어가서 결과적으로 3, 3이 출력되는 것입니다.
+
+- java : 자동으로 배열의 인덱스 검사를 진행한다. 
+    - 인덱스를 잘못 입력하면 컴파일은 되고 ArrayIndexOutOfBounds등으로 에러 알려줌.
+- c/c++ 인덱스 검사를 선택적으로 진행한다.
+    - 배열 유효성 검사를 하지 않아 인덱스를 잘못 입력해도 에러를 일으키지 않고 쓰레기값을 내놓는다.
+
 
 ## ⭐요약 정리
 
@@ -191,3 +303,8 @@ JDK는 JRE를 포함할 뿐 아니라, 컴파일러(javac), javadoc, jar 등 개
 - [https://velog.io/@chiyongs/Java-VS-C](https://velog.io/@chiyongs/Java-VS-C)
 - [https://aomee0880.tistory.com/145](https://aomee0880.tistory.com/145)
 - [https://code-lab1.tistory.com/253](https://code-lab1.tistory.com/253)
+
+- [https://jhnyang.tistory.com/203](https://jhnyang.tistory.com/203)
+- [https://yeolco.tistory.com/119](https://yeolco.tistory.com/119)
+- [https://myblog.opendocs.co.kr/archives/1230](https://myblog.opendocs.co.kr/archives/1230)
+- [https://elevate-yourself.tistory.com/6](https://elevate-yourself.tistory.com/6)

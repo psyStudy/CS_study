@@ -251,6 +251,75 @@ public final class Integer extends Number implements Comparable<Integer> {
 
 ![final_integer.png](./image/final_integer.png)
 
+## 2.4. final과 비슷하게 생긴 finally, finalize()
+결론 -> 이름만 비슷하고 직접적 관련은 없다.
+
+### 2.4.1. finally
+
+- try-catch 블록 뒤에 둘 수 있는 선택적인 블록
+- try-catch문이 끝나기전에 항상 꼭 실행되어야하는 로직이 있을 경우 finally절에 두면된다.
+- try-catch블록과 함께 사용되며 예외가 던져지더라도 항상 실행될 코드를 지정하기 위해 사용된다. 
+- finally블록은 try와 catch블록이 전부!!! 실행된 후, 그리고 제어 흐름이 원래 지점으로 돌아가기 전에 실행된다.
+- 각 블록안에 return이 정의 될 경우
+  - try 안 : 정상종료
+  - catch 안 : 정상종료는 맞으나, 예외 내용을 return 받는다..? 권장되는 방법은 아님.
+  - finally 안 : 예외가 발생해도 발생하지 않은 것으로 간주된다.
+
+```
+try{
+  예외 발생 가능성이 있는 문장들;
+}catch(예외타입1 매개변수명){
+  예외타입1의 예외가 발생할 경우 처리문장들;
+}catch(예외타입n 매개변수명){
+  예외타입n의 예외가 발생할 경우 처리문장들;
+}finally{
+  항상 수행할 필요가 있는 문장들;
+}
+
+```
+
+### 2.4.2. finalize()
+
+- java garbage collector가 더 이상 참조가 존재하지 않는 객체를 발견한 순간 호출하는 메서드이다. 
+- Object 클래스의 메서드이기 때문에 커스텀 한 클래스에 오버라이딩하여 해당 클래스의 객체가 GC에 의해 정리될 때 특정 동작을 수행하도록 할 수 있다.
+
+![finalize1.jpg](./image/finalize1.jpg)
+
+```java
+class Test {
+	
+	int idx;
+	
+	public Test(int idx) {
+		this.idx = idx;
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		System.out.println(getClass() + " "  + idx + " finalize() 메서드 실행");
+	}
+}
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Test test;
+		for (int i = 1; i <= 10; ++i) {
+			test = new Test(i);
+		}
+		test = null;
+
+		System.gc(); //GC 수행
+	}
+}
+```
+
+![finalize2](./image/finalize2.jpg)
+
+- test 변수가 null값을 가지게 되어 더 이상 참조되지 않은 Test객체들이 메모리에서 GC에 의해 정리당해 finalize() 메서드를 호출하는 것을 확인 할 수 있음.
+- 제거되는 객체의 순서는 알 수 없으며, 메모리 상황에 따라 일부 객체만 GC에 의해 수행될 수 도 있다.
+
+
 # 3. 불변 객체 Immutable Object
 
 final은 불변객체를 만드는 방법이다.
@@ -363,3 +432,5 @@ final은 불변객체를 만드는 방법이다.
 
 - [https://dev-coco.tistory.com/153](https://dev-coco.tistory.com/153)
 - [https://thalals.tistory.com/314](https://thalals.tistory.com/314)
+- [https://wjheo.tistory.com/entry/final-finally-finalize-%EC%B0%A8%EC%9D%B4%EC%A0%90](https://wjheo.tistory.com/entry/final-finally-finalize-%EC%B0%A8%EC%9D%B4%EC%A0%90)
+- [https://medium.com/@logishudson0218/java-final-finally-finalize%EC%9D%98-%EC%B0%A8%EC%9D%B4-ae04a58188fa](https://medium.com/@logishudson0218/java-final-finally-finalize%EC%9D%98-%EC%B0%A8%EC%9D%B4-ae04a58188fa)

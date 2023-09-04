@@ -286,7 +286,7 @@ try{
 ![finalize1.jpg](./image/finalize1.jpg)
 
 ```java
-class Test {
+class Test { //finalize()가 언제 실행되는지 text해보자!
 	
 	int idx;
 	
@@ -305,11 +305,11 @@ public class Main {
 	public static void main(String[] args) {
 		Test test;
 		for (int i = 1; i <= 10; ++i) {
-			test = new Test(i);
+			test = new Test(i); //Test객체를 반복해서 생성
 		}
-		test = null;
+		test = null; // test가 null을 가리키면
 
-		System.gc(); //GC 수행
+		System.gc(); //GC 수행 된다.
 	}
 }
 ```

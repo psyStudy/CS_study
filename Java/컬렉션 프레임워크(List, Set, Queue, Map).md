@@ -13,8 +13,8 @@
 
 <br></br>
 
-## List<E>를 구현하는 컬렉션 클래스
-List<E> 인터페이스를 구현하는 컬렉션 클래스는 ArrayList\<E\>와 LinkedList\<E\>가 있음
+## List\<E\>를 구현하는 컬렉션 클래스
+List\<E\> 인터페이스를 구현하는 컬렉션 클래스는 ArrayList\<E\>와 LinkedList\<E\>가 있음
 
 둘은 인스턴스의 저장 순서를 유지하며, 동일한 인스턴스의 중복 저장을 허용한다는 점에서는 동일하지만, 인스턴스를 저장하는 방식에는 차이가 있음
 
@@ -93,8 +93,8 @@ list.remove(0);
 
 <br></br>
 
-## Set<E>를 구현하는 컬렉션 클래스
-Set<E> 인터페이스를 구현하는 컬렉션 클래스는 HashSet\<E\>과 TreeSet\<E\>이 있음   
+## Set\<E\>를 구현하는 컬렉션 클래스
+Set\<E\> 인터페이스를 구현하는 컬렉션 클래스는 HashSet\<E\>과 TreeSet\<E\>이 있음   
 - HashSet은 저장 순서가 유지되지 않으며, 데이터의 중복 저장을 허용하지 않음
 
 ```java
@@ -145,8 +145,8 @@ for(Person p : tree)
 
 <br></br>
 
-## Queue<E>를 구현하는 컬렉션 클래스
-Queue<E> 인터페이스를 구현하는 컬렉션 클래스는 LinkedList\<E\>와 Deque\<E\>가 있으며, 스택과 큐 자료구조를 구현함     
+## Queue\<E\>를 구현하는 컬렉션 클래스
+Queue\<E\> 인터페이스를 구현하는 컬렉션 클래스는 LinkedList\<E\>와 Deque\<E\>가 있으며, 스택과 큐 자료구조를 구현함     
 - LinkedList<E>는 List<E>를 구현하면서 동시에 Queue<E>를 구현하는 컬렉션 클래스임
 
 ```java

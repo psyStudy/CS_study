@@ -320,7 +320,7 @@ public class Main {
 - 제거되는 객체의 순서는 알 수 없으며, 메모리 상황에 따라 일부 객체만 GC에 의해 수행될 수 도 있다.
 
 
-# 3. 불변 객체 Immutable Object
+# 3. [불변 객체 Immutable Object](https://github.com/psyStudy/CS_study/blob/main/Java/%EB%8F%99%EC%8B%9C%EC%84%B1%20%EC%9D%B4%EC%8A%88%2C%20Mutable.md)
 
 final은 불변객체를 만드는 방법이다.
 

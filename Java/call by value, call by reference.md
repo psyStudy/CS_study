@@ -120,15 +120,15 @@ public class PrimitiveTypeTest {
         int a = 1;
         int b = 2;
 
-        // Before
-        assertEquals(a, 1);
-        assertEquals(b, 2);
+        // Before a==1, b==2 인것 확인
+        assertEquals(a, 1); // 동일하다는 실행결과 *assertEquals 를 정의 찾아보기
+        assertEquals(b, 2); //// 동일하다는 실행결과 
 
-        modify(a, b);
+        modify(a, b); 
 
         // After: modify(a, b) 호출 후에도 값이 변하지 않음
-        assertEquals(a, 1);
-        assertEquals(b, 2);
+        assertEquals(a, 1); // 동일하다는 실행결과 
+        assertEquals(b, 2); // 동일하다는 실행결과 
     }
 
     private void modify(int a, int b) {
@@ -139,7 +139,7 @@ public class PrimitiveTypeTest {
 }
 ```
 
-![java_cbv_memory.png](./image/java_cbv_memory.png)
+![java_cbv_memory.png](./image/java_cbv_memory_modified.png)
 
 ## 3.2 JAVA의 참조타입 전달
 

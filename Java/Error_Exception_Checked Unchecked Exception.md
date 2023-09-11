@@ -1,7 +1,5 @@
 # Error_Exception_Checked/Unchecked Exception
-
 ## 프로그램 오류(에러)
-
 프로그램이 실행 중 어떤 원인에 의하여 오작동을 하거나 비정상적으로 종료되는 경우가 있는데, 이러한 결과를 초래하는 원인을 프로그램 오류라고 함
 
 프로그램 오류는 발생시점에 따라 **컴파일 에러,** **런타임 에러** 및 **논리적 에러**로 나눌 수 있음
@@ -21,11 +19,11 @@
     - ex) 재고량이 음수가 나오는 경우, 게임 캐릭터의 생명이 0이어도 죽지 않는 경우 등
     - 컴퓨터에서 에러 메시지를 알려주지 않기 때문에, 개발자가 프로그램의 전반적인 코드와 알고리즘을 체크해야 함
 
-![error_1.png](Error_Exception_Checked%20Unchecked%20Exception%20c270799c368d46c5a91e7ffaea17dbe2/error_1.png)
+![error_1.png](./image/error_1.png)
 
 ---
 
-![error_4.png](Error_Exception_Checked%20Unchecked%20Exception%20c270799c368d46c5a91e7ffaea17dbe2/error_4.png)
+![error_4.png](./image/error_4.png)
 
 이때 Exception 클래스를 **Checked Exception**(컴파일 예외)과 **Unchecked Exception**(런타임 예외)로 나눌 수도 있음
 
@@ -35,22 +33,22 @@
     - Unchecked Exception은 개발자의 충분한 주의로 회피할 수 있는 경우가 대부분이기 때문에, 상대적으로 미약한 예외로 취급되어 명시적인 예외 처리를 하지 않아도 됨
     (예외를 처리하기 보다는 예외가 발생하지 않도록 코드를 수정하는 것이 바람직한 예외들임)
 
-![error_5.png](Error_Exception_Checked%20Unchecked%20Exception%20c270799c368d46c5a91e7ffaea17dbe2/error_5.png)
+![error_5.png](./image/error_5.png)
 
 - Rollback은 작업이 실패하면 트랜잭션 실행 전으로 되돌리는 것(=실행 취소)
 - Checked Exception은 복구가 가능하므로 Rollback을 진행하지 않음
     - 예) 특정 이미지 파일을 찾아서 전송하는 함수에서 이미지를 찾지 못했을 경우 기본 이미지를 전송함
     - Spring 관련 개념이라 자세히 적진 않았음
 
-## Error(에러)란
+<br></br>
 
+## Error(에러)란
 프로그램 코드에 의해서 수습될 수 없는 심각한 오류
 
 JVM 실행에 문제가 생긴 것으로, 에러가 발생하면 프로그램이 비정상적으로 종료됨
 
 ### Error의 종류
-
-![error_2.jpeg](Error_Exception_Checked%20Unchecked%20Exception%20c270799c368d46c5a91e7ffaea17dbe2/error_2.jpeg)
+![error_2.jpeg](./image/error_2.jpeg)
 
 - **StackOverflowError**
     - 프로그램이 너무 많이 반복되어 StackOverflow가 발생할 때 던져지는 오류
@@ -60,15 +58,16 @@ JVM 실행에 문제가 생긴 것으로, 에러가 발생하면 프로그램이
     - GC에 의해 추가적인 메모리가 확보되지 못할 때, Heap 크기가 부족할 때, 너무 많은 Class를 로드할 때, 큰 메모리의 Native 메소드가 호출될 때 등
     - 이를 해결하기 위해, 덤프 파일을 분석하거나 JVM의 옵션을 수정할 수 있음
 
-## Exception(예외)란
+<br></br>
 
+## Exception(예외)란
 프로그램 코드에 의해서 수습될 수 있는 다소 미약한 오류
 
 개발자가 예외처리(try-catch문)를 해준다면 예외가 발생하더라도 프로그램의 비정상적인 종료를 막을 수도 있음
 
 ### Exception의 종류
 
-![error_3.png](Error_Exception_Checked%20Unchecked%20Exception%20c270799c368d46c5a91e7ffaea17dbe2/error_3.png)
+![error_3.png](./image/error_3.png)
 
 - (Runtime) **ArrayIndexOutBoundsException**
     - 배열의 범위를 넘어선 인덱스를 참조할 때 발생하는 에러
@@ -89,26 +88,27 @@ JVM 실행에 문제가 생긴 것으로, 에러가 발생하면 프로그램이
 - (Compile) **FileNotFoundException**
     - 파일에 접근하려고 하는데 파일을 찾지 못했을 때 발생하는 에러
 
+<br></br>
+
 ## 예외 처리 구문 try-catch
 
 ```java
 try {
-		// 예외가 발생할 가능성이 있는 문장들을 넣음
+    // 예외가 발생할 가능성이 있는 문장들을 넣음
 } catch (Exception1 e1) {
-		// Exception1이 발생했을 경우, 이를 처리하기 위한 문장을 적음 
+    // Exception1이 발생했을 경우, 이를 처리하기 위한 문장을 적음 
 } catch (Exception2 e2) {
-		// Exception2가 발생했을 경우, 이를 처리하기 위한 문장을 적음
+    // Exception2가 발생했을 경우, 이를 처리하기 위한 문장을 적음
 } finally {
-		// 예외의 발생여부에 상관없이 항상 수행되어야 하는 문장을 적음
+    // 예외의 발생여부에 상관없이 항상 수행되어야 하는 문장을 적음
 }
 ```
 
 - 하나의 try 블록 다음에는 여러 종류의 예외를 처리할 수 있도록 하나 이상의 catch 블록이 올 수 있으며, 이 중 발생한 예외 종류와 일치하는 단 한 개의 catch 블록만 수행됨
     - 발생한 예외의 종류와 일치하는 catch 블록이 없으면 예외는 처리되지 않음
     - try 블록 내에서 에러가 발생하지 않은 경우에는 catch 블록을 거치지 않고 전체 try-catch문을 빠져나가서 프로그램 수행을 계속함
-
+<br></br>
 ### throw 키워드
-
 throw 키워드를 사용해서 개발자가 고의로 예외를 발생시킬 수 있음 
 
 - 연산자 new를 이용해서 발생시키려는 예외 클래스의 객체를 만듦
@@ -116,11 +116,11 @@ throw 키워드를 사용해서 개발자가 고의로 예외를 발생시킬 �
 
 ```java
 try {
-		Exception e = new Exception("고의로 발생시켰음");
-		throw e; 
+    Exception e = new Exception("고의로 발생시켰음");
+    throw e; 
 } catch (Exception e) {
-		System.out.println("에러 메시지 : " + e.getMessage());
-		e.printStackTrace();
+    System.out.println("에러 메시지 : " + e.getMessage());
+    e.printStackTrace();
 }
 
 // 실행 결과
@@ -128,17 +128,16 @@ try {
 // java.lang.Exception: 고의로 발생시켰음 at ExceptionEx6.main(ExceptionEx6.java:6)
 ```
 
-### 면접질문
+<br></br>
+<br></br>
 
+### 면접질문
 1. Error와 Exception의 차이를 설명해주세요
 2. Checked Exception과 Unchecked Exception에 대해 설명해주세요
 
+<br></br>
 ### 출처
-
-도서 ‘Java의 정석’
-
-[https://velog.io/@jipark09/Java-Error와-Exception-차이](https://velog.io/@jipark09/Java-Error%EC%99%80-Exception-%EC%B0%A8%EC%9D%B4)
-
-[https://inpa.tistory.com/entry/JAVA-☕-에러Error-와-예외-클래스Exception-💯-총정리](https://inpa.tistory.com/entry/JAVA-%E2%98%95-%EC%97%90%EB%9F%ACError-%EC%99%80-%EC%98%88%EC%99%B8-%ED%81%B4%EB%9E%98%EC%8A%A4Exception-%F0%9F%92%AF-%EC%B4%9D%EC%A0%95%EB%A6%AC)
-
+도서 ‘Java의 정석’     
+[https://velog.io/@jipark09/Java-Error와-Exception-차이](https://velog.io/@jipark09/Java-Error%EC%99%80-Exception-%EC%B0%A8%EC%9D%B4)      
+[https://inpa.tistory.com/entry/JAVA-☕-에러Error-와-예외-클래스Exception-💯-총정리](https://inpa.tistory.com/entry/JAVA-%E2%98%95-%EC%97%90%EB%9F%ACError-%EC%99%80-%EC%98%88%EC%99%B8-%ED%81%B4%EB%9E%98%EC%8A%A4Exception-%F0%9F%92%AF-%EC%B4%9D%EC%A0%95%EB%A6%AC)     
 [https://velog.io/@daydream/Java-Checked-Exception과-Unchecked-Exception](https://velog.io/@daydream/Java-Checked-Exception%EA%B3%BC-Unchecked-Exception)

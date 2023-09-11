@@ -63,6 +63,11 @@ public static void main(String[] args) {
 }
 ```
 <br></br>
+래퍼 클래스는 참조 타입의 종류이다!
+
+![object_2.png](./image/object_4.png)
+
+<br></br>
 아래와 같이 모든 기본 자료형을 대상으로 래퍼 클래스가 정의되어 있음 
 
 - **Boolean** → `public Boolean(boolean value)` (생성자)

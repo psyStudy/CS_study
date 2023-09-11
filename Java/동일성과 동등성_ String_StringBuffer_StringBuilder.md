@@ -175,20 +175,21 @@ public final class String implements java.io.Serializable, Comparable {
 
 → 한 번 생성된 String 인스턴스가 갖고 있는 문자열은 읽어 올 수만 있고, 변경할 수는 없음 
 
-- ‘+’ 연산자를 이용하여 문자열을 결합하는 경우, 인스턴스 내의 문자열이 바뀌는 게 아니라 새로운 문자열이 담긴 String 인스턴스가 생성되는 것
+- replace() 메소드가 리턴하는 문자열은 원래 문자열의 수정본이 아니라 완전히 새로운 문자열! 
     
     ```java
-    String a = 'a';
-    String b = 'b';
-    String a = a + b;
+    String oldStr = "자바 프로그래밍";
+    String newStr = oldStr.replace("자바", "JAVA");
     ```
     
-    ![String_1.jpg](./image/String_1.jpg)
+    ![String_1.jpg](./image/String_9.png)
     
 - **따라서 문자열 간의 결합이나 추출 등 문자열을 다루는 작업이 많이 필요한 경우에는 메모리 공간을 절약하기 위해 String 클래스 대신 StringBuffer 클래스를 사용하는 것이 좋음**
 <br></br>
 ### 문자열을 만드는 2가지 방법
-문자열을 만들 때는 문자열 리터럴을 지정하는 방법과, String 클래스의 생성자를 사용해서 만드는 방법이 있음
+문자열을 만들 때는 문자열 리터럴을 지정하는 방법과, String 클래스의 생성자를 사용해서 만드는 방법이 있음    
+
+자바는 문자열 리터럴이 동일하다면 동일한 String 객체를 참조하도록 되어 있음 
 
 ```java
 String str1 = "abc";
@@ -207,6 +208,12 @@ str3.equals(str4) ? true
 ```
 
 ![String_2.jpg](./image/String_2.jpg)
+<br></br>
+
+new 연산자를 통해 문자열 객체를 생성하는 경우 메모리의 Heap 영역에 할당되고, 리터럴을 이용한 경우에는 String Constant Pool이라는 영역에 할당됨
+참고로 문자열이 담기는 상수풀의 위치는 자바 7부터 Heap 영역으로 옮겨졌음 (이전에는 Perm 영역에 저장되었음 -> 자바 8 버전부터 Perm 영역은 완전히 사라짐)
+
+![String_2.jpg](./image/String_8.png)
 
 <br></br>
 

@@ -35,7 +35,7 @@
 
 ![error_5.png](./image/error_5.png)
 
-- Rollback은 작업이 실패하면 트랜잭션 실행 전으로 되돌리는 것(=실행 취소)
+- Rollback은 작업이 실패하면 트랜잭션 실행 전으로 되돌리는 것(=실행 취소) [DB 트랜잭션, 롤백](https://github.com/psyStudy/CS_study/blob/1ca7b3df61fa9d544412e5bae2a01d3afa9b217e/DB/트랜잭션_ACID_무결성.md?plain=1#L15)
 - Checked Exception은 복구가 가능하므로 Rollback을 진행하지 않음
     - 예) 특정 이미지 파일을 찾아서 전송하는 함수에서 이미지를 찾지 못했을 경우 기본 이미지를 전송함
     - Spring 관련 개념이라 자세히 적진 않았음

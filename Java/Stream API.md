@@ -1,7 +1,5 @@
 # Stream API
-
 ## 함수형 프로그래밍이란
-
 ### 프로그래밍 패러다임
 
 프로그래밍 패러다임은 크게 아래와 같이 구분할 수 있음
@@ -14,9 +12,10 @@
 
 함수형 프로그래밍은 거의 모든 것을 **순수 함수**로 나누어 문제를 해결하는 기법으로, 작은 문제를 해결하기 위한 함수를 작성하여 가독성을 높이고 유지보수를 용이하게 해줌 
 
+<br></br>
 ### 함수형 프로그래밍의 특징
 
-![stream_1.png](Stream%20API%20b4eca73ed6ef482aa8d10aecf990ff69/stream_1.png)
+![stream_1.png](./image/stream_1.png)
 
 1. **순수 함수(Pure Function)**
 - 동일한 입력에는 항상 같은 값을 반환해야 함(참조 투명성)
@@ -29,16 +28,16 @@ private String name = "홍길동";
 
 // Not Pure
 public String greeting() {
-		return "Hello " + name;  // 전역변수 사용 
+    return "Hello " + name;  // 전역변수 사용 
 }
 
 // Pure Function
 public static String greeting(String name) {
-		return "Hello " + name;
+    return "Hello " + name;
 }
 ```
-
-1. **Not foreach (=No Iterate)**
+<br></br>
+2. **Not foreach (=No Iterate)**
 - 반복문 내부에는 가변적인 값들에 대한 처리 코드가 포함되어 있기 때문에, 함수형 프로그래밍에서는 for, while문과 같은 반복문을 사용하지 않음
 - 반복문 대신 map, filter 같은 함수를 매개변수로 받는 메소드를 사용함
 
@@ -47,16 +46,16 @@ List<Integer> numbers = List.of(1, 2, 3, 4, 5);
 
 // for loop
 for (int idx = 0; idx < numbers.size(); idx++) {
-		System.out.println(numbers.get(idx));
+    System.out.println(numbers.get(idx));
 }
 
 // Functional
 numbers.forEach((num) -> {
-		System.out.println(num);
+    System.out.println(num);
 }
 ```
-
-1. **불변성(Immutability)**
+<br></br>
+3. **불변성(Immutability)**
 - 함수형 프로그래밍에서의 데이터는 변하지 않는 불변성을 유지해야 함
 - 데이터의 변경이 필요한 경우, 원본 데이터 구조를 변경하지 않고 그 데이터의 복사본을 만들어서 그 일부를 변경하고, 변경한 복사본을 사용해 작업을 진행함
 
@@ -81,8 +80,8 @@ public static List<String> add(List<String> strings, String text) {
     return dest;
 }
 ```
-
-1. ****고차함수(Higher-order functions)****
+<br></br>
+4. ****고차함수(Higher-order functions)****
 - 고차함수는 함수를 인자로 받거나, 함수를 반환값으로 이용할 수 있는 것을 말함
 - 클로저 개념이 사용되는데, 클로저는 내부 함수에서 외부 함수의 값(greetingText)에 접근하고 scope가 종료되어도 계속 접근할 수 있는 것을 의미함
 
@@ -107,6 +106,7 @@ HI 홍길동
 */
 ```
 
+<br></br>
 ### 함수형 프로그래밍의 장단점
 
 - 장점
@@ -118,16 +118,15 @@ HI 홍길동
     - 함수형 프로그래밍에서는 반복이 for문이 아닌 재귀를 통해 이루어지는데, 재귀적 코드 스타일은 무한 루프에 빠질 수 있음
     - 순수함수를 사용하는 것은 쉬울 수 있지만 조합하는 것은 쉽지 않음
 
+<br></br>
 ---
 
 ## Stream API란
 
-자바는 객체지향 언어이기 때문에 기본적으로 함수형 프로그래밍이 불가능함 
-
+자바는 객체지향 언어이기 때문에 기본적으로 함수형 프로그래밍이 불가능함     
 하지만 **Java 8부터 Stream API와** 람다식, 함수형 인터페이스 등을 지원하면서 자바를 이용해 **함수형으로 프로그래밍할 수 있는 API들을 제공**해주고 있음 
 
-Stream은 컬렉션의 저장 요소를 하나씩 참조해서 람다식으로 처리할 수 있도록 해주는 반복자임
-
+Stream은 컬렉션의 저장 요소를 하나씩 참조해서 람다식으로 처리할 수 있도록 해주는 반복자임      
 Stream API에 정의된 함수들을 통해, 데이터를 추상화(데이터의 종류에 상관없이 같은 방식으로 데이터를 처리하여 재사용성을 높이는 것)하고 처리할 수 있음 
 
 ```java
@@ -162,11 +161,12 @@ nameStream.sorted().forEach(System.out::println);
 arrayStream.sorted().forEach(System.out::println);
 ```
 
+<br></br>
 ### Stream API의 특징
 
 - **람다식으로 요소 처리 코드를 제공함**
     - Stream API가 제공하는 대부분의 요소 처리 메소드는 함수형 인터페이스 매개 타입을 가지기 때문에, 람다식 또는 메소드 참조를 이용해서 요소 처리 내용을 매개값으로 전달할 수 있음
-
+<br></br>
 - **원본의 데이터를 변경하지 않음**
     - Stream API는 원본의 데이터를 조회하여 원본의 데이터가 아닌 별도의 요소들로 Stream을 생성함
     - 원본의 데이터는 읽기만 할 뿐, 정렬이나 필터링 등의 작업은 별도의 Stream 요소들에서 처리됨
@@ -174,7 +174,7 @@ arrayStream.sorted().forEach(System.out::println);
     ```java
     List<String> sortedList = nameStream.sorted().collect(Collections.toList());
     ```
-    
+<br></br>    
 - **내부 반복자를 사용하므로 병렬 처리가 쉬움**
     - 기존에는 반복문을 사용하기 위해서 for나 while 등과 같은 문법을 사용해야 했지만, Stream API에서는 그러한 반복 문법을 메소드 내부에 숨기고 있기 때문에 간결한 코드 작성이 가능함
     - 어떻게 요소를 반복시킬 것인가는 컬렉션에게 맡겨두고, 개발자는 요소 처리 코드에만 집중할 수 있음
@@ -184,12 +184,13 @@ arrayStream.sorted().forEach(System.out::println);
     nameStream.forEach(System.out::println);
     ```
     
-
+<br></br>
 - **스트림은 중간 처리와 최종 처리를 할 수 있음**
     - 중간 처리에서는 매핑, 필터링, 정렬을 수행하고, 최종 처리에서는 반복, 평균, 총합 등의 집계 처리를 수행함
 
-## Stream 사용 과정
+<br></br>
 
+## Stream 사용 과정
 ### Stream 얻기
 
 - **컬렉션으로부터 스트림 얻기**
@@ -201,7 +202,7 @@ arrayStream.sorted().forEach(System.out::println);
     Stream<Student> stream = list.stream();
     ```
     
-
+<br></br>
 - **배열로부터 스트림 얻기**
     - Stream<T> ****Arrays.stream(T[])
     
@@ -211,7 +212,7 @@ arrayStream.sorted().forEach(System.out::println);
     Stream<Student> stream = Arrays.stream(student);
     ```
     
-
+<br></br>
 - **숫자 범위로부터 스트림 얻기**
     - IntStream.range(int, int) → 끝 값 포함 안함
     - IntStream.rangeClosed(int, int) → 끝 값 포함함
@@ -221,7 +222,7 @@ arrayStream.sorted().forEach(System.out::println);
     IntStream stream2 = IntStream.rangeClosed(1, 100);  // 1~100
     ```
     
-
+<br></br>
 - **Stream은 일회용임**
     - Stream API는 일회용이기 때문에 한 번 사용이 끝나면 재사용이 불가능하므로, Stream이 또 필요한 경우에는 Stream을 다시 생성해주어야 함
     - 만약 닫힌 Stream을 다시 사용한다면 IllegalStateException 발생
@@ -239,7 +240,7 @@ arrayStream.sorted().forEach(System.out::println);
     */
     ```
     
-
+<br></br>
 ### 중간 처리와 최종 처리 메소드
 
 - **Stream filter()**
@@ -260,7 +261,7 @@ arrayStream.sorted().forEach(System.out::println);
     System.out.print(filterColors);  // [BLACK, BLACK]
     ```
     
-
+<br></br>
 - **Stream<R> map(Function<T, R>)**
     - 각 원소들의 형태를 변경해줌
     - Integer→String과 같은 간단한 타입 변환 뿐만 아니라, 람다 함수를 인자로 전달함으로써 아예 새로운 값으로 변경해줄 수도 있음
@@ -276,7 +277,7 @@ arrayStream.sorted().forEach(System.out::println);
     System.out.println(collect); // [5, 3, 4, 3, 5]
     ```
     
-
+<br></br>
 - **Stream<T> sorted()**
     - Collection 내 원소들을 정렬함
     
@@ -296,7 +297,7 @@ arrayStream.sorted().forEach(System.out::println);
     System.out.println(collect); // [RED, RED, BLUE, BLACK, BLACK]
     ```
     
-
+<br></br>
 - **void forEach()**
     - 요소 전체를 반복함
     - 최종 처리 메소드이므로 이후에 sum()과 같은 다른 최종 메소드를 호출하면 안됨
@@ -308,7 +309,7 @@ arrayStream.sorted().forEach(System.out::println);
     System.out.println(list);
     ```
     
-
+<br></br>
 - **R collect(Collector<T,A,R> collector)**
     - 필요한 요소만 컬렉션으로 담을 수 있고, 요소들을 그룹핑할 수 있음
     
@@ -317,20 +318,17 @@ arrayStream.sorted().forEach(System.out::println);
     				.collect(Collectors.toList());
     ```
     
+<br></br>
+<br></br>
 
 ### 면접질문
-
 1. Stream API를 사용해 본 적이 있는가?
 2. Stream API의 특징은 무엇이 있나요?
 
+<br></br>
 ### 출처
-
-[https://mangkyu.tistory.com/112](https://mangkyu.tistory.com/112)
-
-[https://jongminfire.dev/함수형-프로그래밍이란](https://jongminfire.dev/%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EC%9D%B4%EB%9E%80)
-
-[https://warpgate3.tistory.com/entry/자바코드로-보는-함수형-프로그래밍-Functional-Programming-in-Java](https://warpgate3.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%BD%94%EB%93%9C%EB%A1%9C-%EB%B3%B4%EB%8A%94-%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-Functional-Programming-in-Java)
-
-[https://warpgate3.tistory.com/entry/Stream](https://warpgate3.tistory.com/entry/Stream)
-
+[https://mangkyu.tistory.com/112](https://mangkyu.tistory.com/112)     
+[https://jongminfire.dev/함수형-프로그래밍이란](https://jongminfire.dev/%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EC%9D%B4%EB%9E%80)    
+[https://warpgate3.tistory.com/entry/자바코드로-보는-함수형-프로그래밍-Functional-Programming-in-Java](https://warpgate3.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%BD%94%EB%93%9C%EB%A1%9C-%EB%B3%B4%EB%8A%94-%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-Functional-Programming-in-Java)     
+[https://warpgate3.tistory.com/entry/Stream](https://warpgate3.tistory.com/entry/Stream)     
 [https://hongs-coding.tistory.com/35](https://hongs-coding.tistory.com/35)

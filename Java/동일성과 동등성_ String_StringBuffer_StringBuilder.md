@@ -29,7 +29,7 @@ System.out.println(number1 == number2);  // true
 
 ```java
 public boolean equals(Object obj) {
-		return (this == obj);
+    return (this == obj);
 }
 ```
 
@@ -102,11 +102,11 @@ public class ClassTest {
         System.out.println(p1.equals(p2)); // true
 
         Set<Person> people = new HashSet<>();
-		    people.add(p1);
-		    people.add(p2);
+	people.add(p1);
+	people.add(p2);
 				
-				// ⁉️논리적으로 equals 결과가 true이므로 1이 나와야 하는데 2가 출력됨 
-		    System.out.println(people.size());   
+	// ⁉️논리적으로 equals 결과가 true이므로 1이 나와야 하는데 2가 출력됨 
+	System.out.println(people.size());   
     }
 }
 ```
@@ -166,8 +166,8 @@ String 클래스에는 문자열을 저장하기 위해서는 문자열 배열 �
 
 ```java
 public final class String implements java.io.Serializable, Comparable {
-		private char[] value;
-		...
+    private char[] value;
+    ...
 }
 ```
 
@@ -224,17 +224,17 @@ new 연산자를 통해 문자열 객체를 생성하는 경우 메모리의 Hea
 ```java
 // 자바 내부 클래스 
 public StringBuffer(int length) {
-		value = new char[length];
-		shared = false;
+    value = new char[length];
+    shared = false;
 }
 
 public StringBuffer() {
-		this(16);   // 버퍼의 크기를 지정하지 않으면 버퍼의 크기는 16이 됨 
+    this(16);   // 버퍼의 크기를 지정하지 않으면 버퍼의 크기는 16이 됨 
 }
 
 public StringBuffer(String str) {
-		this(str.length() + 16);   // 지정한 문자열의 길이보다 16이 더 크게 버퍼를 생성함 
-		append(str);
+    this(str.length() + 16);   // 지정한 문자열의 길이보다 16이 더 크게 버퍼를 생성함 
+    append(str);
 }
 
 // 사용자 코드 

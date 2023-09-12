@@ -107,7 +107,7 @@ java에서 static을 사용하는 것은 메모리에 한 번 할당되어 프�
 
 ### 전역변수, 지역변수와 클래스변수, 인스턴스 변수 차이 구분
 
-![java_variable.png](./image/java_variable.png)
+![java_variable_modified.png](./image/java_variable_modified.png)
 
 - 선언위치에 따라 전역변수와 지역변수로 나눌 수 있다.
     - 전역변수 : 어디서든 호출이 가능함 (쉽게, method 밖에 있는 변수 객체 전체에서 사용가능함 변수)

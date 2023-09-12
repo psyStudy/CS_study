@@ -114,21 +114,21 @@ java는 함수에 전달되는 인자 데이터 타입에 따라(원시타입과
 ```java
 public class PrimitiveTypeTest {
 
-    @Test
+    @Test //이 메소드는 테스트 대상 메소드임을 의미한다.
     @DisplayName("Primitive Type 은 Stack 메모리에 저장되어서 변경해도 원본 변수에 영향이 없다")
     void test() {
         int a = 1;
         int b = 2;
 
         // Before a==1, b==2 인것 확인
-        assertEquals(a, 1); // 동일하다는 실행결과 *assertEquals 를 정의 찾아보기
-        assertEquals(b, 2); //// 동일하다는 실행결과 
+        assertEquals(a, 1); // True
+        assertEquals(b, 2); //// True
 
         modify(a, b); 
 
         // After: modify(a, b) 호출 후에도 값이 변하지 않음
-        assertEquals(a, 1); // 동일하다는 실행결과 
-        assertEquals(b, 2); // 동일하다는 실행결과 
+        assertEquals(a, 1); // True 
+        assertEquals(b, 2); // True
     }
 
     private void modify(int a, int b) {
@@ -138,6 +138,30 @@ public class PrimitiveTypeTest {
     }
 }
 ```
+#### [참고] assertEquals 
+- 기대값과 실제 값이 동일한 지 검사하는 메서드
+- expected : 기대값
+- actual : 실제 값
+- message : 콘솔에 기록될 메시지
+- String은 항상 메시지를 생성하고, Supplier는 실패시에만 생성한다.
+  ```java
+  static void assertEquals(Object expected, Object actual) {
+      assertEquals(expected, actual, (String) null);
+  }
+
+  static void assertEquals(Object expected, Object actual, String message) {
+      if (!objectsAreEqual(expected, actual)) {
+          failNotEqual(expected, actual, message);
+      }
+  }
+
+  static void assertEquals(Object expected, Object actual, Supplier<String> messageSupplier) {
+      if (!objectsAreEqual(expected, actual)) {
+          failNotEqual(expected, actual, messageSupplier);
+      }
+  }
+  
+  ```
 
 ![java_cbv_memory.png](./image/java_cbv_memory_modified.png)
 

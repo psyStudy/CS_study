@@ -28,7 +28,7 @@ private String name = "홍길동";
 
 // Not Pure
 public String greeting() {
-    return "Hello " + name;  // 전역변수 사용 
+    return "Hello " + name;  // 전역변수 사용 -> 프로그램의 실행과 함수 실행이 독립적이지 않게 됨  
 }
 
 // Pure Function

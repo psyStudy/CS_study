@@ -94,6 +94,7 @@ Function<String, Function<String, String>> greeting = (greetingText) -> {
     };
 };
 
+// 함수형 인터페이스 Function 사용 
 Function<String, String> hello = greeting.apply("Hello");
 Function<String, String> hi = greeting.apply("HI");
 

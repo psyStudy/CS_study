@@ -1,18 +1,15 @@
-# Reflection API
-
+# Reflection API 
 ## Reflection API란
 
 **구체적인 클래스 타입을 알지 못해도** 그 클래스의 메소드, 타입 변수들에 접근할 수 있도록 해주는 자바의 API
 
-- JVM은 **클래스 정보를 클래스 로더를 통해 읽어와서 해당 정보를 JVM 메모리에 저장**
 - 자바는 정적인 언어이기 때문에 동적인 문제를 해결하기 위해서 리플렉션을 사용함
     - 정적 언어: 컴파일 시점에 타입을 결정 ex) Java, C, C++ 등
     - 동적 언어: 런타임 시점에 타입을 결정 ex) Python, Javascript 등
 - 리플렉션은 애플리케이션 개발에서보다는 프레임워크, 라이브러리에서 많이 사용함
     - 프레임워크, 라이브러리는 사용하는 사람이 어떤 클래스를 만들지 모르기 때문
-
+<br></br>
 ### 장단점
-
 - **장점**
     - 런타임 시점에서 클래스의 인스턴스를 생성하고, 접근 제어자와 관계 없이 필드와 메소드에 접근하여 필요한 작업을 수행할 수 있는 유연성을 가지고 있음
 - **단점**
@@ -21,8 +18,9 @@
     - 런타임 시점에서 인스턴스를 생성하므로, 구체적인 동작 흐름을 파악하기 어려움
     - 단순히 필드 및 메소드에 접근할 때보다 리플렉션을 사용하여 접근할 때 느림
 
-## 사용 방법
+<br></br>
 
+## 사용 방법
 1. 리플렉션을 사용하기에 앞서, 힙 영역에 로드된 클래스 타입의 객체를 가져와야 함 
     - 1. 클래스.class로 가져오는 방법
     - 2. 인스턴스.getClass()로 가져오는 방법
@@ -70,8 +68,8 @@ public class Main {
 1740000325 
 */
 ```
-
-1. 가져 온 클래스 타입을 통해, 해당 클래스의 인스턴스를 생성할 수 있음
+<br></br>
+2. 가져 온 클래스 타입을 통해, 해당 클래스의 인스턴스를 생성할 수 있음
     - `getConstructors()` 통해 생성자를 얻어올 수 있음
     - `newInstance()` 통해 인스턴스를 동적으로 생성해줄 수 있음
 
@@ -103,8 +101,8 @@ member2 = Member{name='null', age=0, hobby='null'}
 member3 = Member{name='홍길동', age=23, hobby='독서'} 
 */
 ```
-
-1. 가져 온 클래스 타입을 통해, 인스턴스의 필드와 메소드를 접근 제어자와 상관없이 접근하여 사용할 수 있음 
+<br></br>
+3. 가져 온 클래스 타입을 통해, 인스턴스의 필드와 메소드를 접근 제어자와 상관없이 접근하여 사용할 수 있음 
     - `getDeclaredFields()` 통해 클래스의 인스턴스 변수를 모두 가져올 수 있음
         - `get()`을 통해 필드값을 반환받을 수 있고, `set()`을 통해 필드값을 수정할 수 있음
         - 이때 private 접근 제어자가 있는 필드에 접근할 때는 `setAccessible()`의 인자를 true로 넘겨줘야 함
@@ -145,8 +143,9 @@ Member{name='임꺽정', age=23, hobby='독서'}
 */
 ```
 
-## 실제 사례
+<br></br>
 
+## 실제 사례
 ```java
 @Controller
 @RequestMapping("/articles")
@@ -170,12 +169,14 @@ public class ArticleController {
 - ArticleController를 작성한 개발자는 클래스의 정보를 알지만, Spring은 알지 못함 
 → 스프링이 ArticleController를 알아내기 위해서 리플렉션을 사용함
 
+<br></br>
+<br></br>
+
 ### 면접질문
-
 1. Reflection이란 무엇인지 설명해주세요
+생각보다 엄청 딥한 개념이라.. 면접에서도 묻지 않는 것 같다 
 
+<br></br>
 ### 출처
-
-[https://steady-coding.tistory.com/609](https://steady-coding.tistory.com/609)
-
+[https://steady-coding.tistory.com/609](https://steady-coding.tistory.com/609)     
 [https://dublin-java.tistory.com/53](https://dublin-java.tistory.com/53)

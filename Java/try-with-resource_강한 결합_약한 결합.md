@@ -70,7 +70,7 @@ public static void main(String args[]) throws IOException {
 Java 7부터 지원하는 인터페이스로, try-with-resources 구문을 위해 도입됨 
 
 ```java
-// close 메소드 하나만 선언되어 있는 인터페이스임
+// close 메소드 하나만 선언되어 있는 인터페이스임(자바 내부에 존재)
 public interface AutoCloseable {
     void close() throws Exception;
 }
@@ -81,6 +81,7 @@ public interface AutoCloseable {
 ![try_1.jpeg](./image/try_1.jpeg)
 
 ```java
+// 자바 내부
 public abstract class InputStream extends Object implements Closeable {
     ...
 }
@@ -147,7 +148,7 @@ public class Chicken {
 ```
 
 - Person 클래스의 멤버 변수 타입이 Chicken 클래스임
-- Chicken 클래스가 없으면 Person 클래스를 정의할 수 없게 되며, Chicken 클래스를 다른 클래스로 바꾸게 되면 Person 클래스의 코드 대부분이 변경되어야 함
+- Chicken 클래스가 없으면 Person 클래스를 정의할 수 없게 되며, Chicken 클래스를 다른 클래스(Pizza)로 변경하게 되면 Person 클래스의 코드 대부분이 변경되어야 함
 - 즉, Person 클래스는 Chicken 클래스에 의존하게 됨
 
 <br></br>
@@ -196,6 +197,7 @@ public class Person {
     }
 }
 ```
+Person 클래스를 사용할 때 필요에 따라 Pizza/Chicken으로 형 변환하여 사용하면 됨 
 
 <br></br>
 <br></br>

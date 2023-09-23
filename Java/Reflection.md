@@ -43,7 +43,7 @@ public class Member {
         this.hobby = hobby;
     }
 
-		private void speak(String message) {
+    private void speak(String message) {
         System.out.println(message);
     }
 }
@@ -132,7 +132,7 @@ public class Main {
         // 메소드 접근
         Method speakMethod = memberClass.getDeclaredMethod("speak", String.class);
         speakMethod.setAccessible(true);
-				speakMethod.invoke(member, "안녕하세요");
+	speakMethod.invoke(member, "안녕하세요");
     }
 }
 

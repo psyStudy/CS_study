@@ -1,5 +1,5 @@
 # Error_Exception_Checked/Unchecked Exception
-## 프로그램 오류(에러)
+## 프로그램 오류(에러) -> 언어 공통
 프로그램이 실행 중 어떤 원인에 의하여 오작동을 하거나 비정상적으로 종료되는 경우가 있는데, 이러한 결과를 초래하는 원인을 프로그램 오류라고 함
 
 프로그램 오류는 발생시점에 따라 **컴파일 에러,** **런타임 에러** 및 **논리적 에러**로 나눌 수 있음
@@ -28,11 +28,35 @@
 이때 Exception 클래스를 **Checked Exception**(컴파일 예외)과 **Unchecked Exception**(런타임 예외)로 나눌 수도 있음
 
 - 코드적 관점에서 예외 처리 동작을 필수 지정 여부에 따라 나누기 위해 분리함
+- Checked Exception은 컴파일러가 예외처리를 확인하는 예외들이고, Unchecked Exception은 컴파일러가 예외처리를 확인하지 않는 예외들임 
 - 즉, Checked Exception과 Unchecked Exception의 가장 핵심적인 차이는 ‘**반드시 예외 처리를 해야 하는가?**’임
     - Checked Exception은 체크하는 시점이 컴파일 단계이기 때문에, 별도의 예외 처리를 하지 않는다면 컴파일 자체가 되지 않으므로 반드시 예외 처리를 해야함
     - Unchecked Exception은 개발자의 충분한 주의로 회피할 수 있는 경우가 대부분이기 때문에, 상대적으로 미약한 예외로 취급되어 명시적인 예외 처리를 하지 않아도 됨
-    (예외를 처리하기 보다는 예외가 발생하지 않도록 코드를 수정하는 것이 바람직한 예외들임)
+      (일반적으로 프로그램 로직의 에러들이기 때문에, 예외를 처리하기 보다는 예외가 발생하지 않도록 코드를 수정하는 것이 바람직함)
 
+-> 오라클 문서에 따르면 클라이언트가 예외로부터 합리적으로 회복할 수 있는 경우 체크 예외를 사용해야 하며, 회복할 수 없는 경우 언체크 예외를 사용해야 함     
+  예를 들어, 파일을 열기 전에 입력 파일 이름을 검증하고 이름이 유효하지 않으면 체크 예외가 발생하지만 이러한 경우에는 다른 파일 이름을 사용해 시스템 회복이 가능함. 하지만 입력 파일 이름이 널인 경우 언체크 예외를 발생시켜야 함 
+
+```java
+// Checked Exception
+private static void checkedExceptionWithTryCatch() {
+    File file = new File("not_existing_file.txt");
+    try {
+        FileInputStream stream = new FileInputStream(file);
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    }
+}
+```
+```java
+// Unchecked Exception
+private static void divideByZero() {
+    int numerator = 1;
+    int denominator = 0;
+    int result = numerator / denominator;  // 런타임에 ArithmeticException이 발생할 것입니다
+}
+```
+<br></br>
 ![error_5.png](./image/error_5.png)
 
 - Rollback은 작업이 실패하면 트랜잭션 실행 전으로 되돌리는 것(=실행 취소) [DB 트랜잭션, 롤백](https://github.com/psyStudy/CS_study/blob/1ca7b3df61fa9d544412e5bae2a01d3afa9b217e/DB/트랜잭션_ACID_무결성.md?plain=1#L15)

@@ -7,6 +7,75 @@
 - 정의와 동시에 객체를 생성할 수 있다.
 - 어느 메소드에서 **부모 클래스의 자원을 상속받아 재정의하여 사용할 자식 클래스가 한번만 사용**되고 버려질 자료형이면, 굳이 상단에 클래스를 정의하기보다는, **지역 변수처럼** 익명 클래스로 정의하고 스택이 끝나면 삭제되도록 하는 것이 유지보수면에서나 프로그램 메모리면에서나 이점을 얻을 수 있다.
 
+## 사용법
+
+1. 익명 자식 객체를 생성하는 방법
+2. 익명 구현 객체를 생성하는 방법 = 함수형 인터페이스를 사용하는 방법
+
+### 익명 자식 객체를 생성하는 방법
+
+1. 필드의 초기값
+2. 로컬변수의 초기값
+3. 매개변수의 매개값
+
+```java
+package Anonymous;
+
+public class Insect { // 곤충 부모 클래스 : 일시적으로 정의된 익명 객체를 담아둘 변수같은 개념
+
+	void attack(){
+		System.out.println("곤충은 공격을 한다");
+	}
+}
+
+public class Anonymous { //부모(곤충)객체 필드에 자식 익명객체를 바로 정의하여 초기값을 할당
+
+	//★★방법 1 : 필드에 익명자식 객체를 생성 
+	Insect spider1 = new Insect(){
+		
+		String name = "무당거미";
+		//거미줄을 치다.
+		void cobweb(){
+			System.out.println("사각형으로 거미줄을 친다.");
+		}
+		
+		@Override
+		void attack() {
+			System.out.println(name + " 독을 발사한다.");
+		}
+	};
+	
+	//★★방법2 : 로컬변수의 초기값으로 대입
+	void method1(){
+		Insect spider2 = new Insect(){
+			
+			String name = "늑대거미";
+			//거미줄을 치다.
+			void cobweb(){
+				System.out.println("육각형으로 거미줄을 친다.");
+			}
+			
+			@Override
+			void attack() {
+				System.out.println(name + " 앞니로 문다.");
+			}
+		};
+		
+		//로컬변수이기 때문에 메서드에서 바로 사용
+		spider2.attack();
+	}
+	
+	//★★방법3 : 익명객체 매개변수로 대입
+	void method2(Insect spider){
+		spider.attack();
+	}
+	
+	
+}
+```
+### 익명 구현 객체(클래스)를 생성하는 방법
+ [-> 인터페이스를 사용하는 방법](https://github.com/psyStudy/CS_study/blob/main/Java/%ED%95%A8%EC%88%98%ED%98%95%20%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
+
 ---
 
 # 1. 람다식
@@ -63,6 +132,7 @@
 2. 함수몸체가 단일 실행문이면 괄호{}를 생략할 수 있다.
 3. 함수 몸체가 return 문으로만 구성되어 있으면 괄호{}를 생략할 수 없다.
 4. 선언된 type과 선언되지 않은 type을 같이 사용 할 수 없다.
+5. type(자료형)을 생략할 수 있는데, 람다식이 본문을 넘겨줄 때 알아서 결정된다. (컴파일러가 알아서 정의)
 
 ```java
 //기존 방식
@@ -100,6 +170,7 @@ lamT -> { lamT.start(); }
 ### 예시2
 
 기존 자바 문법 → 람다식 문법
+- [Runnalbe 함수형 인터페이스 참조](https://github.com/psyStudy/CS_study/blob/main/Java/%ED%95%A8%EC%88%98%ED%98%95%20%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
 
 ```java
 new Thread(new Runnable() {
@@ -133,3 +204,4 @@ new Thread(()->{
 - 1급 객체 : [https://velog.io/@sjsrkdgks/1급-객체First-class-citizen](https://velog.io/@sjsrkdgks/1%EA%B8%89-%EA%B0%9D%EC%B2%B4First-class-citizen)
 - 익명 클래스 : [https://inpa.tistory.com/entry/JAVA-☕-익명-클래스Anonymous-Class-사용법-마스터하기](https://inpa.tistory.com/entry/JAVA-%E2%98%95-%EC%9D%B5%EB%AA%85-%ED%81%B4%EB%9E%98%EC%8A%A4Anonymous-Class-%EC%82%AC%EC%9A%A9%EB%B2%95-%EB%A7%88%EC%8A%A4%ED%84%B0%ED%95%98%EA%B8%B0)
 - 질문 : [https://haejun0317.tistory.com/240](https://haejun0317.tistory.com/240)
+- 익명클래스 : [https://limkydev.tistory.com/226](https://limkydev.tistory.com/226)

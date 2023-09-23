@@ -201,7 +201,7 @@ arrayStream.sorted().forEach(System.out::println);
 
 ## Stream 사용 과정
 ### Stream 얻기
-
+원본 데이터의 복사본 얻음 
 - **컬렉션으로부터 스트림 얻기**
     - Stream<T> Collection.stream()
     

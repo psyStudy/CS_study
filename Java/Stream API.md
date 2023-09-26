@@ -138,6 +138,9 @@ HI 홍길동
 Stream은 컬렉션의 저장 요소를 하나씩 참조해서 람다식으로 처리할 수 있도록 해주는 반복자임      
 Stream API에 정의된 함수들을 통해, 데이터를 추상화(데이터의 종류에 상관없이 같은 방식으로 데이터를 처리하여 재사용성을 높이는 것)하고 처리할 수 있음 
 
+기본의 컬렉션의 메소드를 이용해 데이터 처리를 하려면, 각 요소를 순회하면서 처리해야 하며 하나의 단계가 끝나고 다른 단계를 진행하는 절차적인 구조를 가지고 있었음    
+하지만 Stream을 이용하면 간결화된 코드와 향상된 성능으로 많은 데이터를 효과적으로 병렬처리할 수 있음   
+
 ```java
 /* Stream 사용 전 */
 String[] nameArr = {"IronMan", "Captain", "Hulk", "Thor"}
@@ -196,6 +199,9 @@ arrayStream.sorted().forEach(System.out::println);
 <br></br>
 - **스트림은 중간 처리와 최종 처리를 할 수 있음**
     - 중간 처리에서는 매핑, 필터링, 정렬을 수행하고, 최종 처리에서는 반복, 평균, 총합 등의 집계 처리를 수행함
+<br></br>
+- **지연 연산을 수행함**
+    - 지연 연산은 결과값이 필요할 때까지 계산을 늦추는 기법 
 
 <br></br>
 
@@ -250,7 +256,7 @@ arrayStream.sorted().forEach(System.out::println);
     ```
     
 <br></br>
-### 중간 처리와 최종 처리 메소드
+### 중간 처리 메소드
 
 - **Stream filter()**
     - 메소드 이름처럼 Collection 내 원소 중에서 조건을 만족하는 원소를 필터링함
@@ -305,8 +311,9 @@ arrayStream.sorted().forEach(System.out::println);
     
     System.out.println(collect); // [RED, RED, BLUE, BLACK, BLACK]
     ```
-    
+
 <br></br>
+### 최종 처리 메소드
 - **void forEach()**
     - 요소 전체를 반복함
     - 최종 처리 메소드이므로 이후에 sum()과 같은 다른 최종 메소드를 호출하면 안됨

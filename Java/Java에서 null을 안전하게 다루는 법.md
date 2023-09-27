@@ -69,19 +69,94 @@ JAVA9에서 null일 경우 기본값을 제공하는 메서드들이 생김.
     - requireNonNullElse(T obj, T defaultObj)
     - requireNonNullElseGet(T obj, Supplier<? extends T> supplier)
 
+<br></br>
 ### (1-3) java.util.Optional
+[Optional 개념](https://github.com/psyStudy/CS_study/blob/main/Java/Java%20SE와%20Java%20EE%20차이_Java%20버전별%20특징.md)
 
-Optional을 사용 할 수 있다. (Java8에 추가)
+Optional을 올바르게 사용하면 코드가 null-safe해지고 가독성이 좋아지며 애플리케이션이 안정적이 되지만,   
+Optional을 잘못 사용하면 NullPointerException 대신 NoSuchElementException가 발생하고, 코드의 가독성을 떨어뜨리고, 시간적/공간적 비용이 증가하는 문제점이 발생함
 
-- ~~The Mother of All Bikesheds by Stuart Marks~~
+만약 Optional로 받은 변수를 값이 있는지 판단하지 않고 접근하려고 한다면 NoSuchElementException이 발생하게 됨 
+```java
+Optional<User> optionalUser = ... ;
+
+// Optional이 갖는 value가 없으면 NoSuchElementException 발생
+User user = optionalUser.get();
+```
+즉, Null-Safe하기 위해 Optional을 사용하였는데, 값의 존재 여부를 판단하지 않고 접근한다면 NullPointerException는 피해도 NoSuchElementException가 발생할 수 있음 
+<br></br>
+#### [올바른 Optional 사용법 가이드] -> 애초에 주제에 벗어나는 내용이었던 거 같음
 - 절대로 Optional 변수와 **반환값에 null을 사용하지 말라**
-- Optional에 값이 들어 있다는 걸 확신하지 않는 한 Optional.get()을 쓰지 말라
-- Optional.isPresent()이나 Optional.get() 외 API를 가능한 사용 하라
-- Optional에서 여러 메서드를 연속해서 호출하고 값을 얻기 위해 Optional을 생성하는 건 권장할만하지 않다.
-- Optional로 값을 처리하는 중에 그 안에 중간값을 처리하기 위해 또 다른 Optional이 사용되면 너무 복잡해진다.
-- **Optional을 필드, 메서드 매개변수, 집합 자료형에 쓰지 말라**
-- 집합 자료형(List, Set, Map)을 감싸는 데 Optional을 쓰지 말고 빈 집합을 사용해라.
+    - Optional은 컨테이너/박싱 클래스일 뿐이며, Optional 변수에 null을 할당하는 것은 Optional 변수 자체가 null인지 또 검사해야 하는 문제를 야기함
+    - `Optional<Cart> emptyCart = null` -> 이렇게 쓰면 안된다!
+    - 값이 없는 경우라면 Optional.empty()로 초기화해야 함
+<br></br>
+- isPresent()-get()은 orElse()나 orElseXXX 등으로 대체하라
+    - 가급적이면 isPresent()로 검사하고 get()으로 값을 꺼내기보다는 orElseGet 등을 활용해 처리해야 함
+    ```java
+    private String findDefaultName() {
+        return ...;
+    }
+    
+    // AVOID
+    public String findUserName(long id) {
+        Optional<String> optionalName = ... ;
+    
+        if (optionalName.isPresent()) {
+            return optionalName.get();
+        } else {
+            return findDefaultName();
+        }
+    }
+    
+    // PREFER
+    public String findUserName(long id) {
+        Optional<String> optionalName = ... ;
+        // orElseGet은 값이 준비되어 있지 않은 경우, orElse는 값이 준비되어 있는 경우에 사용 
+        return optionalName.orElseGet(this::findDefaultName);
+    }
+    ```
 
+- 단순히 값을 얻으려는 목적으로만 Optional을 사용하지 마라
+    - 단순히 값을 얻고자 할 때, Optional을 사용하는 것은 비용 낭비가 될 수 있음 -> 직접 값을 다루자
+    - Optional을 필드, 메서드 매개변수, 집합 자료형에 쓰지 말라
+  ```java
+  // AVOID
+    public String findUserName(long id) {
+        String name = ... ;
+        
+        return Optional.ofNullable(name).orElse("Default");
+    }
+    
+    // PREFER
+    public String findUserName(long id) {
+        String name = ... ;
+        
+        return name == null 
+          ? "Default" 
+          : name;
+    }
+  ```
+
+- 집합 자료형(List, Set, Map)을 감싸는 데 Optional을 쓰지 말고 빈 집합을 사용해라
+  ```java
+  // AVOID
+    public Optional<List<User>> getUserList() {
+        List<User> userList = ...; // null이 올 수 있음
+    
+        return Optional.ofNullable(items);
+    }
+    
+    // PREFER
+    public List<User> getUserList() {
+        List<User> userList = ...; // null이 올 수 있음
+    
+        return items == null 
+          ? Collections.emptyList() 
+          : userList;
+    }
+  ```
+<br></br>
 ## (2) null을 잘 사용하기
 
 1. **API(매개변수, 반환)에 null을 최대한 쓰지 말기.**

@@ -90,37 +90,15 @@ public static List<String> add(List<String> strings, String text) {
 ```
 <br></br>
 4. ****고차함수(Higher-order functions)****        
+
 함수형 프로그래밍에서는 함수가 1급 객체가 되며, 1급 객체의 특징은 아래와 같음       
 - 변수나 데이터 구조 안에 담을 수 있음
 - 파라미터로 전달할 수 있음
 - 반환값(return value)으로 사용할 수 있음
 <br></br>
 
-함수가 1급 객체이기 때문에, 고차함수로 만들 수 있게 됨 
+함수가 1급 객체이기 때문에, 고차함수로 만들 수 있게 됨 (**자바에서는 Java 8의 함수형 인터페이스를 통해 함수를 1급 객체처럼 다룰 수 있음**)
 - 고차함수는 함수를 인자로 받거나, 함수를 반환값으로 이용할 수 있는 것을 말함
-- 클로저 개념이 사용되는데, 클로저는 내부 함수에서 외부 함수의 값(greetingText)에 접근하고 scope가 종료되어도 계속 접근할 수 있는 것을 의미함
-
-```java
-// greeting 함수는 인사말을 입력받고 함수를 반환함
-// 반환되는 함수는 이름을 인자로 받으며, 상위 함수에서 입력받은 인사말을 출력함 
-Function<String, Function<String, String>> greeting = (greetingText) -> {
-    return (name) -> {
-        return greetingText + " " + name;
-    };
-};
-
-// 함수형 인터페이스 Function 사용 
-Function<String, String> hello = greeting.apply("Hello");
-Function<String, String> hi = greeting.apply("HI");
-
-System.out.println(hello.apply("홍길동"));
-System.out.println(hi.apply("홍길동"));
-
-/* 출력 결과
-Hello 홍길동
-HI 홍길동 
-*/
-```
 
 
 <br></br>

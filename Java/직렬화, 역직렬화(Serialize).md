@@ -28,9 +28,14 @@
 
 ### 서블릿 세션 (Servlet Session)
 
-- (단순히 세션을 서블릿 메모리 위에서 운영한다면 직렬화가 필요하지 않지만, )세션 데이터를 저장&공유 할때 직렬화를 사용한다.
-- 세션 데이터를 DB에 저장할 때
-- 톰캣의 세션 클러스터링을 통해 각 서버간 데이터 공유가 필요할 때
+- 서블릿 : 자바를 이용하여 웹을 만들기 위해 필요한 기술 (Spring 관련 개념)
+- [세션](https://github.com/psyStudy/CS_study/blob/main/Network/%EC%BF%A0%ED%82%A4%EC%99%80%20%EC%84%B8%EC%85%98.md) : 일정 시간동안 같은 클라이언트로 부터 들어오는 일련의 도구를 하나의 상태로 보고 이를 일정하게 유지 시키는 기술
+- 자바 웹 기술인 서블릿에서 세션을 공유하기 위해 자바에 최적화된 포맷인 직렬화를 사용.
+    - 세션 데이터를 저장&공유 할때 
+    - 세션 데이터를 DB에 저장할 때
+    - 톰캣의 세션 클러스터링을 통해 각 서버간 데이터 공유가 필요할 때
+        - 톰캣 : 서블릿과 상호작용하는 웹 어플리케이션 서버의 구성요소(서블릿 개념에서 참조)
+        - 세션 클러스터링 : 2 대 이상의 서버를 사용할 때 로드밸런싱, 장애 대비를 위해 세션을 공유하는 것
 
 ### 캐시 Cache
 
@@ -166,6 +171,8 @@ public static void main(String[] args) {
 ![ObjectOutputStream.png](./image/ObjectOutputStream.png)
 
 - 위 코드를 실행하면 Customer.ser 파일이 생성됨. (직렬화 파일을 명시하기 위해 .ser 또는 .obj로 주로 지정함)
+- 현재 프로젝트의 working directory에 저장된다. (아래 사진의 경우 user.acc가 직렬화 파일)
+    ![Serialize_save.png](./image/Serialize_save.png)
 - 해당 파일은 사람이 읽을 수 없는 문자 형태로 되어 있음
     
     ![ObjectOutputStream2.png](./image/ObjectOutputStream2.png)
@@ -296,3 +303,4 @@ class Member implements Serializable {
 - [https://inpa.tistory.com/entry/JAVA-☕-직렬화Serializable-완벽-마스터하기#객체_직렬화__역직렬화_하기](https://inpa.tistory.com/entry/JAVA-%E2%98%95-%EC%A7%81%EB%A0%AC%ED%99%94Serializable-%EC%99%84%EB%B2%BD-%EB%A7%88%EC%8A%A4%ED%84%B0%ED%95%98%EA%B8%B0#%EA%B0%9D%EC%B2%B4_%EC%A7%81%EB%A0%AC%ED%99%94__%EC%97%AD%EC%A7%81%EB%A0%AC%ED%99%94_%ED%95%98%EA%B8%B0)
 - [https://velog.io/@whitebear/자바-직렬화-확실히-알고-가기](https://velog.io/@whitebear/%EC%9E%90%EB%B0%94-%EC%A7%81%EB%A0%AC%ED%99%94-%ED%99%95%EC%8B%A4%ED%9E%88-%EC%95%8C%EA%B3%A0-%EA%B0%80%EA%B8%B0)
 - [https://dev-coco.tistory.com/153](https://dev-coco.tistory.com/153)
+- [https://reakwon.tistory.com/160](https://reakwon.tistory.com/160)

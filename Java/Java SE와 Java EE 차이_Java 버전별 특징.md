@@ -71,6 +71,7 @@ System.out.println(localDate.getDayOfMonth());  // 15
 ```
 
 - **람다식, Stream API 지원**
+<br></br>
 - **Optional 지원**
     - Null 핸들링을 위한 클래스로, 옵셔널 클래스에는 널 or 널이 아닌 값을 담을 수 있음
     - 널인 경우 orElseThrow 메소드를 사용하여 에러를 던지거나 ifpresent 메소드로 분기 처리를 하는 등 널 처리를 세련되게 할 수 있음
@@ -79,7 +80,7 @@ System.out.println(localDate.getDayOfMonth());  // 15
 // 일반적인 Null 처리
 String str = "name";
 if (str != null) {
-		System.out.println("name: " + str);
+    System.out.println("name: " + str);
 }
 
 // Optional 처리
@@ -87,7 +88,7 @@ String str2 = "name";
 Optional<String> opt = Optional.ofNullable(str);
 opt.ifPresent(s -> System.out.println("name: " + str));
 ```
-
+<br></br>
 - **인터페이스에서도 디폴트 메소드 사용 가능**
     - 예전에는 인터페이스 내에는 추상 메소드만 사용할 수 있었음
 

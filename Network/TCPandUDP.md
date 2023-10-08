@@ -46,7 +46,7 @@ TCP는 연결 지향적 프로토콜이다.
       
     - 점대점: 각 연결이 정확히 2개의 종단점을 가지고 있음 = 멀티캐스트,브로드캐스트는 불가
 
-*※ TCP의 흐름제어와 혼잡제어 자세하게*
+6. [TCP의 흐름제어와 혼잡제어](https://github.com/psyStudy/CS_study/blob/main/Network/DNS,%20TCP%20혼잡제어와%20흐름제어.md)
 
 ## 1.2 TCP 연결/해제
 

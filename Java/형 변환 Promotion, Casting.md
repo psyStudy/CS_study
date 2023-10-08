@@ -1,20 +1,19 @@
 # 형 변환 Promotion, Casting
 
-# 1. 프로모션=자동 형 변환
-
-Range가 더 작은 자료형을 더 큰 자료형에 대입할 때, 자동으로 큰 자료형으로 변환되는 현상.
+# 1. 프로모션(= 자동 형 변환, 업캐스팅)
+Range가 더 작은 타입을 더 큰 타입에 대입할 때, 자동으로 큰 타입으로 변환되는 현상
 
 - 크기(range)는 단순히 메모리 크기 뿐아니라 해당 자료형이 표현할 수 있는 숫자의 범위를 의미한다.
 - [(원시타입의 메모리 크기와 표현 범위 살펴보기 click!)](https://github.com/psyStudy/CS_study/blob/main/Java/%ED%81%B4%EB%9E%98%EC%8A%A4%EC%99%80%20%EA%B0%9D%EC%B2%B4%20%EB%B0%8F%20%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%2C%20static%2C%20%EC%9B%90%EC%8B%9C%ED%83%80%EC%9E%85%EA%B3%BC%20%EC%B0%B8%EC%A1%B0%ED%83%80%EC%9E%85.md)
 
 ```java
 public class main{
-	public static void main(String[] args){
-		int a = 10;
-		float b = a; //오류없이 자동으로 변환
-		System.out.println(a);
-		System.out.println(b);
-	}
+    public static void main(String[] args){
+        int a = 10;
+        float b = a; //오류없이 자동으로 변환
+        System.out.println(a);
+        System.out.println(b);
+    }
 }
 ```
 
@@ -40,11 +39,9 @@ public class main{
 
 ![stringpulusint.jpg](./image/stringpulusint.jpg)
 
-# 2. 캐스팅 Casting = 명시적 형 변환
-
-크기가 더 큰 자료형을 더 작은 자료형에 대입할 때, 자료형을 명시하여 강제로 형변환 시키는 것.
-
-→ 데이터 손실이나 변형이 발생할 수 있음.
+# 2. 캐스팅 Casting (= 명시적 형 변환, 다운캐스팅)
+크기가 더 큰 타입을 더 작은 타입에 대입할 때, 타입을 명시하여 강제로 형변환 시키는 것.
+→ 데이터 손실이나 변형이 발생할 수 있음
 
 - ()를 이용한다.
 
@@ -62,46 +59,36 @@ public class test{
 
 소수점 데이터가 손실되는 것을 확인할 수 있음.
 
-# [보류]업캐스팅과 다운캐스팅
-
->
->💡 불확실한 정보, 주관적인 생각 포함!
->
-
-프로모션과 캐스팅을 객체에서도 사용할 수 있다 . = [업캐스팅과 다운캐스팅](https://github.com/psyStudy/CS_study/blob/main/Java/%EC%B6%94%EC%83%81%20%ED%81%B4%EB%9E%98%EC%8A%A4%EC%99%80%20%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
-
-- 업캐스팅upcasting : 자식 클래스 객체가 부모 클래스 타입으로 형변환 되는 것. → 프로모션과 마찬가지로 자동 형 변환
-- 다운캐스팅 downcasting : 업캐스팅된 것을 다시 원 상태로 돌리는 것. 타입을 명시적으로 지정해줘야함.
+# 참조변수 간 형 변환 
+프로모션과 캐스팅을 객체에서도 사용할 수 있다 = [업캐스팅과 다운캐스팅](https://github.com/psyStudy/CS_study/blob/main/Java/%EC%B6%94%EC%83%81%20%ED%81%B4%EB%9E%98%EC%8A%A4%EC%99%80%20%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
 
 ```java
 class Person{
-	String name;
-	Person(String name){
-		this.name = name;
-	}
+    String name;
+    Person(String name){
+        this.name = name;
+    }
 }
 
 class Student extends Person{
-	String check;
-	Student(String name){
-		super(name);
-	}
+    String check;
+    Student(String name){
+        super(name);
+    }
 }
 
 public class Main{
-	public static void main(String[] args){
-		Student s1 = new Student("홍길동");
-		Person p1 = s1;	// 업캐스팅 (자동)
-		p1.name = "이름이다.";
+    public static void main(String[] args){
+        Student s1 = new Student("홍길동");
+        Person p1 = s1;	  // 업캐스팅 
+        p1.name = "이름이다.";
 
-		Person p2 = new Student("홍길동");
-		Student s2 = (Student)p2;	// 다운캐스팅 = 명시적으로
-		s2.name = "김유신";
-	}
+        Person p2 = new Student("홍길동");
+        Student s2 = (Student)p2;   // 다운캐스팅 
+        s2.name = "김유신";
+    }
 }
 ```
-
-문제가 되는 점은, 업캐스팅=자동형변환=프로모션인데, 객체에서 사용할때는 업캐스팅이라고 부르는 것인지? 어떤게 공식 용어인지? 잘 모르겠음.
 
 ---
 

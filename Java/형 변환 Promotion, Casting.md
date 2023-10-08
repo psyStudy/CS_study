@@ -59,7 +59,7 @@ public class test{
 
 소수점 데이터가 손실되는 것을 확인할 수 있음.
 
-# 참조변수 간 형 변환 
+# 클래스 타입의 형 변환 
 프로모션과 캐스팅을 객체에서도 사용할 수 있다 = [업캐스팅과 다운캐스팅](https://github.com/psyStudy/CS_study/blob/main/Java/%EC%B6%94%EC%83%81%20%ED%81%B4%EB%9E%98%EC%8A%A4%EC%99%80%20%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
 
 ```java

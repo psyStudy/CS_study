@@ -2,7 +2,7 @@
 
 # 1. Synchronous / Asynchronous 동기와 비동기
 
-syn : 함께 + chorono : 시간 = 작업을 함께 맞춰 실행한다.
+syn(함께) + chorono(시간) = 작업을 함께 맞춰 실행한다.
 
 **■ Synchronous 동기**
 
@@ -13,8 +13,9 @@ syn : 함께 + chorono : 시간 = 작업을 함께 맞춰 실행한다.
 요청한 작업에 대해 완료 여부를 따지지 않고 작업을 수행한다.
 
 ![sync는 작업 B가 완료 되야 작업 A가 실행되고, async는 B의 작업 완료 여부와 관계없이 A의 작업이 수행됨.](./image/sync_sync_async.jpg)
-sync는 작업 B가 완료 되야 작업 A가 실행되고, async는 B의 작업 완료 여부와 관계없이 A의 작업이 수행됨.
 
+sync는 작업 B가 완료 되야 작업 A가 실행되고, async는 B의 작업 완료 여부와 관계없이 A의 작업이 수행됨
+<br></br>
 ## ♠ Sync와 Async의 작업 순서 차이
 
 Sync는 요청 작업에 대한 완료 응답을 받아야 다음 작업 처리 = **작업 순서가 지켜짐**
@@ -28,7 +29,7 @@ Sync 방식은 A→B→C로 작업 순서가 지켜진다.
 ![Async방식은 어떤 순서로 작업이 끝날 지 알 수 없다.](./image/async_task.png)
 
 Async방식은 어떤 순서로 작업이 끝날 지 알 수 없다.
-
+<br></br>
 ## ♠ Async의 성능 상 이점
 
 완료 여부 신경 X = I/O와 같은 느린 작업 중 기다리지 않고 멀티태스킹을 진행할 수 있다.
@@ -45,7 +46,7 @@ DB에서 응답이 올 때까지 기다림 -> 다른 요청을 처리할 수 없
 ```
 
 - 멀티태스킹, 동시처리 라는 개념은 두 개 이상이 동시에 실행되는 것을 의미하며, 멀티 스레드, 멀티 프로세싱 등으로 구현될 수 있다.
-
+<br></br>
 ---
 
 # 2. Blocking / Non-Blocking
@@ -65,22 +66,22 @@ DB에서 응답이 올 때까지 기다림 -> 다른 요청을 처리할 수 없
 - called at the back
   
 - i) 다른 함수의 인수로서 넘겨주는 실행 가능한 코드.
-  ```
-      //hello!
+  ```javascript
+    //hello!
     function printHello(){
-     print('hello');
+        print('hello');
     }
     //bye!
     function printBye(){
-      print('bye');
+        print('bye');
     }
     
     //특정 함수를 매개변수로 받아서 3초 뒤에 실행하는 함수
     function sleepAndExecute(sleepTimeSecond, callback){
-      //sleepTimeSecond 초 만큼 대기
-      sleep(sleepTimeSecond);
-      //전달된 callback 실행
-      callback();
+        //sleepTimeSecond 초 만큼 대기
+        sleep(sleepTimeSecond);
+        //전달된 callback 실행
+        callback();
     }
     
     //3초 뒤에 hello 출력하기
@@ -93,14 +94,13 @@ DB에서 응답이 올 때까지 기다림 -> 다른 요청을 처리할 수 없
 	- sleepAndExecute(3,printHello);에서는 printHello를 sleepAndExecute의 매개변수(인자)로 전달하므로, printHello는 callback 함수이다.
 
 - ii) 어떤 이벤트에 의해 호출되어지는 함수.
-```
-function onCableConnected(){
-	print("케이블이 연결되었습니다");
-};
+```javascript
+    function onCableConnected(){
+        print("케이블이 연결되었습니다");
+    };
 
-//케이블이 연결될 때 마다 전달된 onCableConnected가 호출된다고 가정
-setOnCableConnected(onCableConnected);
-
+    //케이블이 연결될 때 마다 전달된 onCableConnected가 호출된다고 가정
+    setOnCableConnected(onCableConnected);
 ```
 	
  - setOnCableConnected로 설정한 함수가, 케이블을 연결할 때 마다 호출되므로, onCableConnected는 "어떤 이벤트에 의해 호출되어지는 함수", 즉 callback 함수 라고 할 수 있다.
@@ -129,6 +129,7 @@ $.ajax({
 console.log('Hello');
 ```
 
+<br></br>
 ## ♠ Non-Blocking vs Async
 
 > 💡 **이런 의문이 생기는 이유**
@@ -158,6 +159,7 @@ console.log("끝");
     - 원인 : setTimeout 함수에 대해 타이머 작업을 완료 여부를 신경 쓰지 않고 바로 그 다음 콘솔 작업을 수행했기 때문.
 2. 메인 함수 작업에 대해 setTimeout 함수는 자신의 타이머 작업을 수행하기 위해 메인 함수를 블락하지 않고 백그라운드에서 별도 처리 = Non-Blocking
 
+<br></br>
 ### [참고]제어권
 
 일부 책에서 blockingnon-blocking과 sync/async 개념을 구분하기 위해 제어권이라는 용어를 사용한다. 코드나 프로세스의 실행흐름을 제어할 수 있는 권리를 의미한다.

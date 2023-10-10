@@ -311,6 +311,7 @@ Mutable
 
 - [https://velog.io/@mooh2jj/멀티-스레드의-동시성-이슈](https://velog.io/@mooh2jj/%EB%A9%80%ED%8B%B0-%EC%8A%A4%EB%A0%88%EB%93%9C%EC%9D%98-%EB%8F%99%EC%8B%9C%EC%84%B1-%EC%9D%B4%EC%8A%88)
 - [https://highright96.tistory.com/104](https://highright96.tistory.com/104)
+- [https://everydayyy.tistory.com/154](https://everydayyy.tistory.com/154)
 
 질문
 

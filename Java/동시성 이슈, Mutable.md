@@ -173,7 +173,11 @@ class Count {
 
 synchronized 키워드 없이 명시적으로 ReentrantLock을 사용하는 방법.
 
-해당 Lock의 범위를 메서드 내부에서 한정하기 어렵거나, 동시에 여러 Lock을 사용하고 싶을 때 사용한다. 직접적으로 Lock 객체를 생성하여 사용한다.
+- 해당 Lock의 범위를 메서드 내부에서 한정하기 어렵거나, 동시에 여러 Lock을 사용하고 싶을 때 사용한다.
+- 직접적으로 Lock 객체를 생성하여 사용한다.<br>
+      - lock() : 다른 스레드가 해당 lock() 메서드 시작점에 접근하지 못하고 대기<br>
+      - unlock() : 다른 메서드가 lock을 획득할 수 있게 됨.<br>
+- 상호배제 잠금 기능을 의미하여 뮤텍스락과 흡사
 
 ```java
 public class CountingTest {
@@ -183,9 +187,9 @@ public class CountingTest {
             new Thread(){
                 public void run(){
                     for (int j = 0; j < 1000; j++) {
-                        count.getLock().lock();
+                        count.getLock().lock(); // 락을 걸어서 다른 스레드가 해당 메서드(count)에 접근 불가
                         System.out.println(count.view());
-                        count.getLock().unlock();
+                        count.getLock().unlock();//락을 해제해서 다른 메서드가 count를 획득할 수 있음
                     }
                 }
             }.start();
@@ -194,7 +198,7 @@ public class CountingTest {
 }
 class Count {
     private int count = 0;
-    private Lock lock = new ReentrantLock();
+    private Lock lock = new ReentrantLock(); // lock을 ReentrantLock으로 사용
     public int view() {
             return count++;
     }

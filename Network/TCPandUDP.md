@@ -52,8 +52,14 @@ TCP는 연결 지향적 프로토콜이다.
 
 ### 1.2.1 용어(?
 
-- **SYN** : Synchronize sequence numbers : 연결 확인을 보내는 무작위의 숫자 값 = 내 말 들려?
+- **SYN** : Synchronize sequence numbers : 연결 확인을 보내는 _무작위의 숫자 값(ISN)_ = 내 말 들려?
 - **ACK** : Acknowledgements : Client나 Sever로 부터 받은 SYN에 1을 더해 SYN을 잘 받았다는 응답 = 잘 들려!
+
+  > 💡**SYN에 무작위 값을 넣어 보내는 이유** (ISN이 0부터 시작하지 않는 이유)
+  > - port수 는 유한하므로 시간에 지남에 따라 재사용된다.<br>
+  > - 처음 연결시 두 통신 호스트가 과거에 사용된 포트 번호를 사용할 가능성이 존재한다.<br>
+  > - 서버는는 패킷의 SYN을 보고 패킷을 구분하는데 난수가 아닌 순차적인 숫자값이 전송되면 이전 연결에서오는 패킷으로 인식할 수 있다.<br>
+  > - 이런 문제가 발생할 가능성을 줄이기 위해 난수로 ISN을 설정한다.
 
 ### 1.2.2 TCP 연결 과정 (3-way handshaking)
 
@@ -72,13 +78,10 @@ TCP는 연결 지향적 프로토콜이다.
 
 ![TCPnUDP_3wHandshake.jpg](./image/TCPnUDP_3wHandshake.jpg)
 
-1. 먼저 Open 한 클라이언트가 **SYN**를 보내고 **SYN_SENT** 상태로 대기한다.
-
-2. 서버는 **SYN-RECEIVED** 상태로 바꾸고 **SYN**과 응답 **ACK**를 보낸다.
-
-3. **SYN**과 응답 **ACK**를 받은 클라이언트는 **ESTABLISHED** 상태로 변경하고 서버에게 응답 **ACK**를 보낸다.
-
-4. 응답 **ACK**를 받은 서버는 **ESTABLISHED** 상태로 변경한다.
+1. 먼저 Open 한 클라이언트가 **SYN**를 보내고 **SYN_SENT** 상태로 대기한다. ( → SYN(a) )<br>
+2. 서버는 **SYN-RECEIVED** 상태로 바꾸고 **SYN**과 응답 **ACK**를 보낸다. ( SYN(b)+ACK(a+1) ← )<br>
+3. **SYN**과 응답 **ACK**를 받은 클라이언트는 **ESTABLISHED** 상태로 변경하고 서버에게 응답 **ACK**를 보낸다. ( → ACK(b+1) )<br>
+4. 응답 **ACK**를 받은 서버는 **ESTABLISHED** 상태로 변경한다.<br>
 
 ### 1.2.4 TCP 해제 과정 (4-way handshaking)
 
@@ -113,9 +116,11 @@ TIME-WAIT에서 일정 시간이 지나면 CLOSE 된다. ACK를 받은 서버도
 *※ TIME-WAIT : 먼저 연결을 끊는 쪽에서 생성되는 소켓으로, 혹시 모를 전송 실패에 대비하기 위해 존재하는 소켓이며,*
 *TIME-WAIT이 없다면, 패킷의 손실이 발생하거나 통신자 간 연결 해제가 제대로 되지 않을 수 있다.*
 
-#### issue 왜 해제는 4번 할까?
-[참고링크](https://velog.io/@yhm8622/TCP-4-way-Handshake)
-재편집
+#### 💡 issue 왜 해제는 4번 할까? [참고링크](https://velog.io/@yhm8622/TCP-4-way-Handshake)
+- 연결을 시작 할때는 서로 통신 중이 아닌 상태에서 handshake를 시도 = SYN과 ACK를 동시에 보낼 수 있음 (아무것도 안하고 있으니까)
+- 열결을 해제 할때는 이미 상호 통신 중이기 때문에 FIN 과 ACK를 동시에 보낼 수 없다. (일방적으로 종료 할 수 없다.)
+  - 서버는 ACK를 보내면서 (클라이언트의)통신 종료를 알았다는 응답 후, 클라이언트에게 보내던 데이터를 마저 마무리 (클라이언트는 데이터는 못 보내지만, 서버에게 받는 것은 할 수 있음)
+  - 모든 데이터를 보내고, 종료 준비가 되어야 FIN을 보내서 연결 종료한다는 응답을 보낼 수 있다.
 
 # 2. UDP ; User Datagram Protocol
 
@@ -190,6 +195,7 @@ UDP는 비연결형 프로토콜이다.
 - [https://dev-coco.tistory.com/161](https://dev-coco.tistory.com/161)
 - [https://baebalja.tistory.com/443](https://baebalja.tistory.com/443)
 - [https://medium.com/pplink/%EC%8B%A4%EC%8B%9C%EA%B0%84-%EC%8A%A4%ED%8A%B8%EB%A6%AC%EB%B0%8D-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%A0%84%EC%86%A1%ED%95%98%EB%8A%94%EA%B1%B0%EC%95%BC-a3e38716e06d](https://medium.com/pplink/%EC%8B%A4%EC%8B%9C%EA%B0%84-%EC%8A%A4%ED%8A%B8%EB%A6%AC%EB%B0%8D-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%A0%84%EC%86%A1%ED%95%98%EB%8A%94%EA%B1%B0%EC%95%BC-a3e38716e06d)
+- [https://lactea.kr/entry/Network-%E2%80%93-tcp-%EC%97%B0%EA%B2%B0-%EB%B6%84%EC%84%9D](https://lactea.kr/entry/Network-%E2%80%93-tcp-%EC%97%B0%EA%B2%B0-%EB%B6%84%EC%84%9D)
 
 # 추천
 

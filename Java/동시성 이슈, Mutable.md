@@ -148,23 +148,39 @@ i++ 연산을 2개의 스레드가 동시에 100회 실행하는 상황 가정.
 - atomic의 경우에는 CAS 알고리즘에 의해 원자성 문제와 CPU Cache Memory에 잘못된 값을 참조하는 문제를 동시에 해결해주기 때문이다.
 
 ## 2.3. 동시성을 제어하는 방법
+예시코드 - Thread-safe 하지 않은 코드
+```java
+ublic class Count{
+    private int count = 0;
+
+    public void increase() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+```
+→ 스레드A와 스레드B가 동시에 increase()을 호출할 경우 문제 발생할 수 있음
+    - 예상결과 : 스레드A실행 → count=1 → 스레드B 실행 → count=2
+    - 실제 결과 : 스레드A실행 → count=1 → 스레드B 실행 → count=1
+
 
 ### 1) 암시적 Lock (synchronized)
 
-문제가 된 메서드, 변수에 각각 synchronized 라는 키워드를 넣는다.
+문제가 된 메서드나 변수에 각각 synchronized 라는 키워드를 넣는다.
 
 ```java
-class Count {
-    private int count;
-    public synchronized int view() {return count++;}
-}
+public class Count {
+    private int  count = 0;
 
-class Count {
-    private Integer count = 0;
-    public int view() {
-        synchronized (this.count) {
-            return count++;
-        }
+    public synchronized void increase() { //synchronized 추가
+        count++;
+    }
+
+    public synchronized int getCount() { //synchronized 추가
+        return count;
     }
 }
 ```
@@ -180,81 +196,96 @@ synchronized 키워드 없이 명시적으로 ReentrantLock을 사용하는 방�
 - 상호배제 잠금 기능을 의미하여 뮤텍스락과 흡사
 
 ```java
-public class CountingTest {
-    public static void main(String[] args) {
-        Count count = new Count();
-        for (int i = 0; i < 100; i++) {
-            new Thread(){
-                public void run(){
-                    for (int j = 0; j < 1000; j++) {
-                        count.getLock().lock(); // 락을 걸어서 다른 스레드가 해당 메서드(count)에 접근 불가
-                        System.out.println(count.view());
-                        count.getLock().unlock();//락을 해제해서 다른 메서드가 count를 획득할 수 있음
-                    }
-                }
-            }.start();
+ublic class Count {
+    private int  count = 0;
+    private Lock lock = new ReentrantLock(); // ReentrantLock 객체 불러옴
+
+    public void increase() {
+        lock.lock(); //잠금
+        try {
+            count++;
+        } finally {
+            lock.unlock(); //잠금 해제
+        }
+
+    }
+
+    public int getCount() {
+        lock.lock(); //잠금
+        try{
+            return count;
+        }finally{
+            lock.unlock(); //잠금 해제
         }
     }
-}
-class Count {
-    private int count = 0;
-    private Lock lock = new ReentrantLock(); // lock을 ReentrantLock으로 사용
-    public int view() {
-            return count++;
-    }
-    public Lock getLock(){
-        return lock;
-    };
 }
 ```
 
-### 3) Thread-safe 객체 사용
+### 3) concurrent 패키지 사용(Thread-safe 객체 사용)
 
-concurrent 패키지는 각종 스레드 안전한 컬랙션을 제공한다.
-
-ConcurrentHashMap과 같은 컬랙션은 스레드 안전하게 사용할 수 있다.
-
-- Concurrent 패키지 → atomic 방식 (cas 알고리즘)
-    - concurrent패키지에 존재하는 컬랙션들은 락을 사용할 때 발생하는 성능 저하를 최소한으로 만든다.
-    - 락을 여러 개로 분할하여 사용하는 Lock Striping 기법을 사용하여 동시에 여러 스레드가 하나의 자원에 접근하더라도 동시성 이슈가 발생하지 않도록 도와주는 것이다.
+자바에서 제공하는 concurrent 패키지는 동시성 문제를 해결하기 위한 다양한 클래스와 인터페이스를 제공한다.     
+- **concurrent 패키지의 ConcurrentHashMap을 이용하여 문제를 해결하는 방법**
+    - ConcurrentHashMap은 내부적으로 여러개의 락을 가지고 해시값을 이용해 이러한 락을 분할하여 사용한다.
+    - 분할 락을 사용하여 병렬성과 성능이라는 두 마리의 토끼를 모두 잡은 컬랙션인 것이다.
+    - 일반적인 map을 사용할 때처럼 구현하면 내부적으로 알아서 락을 자동으로 사용하여 사용자가 편리하게 사용할 수 있다.
     
     ```java
-    class Count {
-        private AtomicInteger count = new AtomicInteger(0);
-        public int view() {
-                return count.getAndIncrement();
-        }
+    //내부적으로 스레드 간의 안전한 데이터 공유를 보장하기 때문에 동시성 문제가 발생하지 않는다.
+   public class Count {
+    private ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+
+		public void increase() {
+		    Integer currentValue = map.get("count");
+		    if (currentValue == null) {//"count"라는 키가 Map에 존재하지 않으면
+		        map.put("count", 1);
+		    } else { //존재하면
+		        map.put("count", currentValue + 1);
+		    }
+		}
+
+    public int getCount() {
+        return map.get("count");
+      }
     }
     ```
     
-- ConcurrentHashMap
-    - ConcurrentHashMap은 내부적으로 여러개의 락을 가지고 해시값을 이용해 이러한 락을 분할하여 사용한다.
-    - 분할 락을 사용하여 병렬성과 성능이라는 두 마리의 토끼를 모두 잡은 컬랙션인 것이다.
-    - 내부적으로 여러 락을 사용, 일반적인 map을 사용할 때처럼 구현하면 내부적으로 알아서 락을 자동으로 사용해 줄 테니 편리하게 사용할 수 있다.
-    
-    ```java
-    int binCount = 0;
-            for (Node<K,V>[] tab = table;;) {
-                Node<K,V> f; int n, i, fh;
-                if (tab == null || (n = tab.length) == 0)
-                    tab = initTable();
-                else if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {
-                    if (casTabAt(tab, i, null,
-                                 new Node<K,V>(hash, key, value, null)))
-                        break;                   // no lock when adding to empty bin
-                }
-                else if ((fh = f.hash) == MOVED)
-                    tab = helpTransfer(tab, f);
-                else {
-                    V oldVal = null;
-                    synchronized (f) {
-                        if (tabAt(tab, i) == f) {
-    ```
-    
+### 4) volatile 사용
+volatile 키워드를 사용하면 변수가 항상 메인 메모리에서 읽고 쓰이도록 보장된다. 
+- volatile을 붙인 변수는 캐시에 저장되지 않고 메인 메모리에 항상 저장이 되는데, 바로 이 점을 이용해서 캐시 사용으로 인한 데이터 불일치를 막을 수 있다.
+- 이렇게 함으로써, 변수에 대한 변경 사항이 다른 스레드에 즉시 반영되므로, 스레드 간의 동시성 문제를 해결할 수 있다.
+```java
+public class Count {
+    private volatile int count; //volatile 추가
 
-### 4) 불변 객체 사용
+    public void increase() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+```
+
+### 5) 불변 객체 사용
 
 불변 객체는 락을 걸 필요가 없다. 내부적인 상태가 변하지 않으니 여러 스레드에서 동시에 참조해도 동시성 이슈가 발생하지 않는 것아다. 즉, 불변 객체는 **언제나 스레드 안전(Thread-safe)하다.**
+```java
+public final class Count {
+    private final int count;
+
+    public Count(int count) {
+        this.count = count;
+    }
+    public Count increase(){
+        return new Count(count + 1); //새로운 Count 객체 생성
+    }
+    public int getCount(){
+        return count;
+    }
+}
+```
+
 
 - 불변 객체는 생성자로 모든 상태 값을 생성할 때 세팅하고, **객체의 상태를 변화시킬 수 있는 부분을 모두 제거해야 한다.**
     - **가장 간단한 방법은 세터(setter)를 만들지 않는 것!**

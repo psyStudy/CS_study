@@ -217,7 +217,7 @@ public class Test {
 
 - 정수, 실수, 문자, 논리 리터럴 등의 **실제 데이터 값을 저장하는 타입**
 - null 을 담을 수 없다.
-- 제너릭 타입에서 사용할 수 없다. ## 다시조사
+- 제너릭 타입에서 사용할 수 없다. ([➡️제너릭](https://github.com/psyStudy/CS_study/blob/main/Java/%EC%A0%9C%EB%84%A4%EB%A6%AD(Generics)_%EC%99%80%EC%9D%BC%EB%93%9C%EC%B9%B4%EB%93%9C.md))
 
 ```java
 int i = null ; //불가능

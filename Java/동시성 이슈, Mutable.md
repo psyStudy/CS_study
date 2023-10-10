@@ -35,46 +35,24 @@ i = 3; // 수정된거 아니야?
 
 ### 불변 객체의 장점
 
-1. Thread-safe 하여 멀티스레드 프로그램밍에 유용하며, 동기화를 고려하지 않아도 된다.
-- 공유 자원이 불변 자원이면 항상 동일 값을 반환하기 때문에 동기화를 고려하지 않아도 된다. 안정성을 보장하고, 성능상의 이점도 가져다 준다.
-2. 실패 원자적 (Failure Atomic) 메소드를 만들 수 있다.
-- 가변 객체로 작업 중 예외가 발생하면 객체는 불안정상태에 빠질 수 있고, 이는 또 다른 에러를 유발할 수 있다. 불변 객체의 경우 예외가 발생해도 메소드 호출 이전의 상태를 유지 할 수 있다. 또한 예외가 발생해도 오류가 나지 않은 것처럼 다음 로직을 처리할 수 있다.
-3. 부수효과가 없고, 다른 사람이 유지보수 하기 좋다.
+**1. Thread-safe 하여 멀티스레드 프로그램밍에 유용하며, 동기화를 고려하지 않아도 된다.**
+  - 공유 자원이 불변 자원이면 항상 동일 값을 반환하기 때문에 동기화를 고려하지 않아도 된다. 안정성을 보장하고, 성능상의 이점도 가져다 준다.
+    
+**2. 실패 원자적 (Failure Atomic) 메소드를 만들 수 있다.**
+  - 가변 객체로 작업 중 예외가 발생하면 객체는 불안정상태에 빠질 수 있고, 이는 또 다른 에러를 유발할 수 있다. 불변 객체의 경우 예외가 발생해도 메소드 호출 이전의 상태를 유지 할 수 있다. 또한 예외가 발생해도 오류가 나지 않은 것처럼 다음 로직을 처리할 수 있다.
+    
+**3. 부수효과가 없고, 다른 사람이 유지보수 하기 좋다.**
   - Cache, Map, Set 등의 요소로 활용하기 적합하다.
-4. 가비지 컬렉션의 성능을 높일 수 있다.
-- 불변 객체를 생성하기 위해서는 객체를 가지는 또 다른 컨테이너 객체(ImmutableHolder)도 존재한다는 것인데, 당연히 불변의 객체(Object value)가 먼저 생성되어야 컨테이너 객체가 이를 참조할 수 있을 것이다.
-- 즉, 컨테이너는 컨테이너가 참조하는 가장 젊은 객체들보다 더 젊다는 것(늦게 생성되었다는 것)이다. 이를 정리하면 다음과 같다.
-    1. Object 타입의 value 객체 생성
-    2. ImmutableHolder 타입의 컨테이너 객체 생성
-    3. ImmutableHolder가 value 객체를 참조
-- 이러한 점은 GC가 수행될 때, 가비지 컬렉터가 컨테이너 객체 하위의 불변 객체들은 Skip할 수 있도록 도와준다. 왜냐하면 해당 컨테이너 객체(ImmutableHolder)가 살아있다는 것은 하위의 불변 객체들(value) 역시 처음에 할당된 상태로 참조되고 있음을 의미하기 때문이다.
-
-```java
-public class MutableHolder {
-    private Object value;
-    public Object getValue() { return value; }
-    public void setValue(Object o) { value = o; }
-}
- 
-public class ImmutableHolder {
-    private final Object value;
-    public ImmutableHolder(Object o) { value = o; }
-    public Object getValue() { return value; }
-}
- 
-@Test
-public void createHolder() {
-    // 1. Object 타입의 value 객체 생성
-    final String value = "MangKyu";
     
-    // 2. Immutable 생성 및 값 참조
-    final ImmutableHolder holder = new ImmutableHolder(value);
+**4. 가비지 컬렉션의 성능을 높일 수 있다.**
+  - 불변객체를 이용하면 불변객체 내부의 객체는 GC의 스캔 대상에서 제외된다.
+  - 그러므로 불변객체를 이용하면 GC 스캔빈도와 범위가 줄어들어 GC성능에 도움이 된다고 할 수 있다.
+  
+    > **💡 더 자세하게! <br>**
+    > - GC는 새롭게 생선된 객체는 금방 죽는다는 Weak Generation Hypothesis (가설)에 의해 설계되어 있음.<br>
+    > - 새로 생성된 불변 객체 → 생명주기가 짧은 객체 → GC 스캔 대상에서 제외 → 성능 도움<br>
+    > - 가변 객체 → 생명주기가 긴 객체 → GC가 지속적으로 스캔(스캔 범위⬆️, 스캔 빈도⬆️)<br>
     
-}
-```
-
-- 결국 불변 객체를 활용하면 가비지 컬렉터가 스캔해야 되는 객체의 수가 줄어서 스캔해야 하는 메모리 영역과 빈도수 역시 줄어들 것이고, GC가 수행되어도 지연 시간을 줄일 수 있을 것이다. 그렇기 때문에 필드값을 수정할 수 있는 MutableHolder보다는 필드값을 수정할 수 없는 ImmutableHolder를 사용하는 것이 좋다.
-- 누군가는 위의 코드를 보고 Holder의 값이 바뀌는 경우라면 MutableHolder를 이용하는 것이 더 낫지 않냐고 의구심을 가질 수 있다. 하지만 GC는 새롭게 생성된 객체는 대부분 금방 죽는다는 Weak Generational Hypothesis 가설에 맞추어 설계되었다. 가비지 컬렉터의 입장에서 생명 주기가 짧은(short lifespan) 객체를 처리하는 것은 그렇게 큰 문제가 아니며, 오히려 MutableHolder의 값이 지속되어 old-to-young 참조가 일어나는 것이 더 큰 성능 저하를 야기할 것이다.
 
 ### 불변 객체 단점
 
@@ -292,6 +270,7 @@ Mutable
 
 - [https://choiblack.tistory.com/47](https://choiblack.tistory.com/47)
 - [https://s-y-130.tistory.com/181](https://s-y-130.tistory.com/181)
+- [https://devoong2.tistory.com/entry/Java-%EB%B6%88%EB%B3%80-%EA%B0%9D%EC%B2%B4Immutable-Object-%EC%97%90-%EB%8C%80%ED%95%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90](https://devoong2.tistory.com/entry/Java-%EB%B6%88%EB%B3%80-%EA%B0%9D%EC%B2%B4Immutable-Object-%EC%97%90-%EB%8C%80%ED%95%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90)
 
 동시성 이슈
 

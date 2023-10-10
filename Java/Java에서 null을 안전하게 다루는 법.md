@@ -42,10 +42,21 @@
 - 부울식이 거짓이면 AssertionError 발생
 - 수식은 AssertionError에 포함될 상세 정보를 만드는 생성식이다.
 
+  ```java
+  public class Test{
+      public static void main(String[] args){
+          boolean a = false;
+          assert a : "해당값은 false입니다.";
+      }
+  }
+  ```
+  ![assert 결과](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F132DA8374FF4EA1042)
+
 **주의할점**
 
 - Assertion은 일반적으로 컴파일되는 상황에서는 실행되지 않음.
     - 별도의 옵션 필요(-enableassertions 또는 -ea)
+    - 런타임에서도 기본적으로 비활성화
 - Assertion을 사용하면 안되는 상황
     - public 메소드의 파라미터를 검사하는 경우 : IllegalArgumentException을 사용하는 것이 올바르다.
     - 올바른 수행을 위해 필요한 작업을 수행하는 경우 :
@@ -285,3 +296,4 @@ User user = optionalUser.get();
 - [https://www.youtube.com/watch?v=vX3yY_36Sk4](https://www.youtube.com/watch?v=vX3yY_36Sk4)
 - [https://dev-coco.tistory.com/153](https://dev-coco.tistory.com/153)
 - https://mangkyu.tistory.com/203
+- https://runtoyourdream.tistory.com/223

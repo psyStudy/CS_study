@@ -178,7 +178,7 @@ User user = optionalUser.get();
         - 빈 반환 값은 빈 컬렉션이나 null객체를 사용
         - 반환 값이 없을 수도 있다면 Optional반환
     - 선택적 매개변수는 null대신 다형성(메서드 추가 정의)을 사용해서 표현
-2. **사전 조건과 사후 조건을 확인하라 : “계약에 의한 설계(design by contract)”⭐**
+2. [**사전 조건과 사후 조건을 확인하라 : “계약에 의한 설계(design by contract)”⭐**](https://github.com/psyStudy/CS_study/blob/main/Java/%EA%B3%84%EC%95%BD%EC%97%90%20%EC%9D%98%ED%95%9C%20%EC%84%A4%EA%B3%84.md)
     - API 소비자와 제공자 사이 지켜야할 규약.
     - 사전조건과 사후조건을 확인해서 애초에 null이 입력되지 않거나, null을 반환하지 않도록 설계해야함.
     - ex) Spring의 Assert클래스를 사용

@@ -150,7 +150,7 @@ i++ 연산을 2개의 스레드가 동시에 100회 실행하는 상황 가정.
 ## 2.3. 동시성을 제어하는 방법
 예시코드 - Thread-safe 하지 않은 코드
 ```java
-ublic class Count{
+public class Count{
     private int count = 0;
 
     public void increase() {
@@ -162,9 +162,9 @@ ublic class Count{
     }
 }
 ```
-→ 스레드A와 스레드B가 동시에 increase()을 호출할 경우 문제 발생할 수 있음
-    - 예상결과 : 스레드A실행 → count=1 → 스레드B 실행 → count=2
-    - 실제 결과 : 스레드A실행 → count=1 → 스레드B 실행 → count=1
+→ 스레드A와 스레드B가 동시에 increase()을 호출할 경우 문제 발생할 수 있음<br>
+    - 예상결과 : 스레드A실행 → count=1 → 스레드B 실행 → count=2<br>
+    - 실제 결과 : 스레드A실행 → count=1 → 스레드B 실행 → count=1<br>
 
 
 ### 1) 암시적 Lock (synchronized)

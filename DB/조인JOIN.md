@@ -204,28 +204,25 @@ WHERE d.dept_no IN (SELECT e.dept_no
 
 ![join_semijoin.png](./image/join_semijoin.png)
 
-# 3. (참고)조인 원리
+# 3. 조인 수행 원리
 
 ## 1) 중첩 루프 조인(NLJ, Nested Loop Join)
-
 - 중첩 for문과 같은 원리
 - 랜덤 접근에 대한 비용이 많이 증가하므로 대용량 테이블에서는 사용하지 않음.
 
 ```sql
 for each row in t1 matching reference key{
-	for each row in t2 matching reference key{
-		if row satisties join coditions, send to clint
-	}
+    for each row in t2 matching reference key{
+	if row satisties join coditions, send to clint
+    }
 }
 ```
 
 ## 2) 정렬 병합 조인
-
 - 각 테이블을 조인할 필드 기준으로 정렬하고 정렬이 끝난 후 조인 작업을 수행.
 - 조인 시 쓸 적절한 인덱스가 없고 대용량의 테이블들을 조인하고 조인 조건으로 <. >등 범위 비교 연산자가 있을 때 사용
 
 ## 3) 해시 조인
-
 - 해시 테이블을 기반으로 조인
 - 두 개 테이블을 조인한다고 했을때, 하나의 테이블이 메모리에 온전히 들어가면 일반적으로 중첩 루프조인보다 효율적이다.
     - 메모리에 올릴 수 없을 정도로 크면 디스크 사용 비용이 발생하고, 동등 조인에서만 사용할 수 있음
@@ -238,6 +235,7 @@ for each row in t1 matching reference key{
 - JOIN의 종류와 각 특징에 대해 이야기 해보세요
 - 셀프 조인을 사용할 경우 예를 들어보세요
 - 왼쪽 외부조인시 오직 LEFT에 있는 값만을 가져오도록 쿼리를 한번 짜보세요.
+- NL, Sort Merge, Hash JOIN의 차이점을 이야기 해보세요 (실제 면접 기출)
 
 # 출처
 

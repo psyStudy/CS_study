@@ -184,16 +184,16 @@ console.log("끝");
 2. 호출된 B 함수는 실행되지만, 제어권은 A 함수가 그대로 가지고 있는다.
 3. A 함수는 계속 제어권을 가지고 있기 때문에 B 함수를 호출한 이후에도 자신의 코드를 계속 실행한다.
 
----
 
-# [참고] 3. 두 개념 조합해서 사용하기
+<br></br>
+# 3. 두 개념 조합해서 사용하기
 
 프로그래밍에 어떤 요소를 조합하느냐에 따라 성능과 효율성을 높일 수 있다.
 
-1. Sync Blocking (동기 + 블로킹)
-2. Async Blocking (비동기 + 블로킹)
-3. Sync Non-Blocking (동기 + 논블로킹)
-4. Async Non-Blocking (비동기 + 논블로킹)
+1) Sync + Blocking (동기 + 블로킹)
+2) Async + Blocking (비동기 + 블로킹)
+3) Sync + Non-Blocking (동기 + 논블로킹)
+4) Async + Non-Blocking (비동기 + 논블로킹)
     
     ![bnsa_combi.png](./image/bnsa_combi.png)
     
@@ -202,47 +202,45 @@ console.log("끝");
     - 예2) node.js에서 동기+블로킹 방식을 이용하면
         - 코드 실행 시점을 늦춰주거나 순차적인 의존성이 있는 작업을 처리할 때 작업의 순서와 타이밍 제어에 도움이 된다.
     
-    ## Sync+Blocking
+## 1) Sync + Blocking
     
-    ![combi_syncB.png](./image/combi_syncB.png)
+![combi_syncB.png](./image/combi_syncB.png)
     
-    다른 작업이 진행되는 동안 자신의 작업을 처리하지 않고 (Blocking), 다른 작업의 완료 여부를 바로 받아 순차적으로 처리하는 (Sync) 방식.
+**다른 작업이 진행되는 동안 자신의 작업을 처리하지 않고(Blocking), 다른 작업의 완료 여부를 바로 받아 순차적으로 처리하는(Sync) 방식**
     
-    다른 작업의 결과가 자신의 작업에 영향을 주는 경우에 활용할 수 있다.
+다른 작업의 결과가 자신의 작업에 영향을 주는 경우에 활용할 수 있다      
+일반적으로 작업이 간단하거나 작업량이 적은 경우 사용한다 (파일 하나를 읽고 쓰는 경우 등)
+      
+- ex) C나 Java의 코드 실행 후 커맨드에서 입력을 받는 경우
     
-    - 일반적으로 작업이 간단하거나 작업량이 적은 경우에 사용
-    - 작은 데이터를 처리하거나 파일 하나를 읽고 쓰는 경우에는 Sync Blocking 방식이 더 간단하고 직관적일 수 있음
-    - 하지만 작업량이 많거나 시간이 오래 걸리는 작업을 처리해야 하는 경우 Async Non-Blocking 방식을 사용하여 작업을 처리하는 것이 좋다.
-    - 사용 예) C나 JAVA의 코드 실행 후 커맨드에서 입력을 받는 경우
+```jsx
+//파일을 읽고 내용을 처리하는 로
+const fs = require('fs'); // 파일 시스템 모듈 불러오기
     
-    ```jsx
-    //파일을 읽고 내용을 처리하는 로
-    const fs = require('fs'); // 파일 시스템 모듈 불러오기
+// 동기적으로 파일 읽기
+const data1 = fs.readFileSync('file1.txt', 'utf8'); // file1을 sync으로 read 함
+console.log(data1); // 파일 내용 출력하고 적절한 처리를 진행
     
-    // 동기적으로 파일 읽기
-    const data1 = fs.readFileSync('file1.txt', 'utf8'); // file1을 sync으로 read 함
-    console.log(data1); // 파일 내용 출력하고 적절한 처리를 진행
+const data2 = fs.readFileSync('file2.txt', 'utf8'); 
+console.log(data2); 
     
-    const data2 = fs.readFileSync('file2.txt', 'utf8'); 
-    console.log(data2); 
+const data3 = fs.readFileSync('file3.txt', 'utf8'); 
+console.log(data3);
+```
     
-    const data3 = fs.readFileSync('file3.txt', 'utf8'); 
-    console.log(data3);
-    ```
+![combi_syncB_shoose](./image/combi_syncB_shoose.png)
     
-    ![combi_syncB_shoose](./image/combi_syncB_shoose.png)
-    
-
-## Async + Non-Blocking
+<br></br>
+## 2) Async + Non-Blocking
 
 ![combi_asyncN.png](./image/combi_asyncN.png)
 
-다른 작업이 진행되는 동안에도 자신의 작업을 처리하고 (Non Blocking), 다른 작업의 결과를 바로 처리하지 않아 작업 순서가 지켜지지 않는 (Async) 방식이다. 
+**다른 작업이 진행되는 동안에도 자신의 작업을 처리하고(Non Blocking), 다른 작업의 결과를 바로 처리하지 않아 작업 순서가 지켜지지 않는(Async) 방식**
 
-다른 작업의 결과가 자신의 작업에 영향을 주지 않은 경우에 활용할 수 있다.
+다른 작업의 결과가 자신의 작업에 영향을 주지 않은 경우에 활용할 수 있다      
+작업량이 많거나 시간이 오래 걸리는 작업을 처리해야 하는 경우에 적합하다 
 
-- 작업량이 많거나 시간이 오래 걸리는 작업을 처리해야 하는 경우에 적합
-- 사용 예) 웹 브라우저의 파일 다운로드
+- ex) 웹 브라우저의 파일 다운로드
     
     ![combi_asyncN_browser.png](./image/combi_asyncN_browser.png)
     
@@ -271,28 +269,31 @@ console.log('done'); // 작업 완료 메시지 출력
 
 ![asyncN_shose.png](./image/asyncN_shose.png)
 
-## Sync + Non-Blocking
+<br></br>
+## 3) Sync + Non-Blocking
 
 ![combi_syncN.png](./image/combi_syncN.png)
 
-다른 작업이 진행되는 동안에도 자신의 작업을 처리하고 (Non Blocking), 다른 작업의 결과를 바로 처리하여 작업을 순차대로 수행 하는 (Sync) 방식이다.
+**다른 작업이 진행되는 동안에도 자신의 작업을 처리하고(Non Blocking), 다른 작업의 결과를 바로 처리하여 작업을 순차대로 수행 하는(Sync) 방식**
 
-- 사용 예) 게임에서의 맵 이동 상황
+결과가 생길때까지 계속 완료되었는지 확인한다    
+
+- ex) 게임에서의 맵 이동 상황
     - 멥 데이터를 모두 다운로드하는 동안 화면에는 로딩 스크린(로딩바가 채워지는 프로그램)이 실행되고 있다.
-    - 로딩바 프로그램은 제어권도 있고, 자신의 일을 수행하면서 끈임없이 다른 작업과의 동기를 위해 작업이 끝났는지 조회하고 있다.
+    - 로딩바 프로그램은 제어권도 있고, 자신의 일을 수행하면서 끊임없이 다른 작업과의 동기를 위해 작업이 끝났는지 조회하고 있다.
 
 ![syncN_shose.png](./image/syncN_shose.png)
 
-## Async + Blocking
+<br></br>
+## 4) Async + Blocking
 
 ![combi_asyncB.png](./image/combi_asyncB.png)
 
-다른 작업이 진행되는 동안 자신의 작업을 멈추고 기다리는 (Blocking), 다른 작업의 결과를 바로 처리하지 않아 순서대로 작업을 수행하지 않는 (Async) 방식이다.
+**다른 작업이 진행되는 동안 자신의 작업을 멈추고 기다리는(Blocking), 다른 작업의 결과를 바로 처리하지 않아 순서대로 작업을 수행하지 않는(Async) 방식**
 
-- Async-blocking 의 경우는 실무에서 잘 마주하기 쉽지 않아 다룰일이 거의 없다. 그래서 그냥 넘어가도 크게 문제는 없다.
-- sync-blocking과 수행그림과 차이가 없어보이고, 실제로도 성능적 차이가 미미하다.
-- 개발자가 async-nonblocking으로 처리하려다 실수하는 경우 또는 자기도 모르게 블로킹 작업을 실행하는 의도치 않은 경우 사용된다….
-- 사용 예) node.js + mySQL조합 사용시
+해당 방식은 사실 이점이 없기 때문에 굳이 사용하지 않는다     
+
+- ex) node.js + mySQL조합 사용시
     - node.js는 비동기로 DB에 접근하므로 Async지만
     - MySQL DB에 접근하기 위한 MySQL 드라이버가 블로킹으로 작동된다.
     - 하지만 결국 혼동을 일으킬 수 있으므로 보통 실무에서는 node.js 서버 프로그램시 asysnc/await으로 동기처리를 한다.

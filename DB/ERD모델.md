@@ -29,8 +29,9 @@
 <br></br>
 
 ## ERD (Entity Relationship Diagram)
-Entity(개체)와 Relationship(관계)를 중점적으로 표시함으로써 데이터베이스 구조를 한 눈에 알아볼 수 있게 하는 다이어그램 
-ERD 표기법은 크게 Peter-Chen 표기법과 까마귀 발 표기법으로 나눌 수 있음   
+Entity(개체)와 Relationship(관계)를 중점적으로 표시함으로써 데이터베이스 구조를 한 눈에 알아볼 수 있게 하는 다이어그램     
+
+ERD 표기법은 크게 Peter-Chen 표기법과 까마귀 발 표기법으로 나눌 수 있음     
 - **Peter Chen 표기법** - 흔히 대학교에서 배우는 ERD 표기법으로 실무에서는 보통 사용되지 않음
   
   ![erd_18.png](./image/erd_18.png)

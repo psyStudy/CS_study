@@ -100,7 +100,10 @@ ERD 표기법은 크게 Peter-Chen 표기법과 까마귀 발 표기법으로 �
 
 <br></br>
 <br></br>
-
+### 면접 질문 
+1. 상황을 이해해서 ERD 설계 및 그리기
+2. 그린 ERD에 따라 처리 프로세스 설명
+<br></br>
 ### 출처
 https://rutgo-letsgo.tistory.com/138     
 [https://powerbi.microsoft.com/ko-kr/what-is-data-modeling/](https://powerbi.microsoft.com/ko-kr/what-is-data-modeling/)     
